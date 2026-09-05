@@ -14,8 +14,11 @@ The repository owner may act as accountable scientist, maintainer, and release
 approver after considering the panel evidence. The owner decision must name the
 candidate, scope, maturity, conditions, dissent, and downstream boundaries; it
 must not be represented as independent review.
-External venues, other repositories, and destination-specific human-only
-approvals retain their own requirements and are not rewritten by this policy.
+External venues, other repositories, and destination-specific controls retain their
+service requirements. Those requirements are tracked as destination constraints,
+not as requests for additional human participation in this repository. Only the
+repository owner may make or attest to a human decision, submission, release, or
+issue closure.
 
 A gate remains pending when the panel identifies unresolved findings, the exact
 candidate changes, parity is incomplete, or an external receipt is absent.

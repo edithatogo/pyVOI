@@ -855,12 +855,12 @@ as recorded in the active task above; earlier route decisions below are historic
 
 *   [x] Complete the repository-owned Assurance Frontier work.
     *   Conductor track: `assurance-frontier_20260720`.
-    *   Merge, release, publication, and issue closure remain explicit human gates.
+    *   Merge, release, publication, and issue closure remain explicit maintainer gates; agent-panel opinions provide all repository review input.
 
 *   [x] Complete the repository-owned Operational Assurance Excellence work.
     *   Conductor track: `operational-assurance-excellence_20260720`.
     *   Baseline approval, merge, release, publication, and issue closure remain
-        explicit human gates.
+        explicit maintainer gates; agent-panel opinions provide all repository review input.
 
 *   [x] Add the engineering-frontier harness for logging, environments, typing,
     profiling, and expensive CI evidence.
