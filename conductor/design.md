@@ -128,7 +128,7 @@ flowchart TD
     Renovate --> PR["Immutable update PR"]
     PR --> Stability["Release-age and artifact checks"]
     Stability --> Protected["Maximal-quality required checks"]
-    Protected --> Review{"Human review required?"}
+    Protected --> Review{"Maintainer decision required?"}
     Review -- "Security, major, numerical, lock or submodule" --> Human["Maintainer review"]
     Review -- "Eligible ordinary non-major" --> Auto["Protected automerge"]
     Human --> Merge["Merge"]
@@ -236,7 +236,7 @@ flowchart LR
     ResolvedFamilyPolicies --> FamilyVDI
     FamilyVDI --> FamilyBoundary["Discrete-index EVPPI; not full structural EVPI"]
 
-    QualDecision["Decision + accountable human reviewers"] --> QualAssessment["Versioned qualitative assessment"]
+    QualDecision["Decision + agent-panel opinions plus accountable maintainer decision"] --> QualAssessment["Versioned qualitative assessment"]
     QualGaps["Information questions + evidence gaps"] --> QualAssessment
     QualJudgements["Ordinal impact, feasibility, timeliness, equity/ethics, burden and confidence"] --> QualAssessment
     QualAssessment --> QualPriority["Deterministic priority classes + complete ties"]

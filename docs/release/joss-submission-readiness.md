@@ -10,7 +10,7 @@ submission is claimed. Repository checks do not establish venue acceptance.
 The canonical preprint remains `paper/main.tex`; `paper.md` is the JOSS
 adaptation. Both now distinguish the published version from historical
 worked-example and archive records. The new manuscript requires fresh source
-audits, PDF evidence and human review. Older hosted PDFs remain historical,
+audits, PDF evidence and maintainer review; any JOSS editorial requirements remain external destination constraints. Older hosted PDFs remain historical,
 not current-version approval.
 
 The arXiv account was last observed on 26 July 2026: draft `7870358` was
@@ -62,7 +62,7 @@ a separate maintainer instruction is not needed merely to reselect it.
 The maintainer separately confirmed personal declarations on 31 August. This
 does not permit AI-drafted JOSS conversations with editors and reviewers.
 
-Finish all repository repairs and current human review before any submission.
+Finish all repository repairs and current maintainer review; any JOSS editorial requirements remain external destination constraints before any submission.
 Earlier pyOpenSci requests #271 and #272 are now withdrawn, with no other
 open author request observed. Survey completion and actual human-written
 submission text remain pending; editorial screening is external. Preserve

@@ -36,7 +36,7 @@ We welcome contributions from the community, whether from humans or AI agents. T
 
 This is currently a solo-maintainer repository. Pull requests are retained for
 traceability and automated quality gates, but an additional human approval is
-not required. The maintainer should self-review every diff and merge only after
+not required. The maintainer is the sole human decision-maker and self-reviews after considering the agent-panel opinions every diff and merge only after
 the required CI, security, coverage, documentation, and contract checks pass.
 
 1.  **Create a Branch:**
