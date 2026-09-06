@@ -100,5 +100,37 @@
       "preconditions": ["merged implementation", "all acceptance evidence", "PR and Conductor cross-reference"],
       "contingency": "leave issues open with an evidence-linked status comment"
     }
-  ]
+  ],
+  "sampling_harm_h8": {
+    "status": "pending_replacement_packet_and_validation",
+    "historical_validator": "voiage/sampling_harm_human_commissioning.py",
+    "historical_validator_scope": "dated_20260803_preparation_only_always_not_ready",
+    "current_executable_acceptance_route": false,
+    "required_agent_roles": [
+      "estimand-domain",
+      "estimator-assurance",
+      "cross-language-api",
+      "governance-publication",
+      "domain-ethics-safety"
+    ],
+    "reviewer_separation": "distinct agent authors, not candidate author/remediator or orchestrator; multiple role lenses by one agent are insufficient",
+    "accountable_human": "sole-repository-owner",
+    "required_evidence": [
+      "exact candidate commit and tree",
+      "source receipts and rights drift applicability assessments",
+      "five separately authored reports and digest bindings",
+      "nineteen finding dispositions and retained dissent",
+      "separate orchestrator synthesis",
+      "new fail-closed candidate validation",
+      "sole maintainer scientific-domain-product receipt"
+    ],
+    "general_status_does_not_apply": true,
+    "authority": {
+      "scientific_acceptance": false,
+      "runtime": false,
+      "real_study": false,
+      "promotion": false,
+      "issue_closure": false
+    }
+  }
 }

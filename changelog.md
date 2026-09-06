@@ -24,6 +24,11 @@
 
 ## Unreleased
 
+- Make the maintainer the sole human repository decision-maker, with separated
+  agent assessments and explicit historical H8 validation boundaries. Advance
+  venue, scientific, security and registry evidence; correct the bounded tox
+  command and remove redundant test imports without changing runtime behavior.
+
 - Repair the bounded Ruff 0.16 dependency-preview findings across repository
   scripts while preserving runtime behavior and the current dependency and
   Python-support policy.

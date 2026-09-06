@@ -1,0 +1,183 @@
+{
+  "artifact_kind": "agent_scientific_review_recommendations_not_acceptance",
+  "date": "2026-09-06",
+  "author": "Codex subagent scientific_panel",
+  "reviewer_count": 1,
+  "role_lenses_count": 5,
+  "independent_human_review": false,
+  "target_ref": "origin/codex/sole-human-maintainer-panel",
+  "target_commit": "2187a93257ba16b3dadfa65a5951f60edb54020e",
+  "input_sha256": {
+    "specs/frontier/sampling-acquisition-harm/v1/remediation-register.json": "fb75ad9c7e7262ecc68567b2f1f09d6e1ca1667eec4b4054bc5b8dac397eebe5",
+    "specs/frontier/sampling-acquisition-harm/v1/review-candidate.json": "c0042dbe813e1fd4a382555d0574ac21ccb2f8b1d7a7b75e3f73ef32a901c4bd",
+    "specs/frontier/sampling-acquisition-harm/v1/estimand-boundary.json": "1d6491c1317b77b83ceeb0009c182ddae15132798bc2d5841ebaa8bffd4a934d",
+    "specs/frontier/sampling-acquisition-harm/v1/research-disposition.json": "9bbfcffa0dbc86f3690ec1c1304e95f390d42648c33d0224260bb04d68d9fdfc",
+    "specs/frontier/sampling-acquisition-harm/v1/adjacent-method-non-alias-delta.json": "7cd7aeebcec7b702b3ac808052a45db64c84a43d318ea18dbde112f559a7bca0",
+    "specs/frontier/sampling-acquisition-harm/v1/governance-snapshot.json": "98df86d0340d5921134fb0371b58d75cf4b32531f8f4cdef38aff7201c48f87f",
+    "specs/frontier/sampling-acquisition-harm/v1/governance-administrative-delta-20260803.json": "7b7e76e87ce7c3f71bc3ec9ad20584b15b171a445e5ec70b154b032204933f15",
+    "specs/frontier/sampling-acquisition-harm/v1/source-and-retrieval-register.json": "7cfe429d0665975aad3abb643bb92e70dec3dfaf7fc8dc9c77d438c21ae77e10",
+    "tests/test_sampling_harm_remediation_intake.py": "49c4a706a4dc0f7640815c23a6161a4f0ebbeed0bdbfb9a03293e4fb1de33c05",
+    "tests/test_sampling_acquisition_harm_boundary.py": "1d2000f414930a9cb649942e559655fc69938d2a4877392de3ef5d628776f1f9"
+  },
+  "findings": [
+    {
+      "finding_id": "H8D-ED-01",
+      "severity": "High",
+      "historical_disposition": "pending",
+      "agent_recommendation": "future_candidate_blocker",
+      "assessment_and_next_action": "No executable candidate is proposed. Preserve the exclusion of automatic aggregation; a future candidate must declare irreversible/absorbing states, outcome units and hard constraints before any scalar is defined.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-ED-02",
+      "severity": "Medium",
+      "historical_disposition": "pending",
+      "agent_recommendation": "future_candidate_blocker",
+      "assessment_and_next_action": "Require a component ledger separating downstream utility from acquisition harm, and zero-harm/dropout counterexamples. Ordinary ENBS is not a proof that acquisition harm vanishes.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-ED-03",
+      "severity": "High",
+      "historical_disposition": "pending",
+      "agent_recommendation": "future_candidate_blocker",
+      "assessment_and_next_action": "The generic exclusion can be considered without choosing a disease or jurisdiction; no applicability claim follows. Any future runtime proposal must freeze population, activity, comparator and affected parties.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-ED-04",
+      "severity": "High",
+      "historical_disposition": "pending",
+      "agent_recommendation": "source_evidence_pending",
+      "assessment_and_next_action": "Retrieve the six sources through lawful access; record bytes or permitted private retention, digests, observed editions and claim-level applicability. Do not turn locators into rights receipts.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-EST-001",
+      "severity": "High",
+      "historical_disposition": "pending",
+      "agent_recommendation": "future_candidate_blocker",
+      "assessment_and_next_action": "No estimator exists to validate. Do not invent thresholds or run irrelevant EVSI tests as harm assurance. A future estimator needs truth-known examples, convergence/calibration and a declared false-safe error budget.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-EST-002",
+      "severity": "High",
+      "historical_disposition": "pending",
+      "agent_recommendation": "source_evidence_pending",
+      "assessment_and_next_action": "Bind estimator-related claims to retained source evidence and applicability review; repository counterexamples alone do not establish source authority.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-EST-003",
+      "severity": "Medium",
+      "historical_disposition": "pending",
+      "agent_recommendation": "recommend_scope_preserving_disposition",
+      "assessment_and_next_action": "Preserve dissent: this is a product-scope restriction, not a universal impossibility theorem. Candidate-specific scalar models with declared units/weights and non-authorizing vector/constrained research remain possible.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-EST-004",
+      "severity": "High",
+      "historical_disposition": "pending",
+      "agent_recommendation": "policy_superseded_requirement",
+      "assessment_and_next_action": "The user explicitly replaces recruited human opinions with agent panels. Preserve the old reviewer limitation historically; obtain separately authored agent challenge and orchestrator synthesis, disclose shared-model limitations, then the sole maintainer decision. Do not claim independent human review.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-API-GOV-01",
+      "severity": "High",
+      "historical_disposition": "pending",
+      "agent_recommendation": "implemented_under_agent_rereview",
+      "assessment_and_next_action": "The additive adjacent-method-non-alias-delta covers exactly 570,571,595,598 and denies execution reuse. Frozen research-disposition intentionally retains two records; assess effective loader projection, not that frozen file in isolation.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-API-GOV-02",
+      "severity": "Medium",
+      "historical_disposition": "pending",
+      "agent_recommendation": "historical_fix_verified_current_refresh_partial",
+      "assessment_and_next_action": "The dated delta retains and hashes the historical snapshot. Its August9 expiry means it cannot assert September hosted currency. The new issue readback in this packet is supplemental, not a replacement candidate freeze.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-API-GOV-03",
+      "severity": "High",
+      "historical_disposition": "pending",
+      "agent_recommendation": "source_evidence_pending",
+      "assessment_and_next_action": "Keep source-authority claims false until rights, editions/drift, bytes and applicability are evidenced. Public availability alone does not establish redistribution permission.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-API-GOV-04",
+      "severity": "High",
+      "historical_disposition": "pending",
+      "agent_recommendation": "policy_superseded_requirement",
+      "assessment_and_next_action": "Separate agent review functions and a single accountable maintainer decision replace distinct recruited humans under the explicit user policy. Keep historical records immutable and add a current governed overlay rather than falsify old identities.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-GP-01",
+      "severity": "High",
+      "historical_disposition": "pending",
+      "agent_recommendation": "historical_fix_verified_current_refresh_partial",
+      "assessment_and_next_action": "Historical and current projections are separated. Refresh exact issue AND Project28 fields before declaring synchronized readback; this packet captures issues only and does not claim Project freshness.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-GP-02",
+      "severity": "High",
+      "historical_disposition": "pending",
+      "agent_recommendation": "source_evidence_pending",
+      "assessment_and_next_action": "Do not claim publication or real-study authority from source locators. Complete the same shared source register once, then let each role assess the relevant claims.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-DS-01",
+      "severity": "High",
+      "historical_disposition": "pending",
+      "agent_recommendation": "future_candidate_blocker",
+      "assessment_and_next_action": "No domain-general acceptability verdict is justified. Retaining an unsupported capability is a repository decision; a future applied candidate requires an explicit context and domain-specific agent assessment.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-DS-02",
+      "severity": "High",
+      "historical_disposition": "pending",
+      "agent_recommendation": "future_candidate_blocker",
+      "assessment_and_next_action": "A future candidate needs an affected-party ledger including nonparticipants, withdrawal, vulnerable groups, access and compensation assumptions. Do not invent those parties for a generic exclusion.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-DS-03",
+      "severity": "Critical",
+      "historical_disposition": "pending",
+      "agent_recommendation": "critical_runtime_blocker_retained",
+      "assessment_and_next_action": "Keep runtime and study authorization false. Positive expected value cannot clear an undefined catastrophic constraint. A future candidate must specify monitoring detection limits, stopping, rescue, escalation and actual halt authority; agent opinion supplies none of those operational powers.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-DS-04",
+      "severity": "High",
+      "historical_disposition": "pending",
+      "agent_recommendation": "future_candidate_blocker",
+      "assessment_and_next_action": "No current jurisdiction-specific authority claim is made. A future applied candidate needs a sourced jurisdiction/authority map and actual applicable permissions; sole-maintainer repository governance cannot override destination rules.",
+      "accountable_disposition": "not_recorded"
+    },
+    {
+      "finding_id": "H8D-DS-05",
+      "severity": "High",
+      "historical_disposition": "pending",
+      "agent_recommendation": "source_evidence_pending",
+      "assessment_and_next_action": "Reuse the common source receipt packet but provide a separate domain-applicability assessment. Do not infer domain validity from bibliographic completeness.",
+      "accountable_disposition": "not_recorded"
+    }
+  ],
+  "authority": {
+    "scientific_acceptance": false,
+    "maintainer_decision_recorded": false,
+    "runtime_authorized": false,
+    "real_study_authorized": false,
+    "issues_closed": false
+  }
+}

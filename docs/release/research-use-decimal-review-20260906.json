@@ -1,0 +1,29 @@
+{
+  "observed_on": "2026-09-06",
+  "reviewer": "Codex root agent",
+  "method": "Python standard-library Decimal, precision 50, from retained CSV; no voiage or NumPy calls",
+  "candidate_commit": "2187a93257ba16b3dadfa65a5951f60edb54020e",
+  "candidate_tree": "49c8c74e373bcf7bcbf1d9bd854918a42d2038ec",
+  "input": "paper/research-use/v2.2.0/hpv_vaccination_net_benefit.csv",
+  "input_sha256": "509411114afe90617f0f60a7743ad11f1160fb1288bb4ef144b572e5294050d9",
+  "draws": 500,
+  "columns": [
+    "standard_care",
+    "hpv_vaccination"
+  ],
+  "mean_net_benefit_nzd_per_cohort": {
+    "standard_care": "589021506.38335815932",
+    "hpv_vaccination": "1088117161.8155771506"
+  },
+  "expected_perfect_information_net_benefit_nzd_per_cohort": "1088117161.8155771506",
+  "evpi_nzd_per_cohort": "0E-10",
+  "vaccination_best_draws": 500,
+  "minimum_incremental_net_benefit_nzd_per_cohort": "344525082.1243995",
+  "new_installation_performed": false,
+  "new_human_research_use": false,
+  "independent_human_adoption": false,
+  "limitations": [
+    "Validates only retained input arithmetic, not data generation or installed wheel identity anew.",
+    "Zero EVPI is specific to this scenario; not a clinical or policy recommendation."
+  ]
+}

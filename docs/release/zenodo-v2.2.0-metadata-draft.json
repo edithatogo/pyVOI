@@ -1,0 +1,28 @@
+{
+  "_status": "local-unpublished-draft",
+  "_warning": "No deposition, DOI, identifier, upload, or publication is claimed by this file.",
+  "title": "voiage: Value of Information analysis",
+  "upload_type": "software",
+  "description": "voiage provides Value of Information analysis through a hybrid Rust and Python implementation, with R and Julia bindings.",
+  "creators": [
+    {
+      "name": "Mordaunt, Dylan A.",
+      "orcid": "0000-0002-9775-0603"
+    }
+  ],
+  "license": "Apache-2.0",
+  "publication_date": "2026-08-30",
+  "version": "2.2.0",
+  "keywords": ["value of information", "decision analysis", "health economics", "uncertainty quantification"],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/edithatogo/voiage/releases/tag/v2.2.0",
+      "relation": "isIdenticalTo",
+      "resource_type": "software"
+    }
+  ],
+  "references": [
+    "https://github.com/edithatogo/voiage",
+    "https://pypi.org/project/voiage/2.2.0/"
+  ]
+}

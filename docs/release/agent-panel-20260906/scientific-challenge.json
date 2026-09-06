@@ -1,0 +1,55 @@
+{
+  "artifact_kind": "agent_coverage_repro_not_acceptance",
+  "schema_version": "1.0.0",
+  "date": "2026-09-06",
+  "author": "Codex subagent coverage_repro",
+  "reviewer_count": 1,
+  "independent_human_review": false,
+  "authority": {
+    "scientific_acceptance": false,
+    "ethics_or_regulatory_authorization": false,
+    "runtime_authorized": false,
+    "real_study_authorized": false,
+    "issues_closed": false
+  },
+  "target_ref": "origin/codex/sole-human-maintainer-panel",
+  "target_commit": "2187a93257ba16b3dadfa65a5951f60edb54020e",
+  "source_receipts": [
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11039417/",
+      "observed_at": "2026-09-06",
+      "retrieval_status": "access_error",
+      "response_sha256": "c0e2093a38d40146ab61801537c73551baeb4e4864557098065ca73028d00f4c",
+      "body_retained": false,
+      "rights_established": false,
+      "claim_applicability_reviewed": false
+    },
+    {
+      "url": "https://papers.neurips.cc/paper_files/paper/2022/hash/d6929af3791b2cec21c136b573aa87f2-Abstract-Conference.html",
+      "observed_at": "2026-09-06",
+      "retrieval_status": "page_observed",
+      "response_sha256": "be43be78334db829a9575d499ec0e7e5be8fa29ae5927578109e810bdff3ccf0",
+      "body_retained": false,
+      "rights_established": false,
+      "claim_applicability_reviewed": false
+    },
+    {
+      "url": "https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html",
+      "observed_at": "2026-09-06",
+      "retrieval_status": "unavailable",
+      "response_sha256": null,
+      "body_retained": false,
+      "rights_established": false,
+      "claim_applicability_reviewed": false
+    }
+  ],
+  "challenge": {
+    "finding_count": 19,
+    "finding_ids": ["H8D-ED-01", "H8D-ED-02", "H8D-ED-03", "H8D-ED-04", "H8D-EST-001", "H8D-EST-002", "H8D-EST-003", "H8D-EST-004", "H8D-API-GOV-01", "H8D-API-GOV-02", "H8D-API-GOV-03", "H8D-API-GOV-04", "H8D-GP-01", "H8D-GP-02", "H8D-DS-01", "H8D-DS-02", "H8D-DS-03", "H8D-DS-04", "H8D-DS-05"],
+    "disposition": "pending",
+    "dissent": "Agent review is not independent human scientific or ethics review; Critical H8D-DS-03 remains a blocker.",
+    "recommendation": "Retain provisional non-authorizing scope boundary; refresh sources, Project synchronization and candidate packet before any accountable disposition.",
+    "runtime_authorized": false,
+    "real_study_authorized": false
+  }
+}

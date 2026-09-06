@@ -110,10 +110,27 @@ programme. The canonical cross-repository requirements are maintained in
   replacement-packet state. It remains blocked and non-authorizing until those
   accountable inputs exist; a generic continuation instruction cannot select
   the candidate or qualify a reviewer.
-  Two distinct humans then confirm scientific and domain/ethics adequacy, with
-  a chair only for dispute, dissent or reviewer remediation. The maintainer's
-  product decision, real-study authority and every downstream gate remain
-  separate; partial governance synchronization is `Conflict`, never closure.
+  For current execution, five separately authored agent reports cover estimand
+  and domain semantics, estimator assurance, cross-language API, governance and
+  publication, and domain/ethics safety. Reviewing agents must be distinct from
+  the candidate author/remediator and from the non-deciding orchestrator; one
+  agent's multiple role lenses do not satisfy this panel. The orchestrator
+  preserves dissent and binds the synthesis to the exact candidate commit/tree,
+  source receipts and all nineteen finding dispositions. A separate agent chair
+  handles unresolved dispute or reviewer remediation. The sole repository owner
+  then records the accountable scientific/domain and product decision, with
+  scope, conditions, dissent and downstream boundaries explicit.
+  The dated August human commissioning artifacts and their validator remain
+  historical evidence only; their two-human role inventory is not a current
+  recruitment requirement. `sampling_harm_human_commissioning.py` validates fixed
+  20260803 inputs and always returns `ready=False`; it is not an executable
+  acceptance route for a current panel. No current executable H8 acceptance
+  route exists. H8-D through H8-H remain pending until a new candidate-bound
+  packet and its fail-closed validation are delivered, source applicability and
+  rights gaps are addressed, and the owner disposition is recorded. This policy
+  alone cannot satisfy any gate or erase Critical/High findings. Runtime,
+  real-study authority and every downstream gate remain separate; partial
+  governance synchronization is `Conflict`, never closure.
 
 ### Should have
 

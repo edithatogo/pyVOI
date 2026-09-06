@@ -1,0 +1,15 @@
+{
+  "artifact_kind": "primary_source_body_review_receipt_not_acceptance",
+  "schema_version": "1.0.0",
+  "date": "2026-09-06",
+  "agent": "/root/coverage_repro",
+  "body_committed": false,
+  "authority": {"scientific_acceptance": false, "ethics_authorization": false, "runtime_authorized": false, "real_study_authorized": false, "issues_closed": false},
+  "sources": [
+    {"url":"https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11039417/fullTextXML","local_path":"/tmp/voiage-scientific-sources-20260906/heath2024.xml","sha256":"4c8adfaccf493b0b3da3f0373ef9b20f1424e15d2ecae8031fb2a4158d6aa4ba","edition":"Heath et al., Value of Information for Clinical Trial Design: The Importance of Considering All Relevant Comparators, Pharmacoeconomics 42(5), 479-486 (2024), DOI 10.1007/s40273-024-01372-0","license_observed":"CC BY-NC 4.0; third-party exclusions remain possible","claim_scope":"supports bounded comparator/full-decision-context VOI warning; does not prove universal harm incommensurability or authorization"},
+    {"url":"https://proceedings.neurips.cc/paper_files/paper/2022/file/d6929af3791b2cec21c136b573aa87f2-Paper-Conference.pdf","local_path":"/tmp/voiage-scientific-sources-20260906/camilleri2022.pdf","sha256":"dd6b66d627873200aed5df9098bbaa2827b09c45b2346b2b0b9ab89dfbae1eb6","edition":"Camilleri et al., Active Learning with Safety Constraints, NeurIPS 2022, 36th Conference on Neural Information Processing Systems","license_observed":"not established by retrieval","claim_scope":"supports specified safety-constrained active-learning model; does not validate this sampling-harm capability or authorize decisions"}
+  ],
+  "findings_remain_pending": true,
+  "critical_blocker": "H8D-DS-03",
+  "recommendation":"Use these receipts to narrow claims only; retain provisional non-authorizing exclusion and require accountable disposition."
+}

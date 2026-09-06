@@ -1,0 +1,366 @@
+{
+  "schema_version": "voiage.openssf-passing-proposals.v1",
+  "project_id": 13835,
+  "checked_at": "2026-09-06",
+  "submission_status": "not_submitted",
+  "model": "sole-maintainer with role-separated agent-panel evidence; no additional human reviewers",
+  "service_readback": {
+    "updated_at": "2026-07-27T08:06:09.125Z",
+    "achieve_passing_status": "Unmet",
+    "achieve_silver_status": "Unmet",
+    "OSPS-BR-01.02_status": 0
+  },
+  "proposals": [
+    {
+      "criterion": "achieve_passing",
+      "tier": "Service outcome",
+      "proposed": "Unmet",
+      "evidence": [
+        "https://www.bestpractices.dev/en/projects/13835/passing"
+      ],
+      "basis": "The live service reports Unmet."
+    },
+    {
+      "criterion": "automated_integration_testing",
+      "tier": "Silver",
+      "proposed": "Met",
+      "evidence": [
+        "tests/",
+        ".github/workflows/ci.yml"
+      ],
+      "basis": "Integration tests are executed by the repository validation contract."
+    },
+    {
+      "criterion": "build",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "tox.ini",
+        "pyproject.toml",
+        ".github/workflows/ci.yml"
+      ],
+      "basis": "The project declares build and validation commands using standard tools."
+    },
+    {
+      "criterion": "code_of_conduct",
+      "tier": "Silver",
+      "proposed": "Met",
+      "evidence": [
+        "CODE_OF_CONDUCT.md"
+      ],
+      "basis": "A public code-of-conduct document exists."
+    },
+    {
+      "criterion": "coding_standards",
+      "tier": "Silver",
+      "proposed": "Met",
+      "evidence": [
+        "CONTRIBUTING.md",
+        "pyproject.toml",
+        "tox.ini"
+      ],
+      "basis": "Formatting and linting tools are specified."
+    },
+    {
+      "criterion": "coding_standards_enforced",
+      "tier": "Silver",
+      "proposed": "Met",
+      "evidence": [
+        ".pre-commit-config.yaml",
+        ".github/workflows/ci.yml"
+      ],
+      "basis": "Pre-commit and hosted checks enforce configured quality tools."
+    },
+    {
+      "criterion": "dependency_monitoring",
+      "tier": "Silver",
+      "proposed": "Met",
+      "evidence": [
+        ".github/workflows/dependency-frontier.yml",
+        ".github/workflows/dependency-frontier.yml"
+      ],
+      "basis": "Dependency monitoring and update workflows are configured."
+    },
+    {
+      "criterion": "documentation_basics",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "README.md",
+        "docs/astro-site/"
+      ],
+      "basis": "The project provides installation, usage, API, and contributor documentation."
+    },
+    {
+      "criterion": "documentation_quick_start",
+      "tier": "Silver",
+      "proposed": "Met",
+      "evidence": [
+        "docs/astro-site/src/content/docs/",
+        "README.md"
+      ],
+      "basis": "Quick-start and worked-example documentation are present."
+    },
+    {
+      "criterion": "documentation_security",
+      "tier": "Silver",
+      "proposed": "Met",
+      "evidence": [
+        "SECURITY.md",
+        "docs/astro-site/src/content/docs/developer-guide/quality-and-security.mdx"
+      ],
+      "basis": "Security reporting and security-control documentation are present."
+    },
+    {
+      "criterion": "floss_license",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "LICENSE",
+        "pyproject.toml"
+      ],
+      "basis": "The declared Apache-2.0 license is present in the repository metadata."
+    },
+    {
+      "criterion": "governance",
+      "tier": "Silver",
+      "proposed": "Met",
+      "evidence": [
+        "AGENTS.md",
+        "conductor/single-maintainer-review-policy.md",
+        "conductor/panel-gate-policy.json"
+      ],
+      "basis": "The current governance model names the sole maintainer and agent-panel boundary.",
+      "caveat": "This is repository governance evidence; it does not satisfy criteria requiring external contributors or two-person review."
+    },
+    {
+      "criterion": "license_location",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "LICENSE",
+        "CITATION.cff"
+      ],
+      "basis": "The repository contains a root license and declares Apache-2.0."
+    },
+    {
+      "criterion": "no_leaked_credentials",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        ".github/workflows/gitleaks.yml",
+        ".gitleaks.toml"
+      ],
+      "basis": "Secret scanning is configured; the live API returned no secret alerts at packet time."
+    },
+    {
+      "criterion": "release_notes",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "changelog.md",
+        "https://github.com/edithatogo/voiage/releases/tag/v2.2.0"
+      ],
+      "basis": "The changelog and release notes document user-facing changes."
+    },
+    {
+      "criterion": "repo_distributed",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "https://github.com/edithatogo/voiage",
+        "CONTRIBUTING.md"
+      ],
+      "basis": "Git is a distributed version control system; contributors can clone full history and work locally."
+    },
+    {
+      "criterion": "repo_public",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "https://github.com/edithatogo/voiage"
+      ],
+      "basis": "The source repository is publicly readable."
+    },
+    {
+      "criterion": "repo_track",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "https://github.com/edithatogo/voiage/commits/main"
+      ],
+      "basis": "Git history provides a public change record."
+    },
+    {
+      "criterion": "report_tracker",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "https://github.com/edithatogo/voiage/issues",
+        ".github/ISSUE_TEMPLATE"
+      ],
+      "basis": "The public issue tracker and templates provide a reporting route."
+    },
+    {
+      "criterion": "sites_https",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "https://edithatogo.github.io/voiage",
+        "https://github.com/edithatogo/voiage"
+      ],
+      "basis": "The project homepage and source repository use HTTPS."
+    },
+    {
+      "criterion": "static_analysis",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        ".github/workflows/codeql.yml",
+        ".github/workflows/zizmor.yml"
+      ],
+      "basis": "Static security analysis is run through CodeQL and workflow auditing."
+    },
+    {
+      "criterion": "test",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "tests/",
+        "tox.ini"
+      ],
+      "basis": "The repository contains an automated test suite and declared test environments."
+    },
+    {
+      "criterion": "test_continuous_integration",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/ci.yml"
+      ],
+      "basis": "Hosted CI runs tests and quality checks."
+    },
+    {
+      "criterion": "version_semver",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "CITATION.cff",
+        "pyproject.toml",
+        "https://github.com/edithatogo/voiage/releases/tag/v2.2.0"
+      ],
+      "basis": "The current release uses the semantic version 2.2.0."
+    },
+    {
+      "criterion": "version_tags",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "https://github.com/edithatogo/voiage/tags"
+      ],
+      "basis": "Versioned releases are represented by Git tags."
+    },
+    {
+      "criterion": "description_good",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "README.md"
+      ],
+      "basis": "The README explains value-of-information analysis and the intended research/decision use."
+    },
+    {
+      "criterion": "contribution",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "CONTRIBUTING.md"
+      ],
+      "basis": "Public contribution instructions explain setup, changes, verification and pull requests."
+    },
+    {
+      "criterion": "contribution_requirements",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "CONTRIBUTING.md"
+      ],
+      "basis": "Contribution instructions specify formatting, typing, tests and commit conventions."
+    },
+    {
+      "criterion": "documentation_interface",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "docs/astro-site/src/content/docs/",
+        "voiage/__init__.py"
+      ],
+      "basis": "The documentation and public Python exports describe the supported programmatic interface."
+    },
+    {
+      "criterion": "build_common_tools",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "pyproject.toml",
+        "CONTRIBUTING.md"
+      ],
+      "basis": "The documented Python build uses standard Python packaging tools and Rust/maturin."
+    },
+    {
+      "criterion": "build_floss_tools",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "pyproject.toml",
+        "CONTRIBUTING.md"
+      ],
+      "basis": "Python, Rust and maturin are freely available open-source build tools."
+    },
+    {
+      "criterion": "test_invocation",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "tox.ini",
+        "CONTRIBUTING.md"
+      ],
+      "basis": "The contributor guide documents the tox test invocation."
+    },
+    {
+      "criterion": "test_policy",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "AGENTS.md",
+        "CONTRIBUTING.md"
+      ],
+      "basis": "Changes require appropriate behavioral tests and local verification."
+    },
+    {
+      "criterion": "vulnerability_report_process",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        "SECURITY.md"
+      ],
+      "basis": "The public security policy documents the vulnerability reporting process."
+    },
+    {
+      "criterion": "static_analysis_often",
+      "tier": "Passing",
+      "proposed": "Met",
+      "evidence": [
+        ".github/workflows/codeql.yml",
+        ".github/workflows/ci.yml"
+      ],
+      "basis": "Static analysis is included in pull-request automation."
+    }
+  ],
+  "criteria_definition": {
+    "url": "https://github.com/coreinfrastructure/best-practices-badge/blob/main/criteria/criteria.yml",
+    "sha256": "ca39078ee02032152210f0816add8b096a78d5c6d2f31f90e1de948ec190b1b9",
+    "tier_rule": "Earliest tier containing criterion; definitions can repeat stronger requirements at later tiers."
+  }
+}

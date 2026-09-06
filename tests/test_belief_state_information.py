@@ -26,7 +26,7 @@ from voiage import (
 )
 from voiage.cli import app
 from voiage.exceptions import InputError
-import voiage.methods.belief_state_information as belief_module
+from voiage.methods import belief_state_information as belief_module
 from voiage.methods.belief_state_information import (
     belief_state_information_value,
     validate_belief_state_information_result,

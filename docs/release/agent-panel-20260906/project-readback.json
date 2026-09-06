@@ -1,0 +1,79 @@
+{
+  "observed_at": "2026-09-06T13:19:56.987373+00:00",
+  "project": "https://github.com/users/edithatogo/projects/28",
+  "mutation": "Owner Role only; status, evidence, risk, gate and due dates preserved",
+  "items": [
+    {
+      "contract Version": "1.3.0",
+      "evidence State": "Unverified",
+      "gate": "Human",
+      "id": "PVTI_lAHOAOYc4M4Bd0Txzg0-O4U",
+      "labels": [
+        "enhancement"
+      ],
+      "lifecycle": "Mitigating",
+      "moSCoW": "Must",
+      "owner Role": "Agent estimand and domain panel; sole maintainer decision",
+      "priority": "P1",
+      "record ID": "SAMPLING-HARM-850",
+      "record Type": "Current track",
+      "repository": "https://github.com/edithatogo/voiage",
+      "review Due": "2026-11-30",
+      "risk Level": "Critical",
+      "status": "In Progress",
+      "sync State": "Clean",
+      "title": "#570: Scope value of information with stochastic sampling-acquisition harm",
+      "track ID": "sampling_acquisition_harm_voi_20260802",
+      "issue": 850,
+      "issue_body_sha256": "4955e7e0fbcf59bc1c38e0c4489580e4a82aee5b28cfcdba91939161801af8e8"
+    },
+    {
+      "contract Version": "1.3.0",
+      "evidence State": "Unverified",
+      "gate": "Human",
+      "id": "PVTI_lAHOAOYc4M4Bd0Txzg0-m44",
+      "labels": [
+        "enhancement"
+      ],
+      "lifecycle": "Mitigating",
+      "moSCoW": "Must",
+      "owner Role": "Separate agent challenge and orchestrator synthesis; sole maintainer disposition",
+      "priority": "P1",
+      "record ID": "SAMPLING-HARM-853",
+      "record Type": "Current track",
+      "repository": "https://github.com/edithatogo/voiage",
+      "review Due": "2026-11-30",
+      "risk Level": "Critical",
+      "status": "In Progress",
+      "sync State": "Clean",
+      "title": "#850: Bind sampling-harm candidate review and accountable disposition",
+      "track ID": "sampling_acquisition_harm_voi_20260802",
+      "issue": 853,
+      "issue_body_sha256": "24cc47bb06758eedbc8e335a63901484ab57c1dc905de50482f942548641da57"
+    },
+    {
+      "contract Version": "1.3.0",
+      "evidence State": "Blocked",
+      "gate": "Human",
+      "id": "PVTI_lAHOAOYc4M4Bd0Txzg1Fc-M",
+      "labels": [
+        "enhancement"
+      ],
+      "lifecycle": "Blocked",
+      "moSCoW": "Must",
+      "owner Role": "Agent source/provenance and scientific panel; sole maintainer decision",
+      "priority": "P1",
+      "record ID": "SAMPLING-HARM-876",
+      "record Type": "Current track",
+      "repository": "https://github.com/edithatogo/voiage",
+      "review Due": "2026-08-17",
+      "risk Level": "Critical",
+      "status": "In Progress",
+      "sync State": "Clean",
+      "title": "#853: Commission eligible independent review for generic-kernel exclusion",
+      "track ID": "sampling_acquisition_harm_voi_20260802",
+      "issue": 876,
+      "issue_body_sha256": "5981e71dadae9a5b6a7a337997c99e21b51a98e520ac6a2d787e58bfc5ea922c"
+    }
+  ]
+}

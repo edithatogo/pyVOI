@@ -52,7 +52,7 @@ the required CI, security, coverage, documentation, and contract checks pass.
 3.  **Verify Changes:**
     *   Use affected tests during iteration, then run the complete local gate once on the final candidate. Bound environment concurrency to avoid oversubscribing test workers:
         ```bash
-        tox parallel -p 2
+        tox run-parallel -p 2
         ```
     *   Fix any errors reported by `tox` before proceeding.
     *   Run the repository-owned security and workflow harness directly when

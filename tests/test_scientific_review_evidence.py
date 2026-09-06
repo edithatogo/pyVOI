@@ -12,7 +12,7 @@ import subprocess
 
 import pytest
 
-import voiage.scientific_review_evidence as review_evidence
+from voiage import scientific_review_evidence as review_evidence
 from voiage.scientific_review_evidence import (
     ScientificReviewEvidenceError,
     bind_scientific_review_bundle,

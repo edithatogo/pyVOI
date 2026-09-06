@@ -4,6 +4,11 @@ This document lists the actionable tasks for `voiage` development. Agents should
 
 ## To Do
 
+*   [x] Advance the fourteen open issue deliverables with source-bound agent
+    review, current venue inputs, upstream Julia delivery, guarded HPC retry
+    and security/badge evidence in `docs/release/issue-deliverables-20260906.md`.
+    Remaining source, native, maintainer and destination outcomes stay open.
+
 *   [x] Reduce repeated verification through superseded-PR cancellation, bounded
     tox parallelism, native thread limits and reusable local validation evidence.
 
@@ -858,12 +863,12 @@ as recorded in the active task above; earlier route decisions below are historic
 
 *   [x] Complete the repository-owned Assurance Frontier work.
     *   Conductor track: `assurance-frontier_20260720`.
-    *   Merge, release, publication, and issue closure remain explicit maintainer gates; agent-panel opinions provide all repository review input.
+    *   Merge, release, publication, and issue closure remain explicit human gates.
 
 *   [x] Complete the repository-owned Operational Assurance Excellence work.
     *   Conductor track: `operational-assurance-excellence_20260720`.
     *   Baseline approval, merge, release, publication, and issue closure remain
-        explicit maintainer gates; agent-panel opinions provide all repository review input.
+        explicit human gates.
 
 *   [x] Add the engineering-frontier harness for logging, environments, typing,
     profiling, and expensive CI evidence.

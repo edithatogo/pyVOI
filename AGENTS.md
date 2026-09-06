@@ -56,7 +56,7 @@ Agents must follow this sequence for every contribution:
     *   Add or update unit tests for any new or modified code. The goal is to maintain or increase test coverage.
     *   Ensure all new code is fully type-hinted.
 5.  **Verify:**
-    *   During iteration, run the affected tests and tox environments. Run the full local gate once for the final candidate using `tox parallel -p 2`; retain its result with the tested commit/tree and environment. Reuse that evidence while those inputs are unchanged instead of repeating the entire suite for status polls, PR metadata, or signing-only changes. Required hosted checks still run for the current PR revision.
+    *   During iteration, run the affected tests and tox environments. Run the full local gate once for the final candidate using `tox run-parallel -p 2`; retain its result with the tested commit/tree and environment. Reuse that evidence while those inputs are unchanged instead of repeating the entire suite for status polls, PR metadata, or signing-only changes. Required hosted checks still run for the current PR revision.
     *   Fix verification failures and rerun the failed checks plus checks affected by the fix. Broaden to the full gate when runtime, dependencies, shared fixtures, or test infrastructure change. Do not claim unexecuted checks passed.
 6.  **Document:**
     *   Update the `changelog.md` with a concise, user-friendly description of the change.
