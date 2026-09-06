@@ -37,7 +37,7 @@ jobs:
       - name: Install pinned Miri toolchain
         uses: dtolnay/rust-toolchain@2c7215f132e9ebf062739d9130488b56d53c060c
         with:
-          toolchain: nightly-2026-08-22
+          toolchain: nightly-2026-08-23
           components: miri,rust-src
       - name: Run unsafe-boundary suites under Miri
         env:
