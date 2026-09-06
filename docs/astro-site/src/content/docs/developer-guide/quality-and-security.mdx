@@ -9,12 +9,19 @@ that protect changes, dependencies, and published artifacts.
 
 ## Local gates
 
-Run the complete gate before opening or updating a pull request:
+Run affected checks during iteration and the complete gate once for the final candidate:
 
 ```sh
-uv run python scripts/repo_harness.py
-tox
+tox parallel -p 2
 ```
+
+The harness is included in tox; a second standalone harness run is unnecessary.
+Record the tested tree, environment and result. Reuse successful local evidence
+when these inputs remain unchanged. A new runtime, dependency, shared-fixture or
+test-infrastructure change requires broader validation. Hosted required checks
+remain bound to the current PR revision. Batch edits before pushing, rebase
+locally with signed commits, and inspect the actual failed gate before changing
+a branch; repeated pushes restart hosted validation.
 
 The `harness` tox environment checks that workflows declare explicit
 permissions, external actions are pinned to immutable commits, required

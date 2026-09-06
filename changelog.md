@@ -2,6 +2,9 @@
 
 - Use Astro 7.3.1 to repair the 7.3.0 internal logger export regression in
   documentation builds.
+- Cancel superseded PR assurance runs, bound local tox parallelism and native
+  numerical threads, and reuse unchanged local validation evidence to avoid
+  unnecessary full-suite reruns. Required hosted checks remain unchanged.
 
 - Prepare a fail-closed pre-closeout backlog checkpoint that binds the completed
   EasyBuild and cross-venue merges while retaining native Spack, upstream HPC,

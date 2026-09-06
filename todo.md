@@ -4,6 +4,9 @@ This document lists the actionable tasks for `voiage` development. Agents should
 
 ## To Do
 
+*   [x] Reduce repeated verification through superseded-PR cancellation, bounded
+    tox parallelism, native thread limits and reusable local validation evidence.
+
 *   [x] Bind the Spack Polars runtime source to its exact verified sdist URL.
     *   Added regression coverage for the `_32` filename suffix after a native
         source build exposed Spack's ambiguous derived PyPI URL.

@@ -36,7 +36,7 @@ We welcome contributions from the community, whether from humans or AI agents. T
 
 This is currently a solo-maintainer repository. Pull requests are retained for
 traceability and automated quality gates, but an additional human approval is
-not required. The maintainer is the sole human decision-maker and self-reviews after considering the agent-panel opinions every diff and merge only after
+not required. The maintainer considers agent-panel opinions, reviews every diff, and merges only after
 the required CI, security, coverage, documentation, and contract checks pass.
 
 1.  **Create a Branch:**
@@ -50,9 +50,9 @@ the required CI, security, coverage, documentation, and contract checks pass.
     *   Ensure new code is well-tested and fully type-hinted.
 
 3.  **Verify Changes:**
-    *   Run the full suite of tests, linting, and type checks using `tox`. This is the same check that runs in our CI pipeline.
+    *   Use affected tests during iteration, then run the complete local gate once on the final candidate. Bound environment concurrency to avoid oversubscribing test workers:
         ```bash
-        tox
+        tox parallel -p 2
         ```
     *   Fix any errors reported by `tox` before proceeding.
     *   Run the repository-owned security and workflow harness directly when
