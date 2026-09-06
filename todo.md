@@ -728,7 +728,7 @@ as recorded in the active task above; earlier route decisions below are historic
 ## Done
 
 *   [x] Document the integrated 20-package VOI and software expansion roadmap
-    in `docs/roadmaps/voi-methods-expansion.md`, including Rust-first dependency
+    in `docs/reviews/roadmaps/voi-methods-expansion.md`, including Rust-first dependency
     policy, architecture, acceptance criteria, source receipts, parallel lanes
     and early blocker dispositions. Implementation remains proposed; no new
     Conductor tracks or GitHub issues were created.
