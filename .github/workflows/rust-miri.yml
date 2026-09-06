@@ -43,6 +43,6 @@ jobs:
         env:
           MIRIFLAGS: -Zmiri-strict-provenance
         run: >-
-          cargo +nightly-2026-08-22 miri test
+          cargo +nightly-2026-08-23 miri test
           --manifest-path rust/Cargo.toml --locked --package voiage-ffi
           --test lifecycle --test error_transport

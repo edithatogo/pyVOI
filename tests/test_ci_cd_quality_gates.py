@@ -406,9 +406,9 @@ class TestQualityGatePolicyCompliance:
 
         assert workflow["permissions"] == {}
         assert job["permissions"] == {"contents": "read"}
-        assert "nightly-2026-08-22" in str(job)
+        assert re.search(r"nightly-\d{4}-\d{2}-\d{2}", str(job))
         assert "components: miri,rust-src" in workflow_text
-        assert "cargo +nightly-2026-08-22 miri test" in str(job)
+        assert re.search(r"cargo \+nightly-\d{4}-\d{2}-\d{2} miri test", str(job))
         assert "--test lifecycle --test error_transport" in str(job)
         assert "continue-on-error" not in str(job)
 
@@ -423,9 +423,11 @@ class TestQualityGatePolicyCompliance:
 
         assert workflow["permissions"] == {}
         assert job["permissions"] == {"contents": "read"}
-        assert "nightly-2026-08-22" in rendered
+        assert re.search(r"nightly-\d{4}-\d{2}-\d{2}", rendered)
         assert "cargo install cargo-fuzz --version 0.13.2 --locked" in rendered
-        assert "cargo +nightly-2026-08-22 fuzz run stable_evpi" in rendered
+        assert re.search(
+            r"cargo \+nightly-\d{4}-\d{2}-\d{2} fuzz run stable_evpi", rendered
+        )
         assert "-max_total_time=60" in rendered
         assert "continue-on-error" not in rendered
 

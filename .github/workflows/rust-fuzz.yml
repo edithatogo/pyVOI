@@ -45,15 +45,15 @@ jobs:
       - name: Fuzz stable EVPI input handling
         working-directory: rust
         run: >-
-          cargo +nightly-2026-08-22 fuzz run stable_evpi
+          cargo +nightly-2026-08-23 fuzz run stable_evpi
           --fuzz-dir fuzz -- -max_total_time=60 -timeout=10
       - name: Fuzz stable ENBS calculation
         working-directory: rust
         run: >-
-          cargo +nightly-2026-08-22 fuzz run stable_enbs
+          cargo +nightly-2026-08-23 fuzz run stable_enbs
           --fuzz-dir fuzz -- -max_total_time=30 -timeout=10
       - name: Fuzz SampleMatrix domain validation
         working-directory: rust
         run: >-
-          cargo +nightly-2026-08-22 fuzz run sample_matrix
+          cargo +nightly-2026-08-23 fuzz run sample_matrix
           --fuzz-dir fuzz -- -max_total_time=30 -timeout=10
