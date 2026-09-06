@@ -29,3 +29,12 @@ Two source bodies were lawfully retrieved into a local temporary directory and r
 ## Challenge outcome
 
 These source bodies sharpen claim scope but do not close any of the nineteen findings. In particular, H8D-DS-03 remains Critical: neither source supplies operational monitoring, rescue, escalation or halt authority for a future sampling-harm runtime. The agent-only review route remains non-human evidence. The proposed generic exclusion may remain a provisional repository scope boundary, with runtime and real-study authorization false, pending the accountable maintainer decision and other stated gates.
+
+## Additional register records challenged
+
+- **45 CFR Part 46:** the eCFR route returned a Federal Register request-access response rather than the regulation body (temporary receipt SHA-256 `551ab2a86869f58ddf1bde3c17985428bebe87b3b2a9e245e50f8adc04461c60`). No claim is applied.
+- **ICH E6(R3):** the Step 4 final guideline body was retrieved temporarily; SHA-256 `e6ce19e36ce7d2e294f89ee89492b9e035178c3cca48984392bbd92eec9b002c`. It supports a bounded GCP conduct context only; it does not authorize software or establish jurisdictional applicability. Licence was not inferred.
+- **Bottero et al. (2022):** the NeurIPS abstract page was retrieved temporarily; SHA-256 `80d7508c5f2e1aa043988bf542a5afbc1bf00c23e4b634e5569b396f262c993d`. It supports only a methodological analogy for safe exploration, not VOI harm validity or ethics approval. Licence was not inferred.
+- **Belmont Report:** the official HHS PDF route remained HTTP 403 from the CLI. No body digest or claim-level receipt is recorded; no denial was bypassed.
+
+These records do not close the source gap. Exact applicability, rights and jurisdiction remain unresolved where stated, and no source supports runtime or real-study authorization.

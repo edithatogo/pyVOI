@@ -58,3 +58,10 @@ The maintainer's next questionnaire pass should fill, at minimum, the public ide
 ## Current code-scanning triage boundary
 
 The live code-scanning API returned open findings across `py/empty-except`, `py/import-and-import-from`, `py/ineffectual-statement`, `py/mixed-returns`, `py/polluting-import`, `py/multiple-definition`, and `pythagorean` rules (the API is paginated; counts must be recomputed against a single captured response before closure). These are actionable repository findings, not badge evidence. The agent panel should group them by file and exact alert number, then remediate or document a narrow false-positive disposition with a maintainer decision. This packet intentionally does not close them based on a rule-name summary.
+
+## Public RRID discovery check
+
+Public web queries restricted to scicrunch.org and rrid.site for voiage on
+6 September returned no results. This is negative search evidence only; it
+does not establish rejection, absence from the registry or current private
+curation status. Retain the existing request and do not submit a duplicate.

@@ -23,7 +23,7 @@ from voiage.contracts.forecast_signal_information import (
     validate_forecast_signal_information_semantics,
 )
 from voiage.exceptions import InputError
-from voiage.methods import forecast_signal_information as forecast_signal_module
+import voiage.methods.forecast_signal_information as forecast_signal_module
 from voiage.methods.forecast_signal_information import (
     ForecastSignalInformationResult,
     forecast_signal_information_value,

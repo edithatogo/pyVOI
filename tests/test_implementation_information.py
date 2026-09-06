@@ -18,9 +18,7 @@ import voiage
 from voiage import methods
 from voiage.cli import app
 from voiage.exceptions import InputError
-from voiage.methods import (
-    implementation_information as implementation_information_module,
-)
+import voiage.methods.implementation_information as implementation_information_module
 from voiage.methods.implementation_information import implementation_information_value
 
 ROOT = Path(__file__).parents[1]

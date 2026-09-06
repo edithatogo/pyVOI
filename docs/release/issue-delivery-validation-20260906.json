@@ -1,0 +1,50 @@
+{
+  "schema_version": "voiage.issue-delivery-validation.v1",
+  "date": "2026-09-06",
+  "source_commit_before_followup": "c85f0011d5f8c417717a1a19b832eebce2308ebf",
+  "runtime_tree": "00562ad26a778a8f00cae5f57dbb28d7a0e49254",
+  "full_gate": {
+    "command": "tox run-parallel -p 2",
+    "shared_with": "Find missing VOI methods task",
+    "atomic_commit_snapshot": false,
+    "passed_environments": 13,
+    "failed_environments": [
+      "lint",
+      "coverage_report"
+    ],
+    "tests_passed": 5056,
+    "tests_failed": 3,
+    "tests_skipped": 16,
+    "coverage_percent": 95.13,
+    "failures": "Three cosmetic imports changed frozen scientific test hashes; transient in-flight import edit caused lint F821."
+  },
+  "repair": {
+    "action": "Restore the three frozen test files exactly; retain historical manifest hashes. Transient event-localized import edit had already been restored.",
+    "tox_environments": [
+      "lint",
+      "vale"
+    ],
+    "tox_result": "passed",
+    "focused_result": {
+      "passed": 166,
+      "warnings": 2,
+      "seconds": 257.38
+    },
+    "full_sweep_repeated": false,
+    "runtime_or_dependency_inputs_changed": false
+  },
+  "focused_test_sha256": {
+    "tests/test_c18_m22_m24_semantics_freeze.py": "f7e3c842df67fcea9a9e4a0d72e01550409196b6e149875a56946053fe24b919",
+    "tests/test_c18_m25_m26_semantics_freeze.py": "7077550f722fc400e69c44af413e91386c7c79a56cbd71da008ef74d7cd390ef",
+    "tests/test_c18_m27_m31_semantics_freeze.py": "02fa62d4387484138bd731bf55032651fb976a807b7cb6c35d4b43921fcedbc7",
+    "tests/test_scientific_review_evidence.py": "a48003c6126f52b600187bc2013827a4327a88b85939eb924dc152e32249cfb0",
+    "tests/test_event_localized_information.py": "2ce5f26ff01e1ff69f00a9756d219eb95d026b7cdd97c8e4d3f7941d60aab92b"
+  },
+  "local_log_directory": ".conductor/local/issue-deliverables-20260906",
+  "log_sha256": {
+    "full-tox.log": "9f936c68dea1d54336a03948489f7b0e37c08843f59b3a0a73508566638c0401",
+    "focused-tox.log": "bf479b8360c9fd225ff68dd1c0e2d422895c2429a87a72809b6b68fcce33460b",
+    "repair-tests.log": "b81caa0670e4528aa03b509495d46c10ae9d83209e29e854c6fbf8a962838ec8"
+  },
+  "hosted_checks": "required for final pushed head; no local result asserts hosted success"
+}

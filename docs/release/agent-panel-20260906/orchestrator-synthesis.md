@@ -16,7 +16,7 @@ binds these additive assessments without changing historical dispositions.
 
 The initial review addresses every one of the nineteen findings through five
 declared role lenses. The second agent challenges each recommendation. Neither
-claims five independently commissioned reviewers. Two full primary-source
+claims five independently commissioned reviewers. Three full primary-source
 editions were subsequently retrieved and assessed in `source-body-review.json`;
 the earlier failed/abstract-only observations remain historical and do not
 override those later receipts. Full texts are not redistributed in this PR.

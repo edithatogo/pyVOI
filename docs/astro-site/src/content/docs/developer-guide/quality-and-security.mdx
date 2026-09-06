@@ -43,6 +43,14 @@ do not manually change files inside that cache.
 For dependency-only changes, also run `uvx --from pip-audit pip-audit --local
 --progress-spinner off` and `pnpm audit --prod` from `docs/astro-site`.
 
+Before starting a local gate in a shared checkout, check whether another task
+already owns a running tox process and its result log. Coordinate reuse of that
+run instead of launching a second process against the same `.tox` directory.
+Use the same tox executable and interpreter for follow-up environments: mixing
+global and repository-managed tox processes can recreate each other's caches.
+If an independent run is necessary, give it a separate work directory. Do not
+stop another task's process or treat its pending result as a pass.
+
 ## Dependency and experimental-feature policy
 
 The supported Python 3.12–3.14 range tracks compatible stable dependencies and

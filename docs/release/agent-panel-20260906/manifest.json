@@ -6,7 +6,7 @@
     "conductor/panel-gate-policy.json": "f16a6c44584c47ec87e2e92a41ea97cf20f2a48ffc414ab23d623e41ee6c6592",
     "conductor/requirements.md": "473930f4f06dbce0e941c26b7d4a094caf1f22e89ec9ec70b51f04c9a1b93307",
     "conductor/single-maintainer-review-policy.md": "b71f2907818f454ebabe485cced63baade404d9adf5298f8acf1500ae297d1b1",
-    "docs/release/agent-panel-20260906/orchestrator-synthesis.md": "c685da31ec292779eaa43510676bfe8c25fa1162717660368d7de4f11c41a183",
+    "docs/release/agent-panel-20260906/orchestrator-synthesis.md": "c6b0b42d56c620f9dc7d7d7ec0ed849648d853d08ecd85ec771cb2aef0486377",
     "docs/release/agent-panel-20260906/project-readback.json": "8925fa06840f43264872f3b39e21c2e703babb4b9f6de1f85cf1c2688a0e77b7",
     "docs/release/agent-panel-20260906/scientific-challenge.json": "fe5c18ec6808dfc4748c7899dbaf1c98be4d67cab9d497150a6f97af88708b7e",
     "docs/release/agent-panel-20260906/scientific-challenge.md": "d43c342525205af880f73fb7ace08c5381e5c842fe85b92335f7c72863947543",
@@ -14,8 +14,8 @@
     "docs/release/agent-panel-20260906/scientific-issue-readback.json": "f2214b837af43c515c880e88d5ea41bd82ec760b5ead53946cd352f2260be778",
     "docs/release/agent-panel-20260906/scientific-review.md": "dc8613bccf2ce3d31c2eabc7b97662ea4502cbe97f2f35fce7e13156706e6486",
     "docs/release/agent-panel-20260906/scientific-validation.md": "cfa336788975442d7dd9ac639cc2b3c6e91874409a921a83d14df797727d73af",
-    "docs/release/agent-panel-20260906/source-body-review.json": "b042c1e3cd012103895d020564602532827a5ed81153fe2d09306f0ab3f33cf3",
-    "docs/release/agent-panel-20260906/source-body-review.md": "5aea55aba53e1a93acab534197864463d147ec5ef29e1d0379d5ae150f1d842d"
+    "docs/release/agent-panel-20260906/source-body-review.json": "68aa8bb16813605ca06008a4f84065c9af2978757bfe80eb447c7c73abd63cc7",
+    "docs/release/agent-panel-20260906/source-body-review.md": "f8ef8a8ac8d6955edba15e696290b634c8aea6190b230524274cb09faed95ee8"
   },
   "maintainer_disposition": null,
   "current_h8_acceptance_route_validated": false,

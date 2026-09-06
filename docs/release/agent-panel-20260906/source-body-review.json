@@ -4,12 +4,67 @@
   "date": "2026-09-06",
   "agent": "/root/coverage_repro",
   "body_committed": false,
-  "authority": {"scientific_acceptance": false, "ethics_authorization": false, "runtime_authorized": false, "real_study_authorized": false, "issues_closed": false},
+  "authority": {
+    "scientific_acceptance": false,
+    "ethics_authorization": false,
+    "runtime_authorized": false,
+    "real_study_authorized": false,
+    "issues_closed": false
+  },
   "sources": [
-    {"url":"https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11039417/fullTextXML","local_path":"/tmp/voiage-scientific-sources-20260906/heath2024.xml","sha256":"4c8adfaccf493b0b3da3f0373ef9b20f1424e15d2ecae8031fb2a4158d6aa4ba","edition":"Heath et al., Value of Information for Clinical Trial Design: The Importance of Considering All Relevant Comparators, Pharmacoeconomics 42(5), 479-486 (2024), DOI 10.1007/s40273-024-01372-0","license_observed":"CC BY-NC 4.0; third-party exclusions remain possible","claim_scope":"supports bounded comparator/full-decision-context VOI warning; does not prove universal harm incommensurability or authorization"},
-    {"url":"https://proceedings.neurips.cc/paper_files/paper/2022/file/d6929af3791b2cec21c136b573aa87f2-Paper-Conference.pdf","local_path":"/tmp/voiage-scientific-sources-20260906/camilleri2022.pdf","sha256":"dd6b66d627873200aed5df9098bbaa2827b09c45b2346b2b0b9ab89dfbae1eb6","edition":"Camilleri et al., Active Learning with Safety Constraints, NeurIPS 2022, 36th Conference on Neural Information Processing Systems","license_observed":"not established by retrieval","claim_scope":"supports specified safety-constrained active-learning model; does not validate this sampling-harm capability or authorize decisions"}
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11039417/fullTextXML",
+      "local_path": "/tmp/voiage-scientific-sources-20260906/heath2024.xml",
+      "sha256": "4c8adfaccf493b0b3da3f0373ef9b20f1424e15d2ecae8031fb2a4158d6aa4ba",
+      "edition": "Heath et al., Value of Information for Clinical Trial Design: The Importance of Considering All Relevant Comparators, Pharmacoeconomics 42(5), 479-486 (2024), DOI 10.1007/s40273-024-01372-0",
+      "license_observed": "CC BY-NC 4.0; third-party exclusions remain possible",
+      "claim_scope": "supports bounded comparator/full-decision-context VOI warning; does not prove universal harm incommensurability or authorization"
+    },
+    {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2022/file/d6929af3791b2cec21c136b573aa87f2-Paper-Conference.pdf",
+      "local_path": "/tmp/voiage-scientific-sources-20260906/camilleri2022.pdf",
+      "sha256": "dd6b66d627873200aed5df9098bbaa2827b09c45b2346b2b0b9ab89dfbae1eb6",
+      "edition": "Camilleri et al., Active Learning with Safety Constraints, NeurIPS 2022, 36th Conference on Neural Information Processing Systems",
+      "license_observed": "not established by retrieval",
+      "claim_scope": "supports specified safety-constrained active-learning model; does not validate this sampling-harm capability or authorize decisions"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-A/part-46",
+      "local_path": "/tmp/voiage-scientific-sources-20260906/cfr46.html",
+      "sha256": "551ab2a86869f58ddf1bde3c17985428bebe87b3b2a9e245e50f8adc04461c60",
+      "edition": "eCFR current Part 46 locator observed 2026-09-06; response was Federal Register request-access page, not the regulation body",
+      "license_observed": "not assessed",
+      "claim_scope": "no claim applied; failed body retrieval remains a blocker"
+    },
+    {
+      "url": "https://database.ich.org/sites/default/files/ICH_E6%28R3%29_Step4_FinalGuideline_2025_0106.pdf",
+      "local_path": "/tmp/voiage-scientific-sources-20260906/ich-e6r3.pdf",
+      "sha256": "e6ce19e36ce7d2e294f89ee89492b9e035178c3cca48984392bbd92eec9b002c",
+      "edition": "ICH E6(R3) Step 4 Final Guideline, 2025-01-06",
+      "license_observed": "not established by retrieval",
+      "claim_scope": "supports that GCP principles frame conduct of covered trials; does not authorize this runtime or establish jurisdictional applicability"
+    },
+    {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2022/hash/c628644624c1be9c8cfb1541fa6421fd-Abstract-Conference.html",
+      "local_path": "/tmp/voiage-scientific-sources-20260906/bottero.html",
+      "sha256": "80d7508c5f2e1aa043988bf542a5afbc1bf00c23e4b634e5569b396f262c993d",
+      "edition": "Bottero et al., Information-Theoretic Safe Exploration with Gaussian Processes, NeurIPS 2022 abstract page",
+      "license_observed": "not established by retrieval",
+      "claim_scope": "supports a methodological analogy for information-directed safe exploration; does not establish VOI harm validity or ethics approval"
+    },
+    {
+      "url": "https://www.hhs.gov/ohrp/sites/default/files/the-belmont-report-508c_FINAL.pdf",
+      "local_path": null,
+      "sha256": null,
+      "edition": "HHS/OHRP official Belmont PDF locator; CLI retrieval denied HTTP 403 on 2026-09-06",
+      "license_observed": "not assessed",
+      "claim_scope": "no body claim applied; official locator remains pending lawful accessible receipt"
+    }
   ],
   "findings_remain_pending": true,
   "critical_blocker": "H8D-DS-03",
-  "recommendation":"Use these receipts to narrow claims only; retain provisional non-authorizing exclusion and require accountable disposition."
+  "recommendation": "Use these receipts to narrow claims only; retain provisional non-authorizing exclusion and require accountable disposition.",
+  "source_count": 6,
+  "retrieved_body_count": 4,
+  "retrieval_note": "Two source bodies were retrieved in full; one NeurIPS abstract page and one denied official locator were recorded. No body bytes are committed."
 }
