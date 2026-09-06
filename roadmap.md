@@ -4,6 +4,45 @@
 
 To establish `voiage` as the premier, cross-domain, high-performance library for Value of Information analysis. It will be distinguished by its analytical rigor, computational performance, and exceptional user experience.
 
+## Proposed integrated methods and software expansion (2026-09-06)
+
+The [integrated detailed roadmap](docs/roadmaps/voi-methods-expansion.md)
+incorporates the VOI-method, software, statistical, economic and public-health
+comparisons into 20 proposed work packages. It owns the combined delivery
+sequence, coverage map, package dependencies, primary sources and acceptance
+criteria. The [dependency receipt](docs/roadmaps/dependency-frontier-20260906.json)
+records a dated 29-package registry observation, with separate current-runtime,
+latest-release and research/prerelease qualification lanes.
+
+The sequence starts with capability reconciliation, estimator assurance and
+evidence contracts, then validated EVSI and inference/execution workflows,
+economic study design, numerical/public-health extensions and advanced research
+designs. Binding delivery, producer interoperability and performance qualification
+accompany accepted methods. Existing completion labels below retain their
+historical bounded scope and do not imply these extensions are implemented.
+
+The integrated plan also specifies Rust-owned domain semantics, estimator
+kernels and execution state; typed contracts; Arrow/buffer and C ABI ownership;
+deterministic RNG/reductions; native concurrency and restart; and isolated
+accelerator experiments. A [25-crate native frontier receipt](docs/roadmaps/rust-frontier-20260906.json)
+records current releases and declared MSRVs. Rust 2024 modernization and newer
+optional-toolchain lanes are proposed without changing the current Rust 1.85
+support floor or making Python inference frameworks core dependencies.
+
+Dependency selection explicitly maximizes Rust libraries throughout the stack,
+including implementation dependencies. Non-Rust runtime adoption requires a
+recorded Rust-alternative assessment and a specific capability justification.
+
+The plan starts independent preflight lanes for scientific references, Rust/MSRV
+compatibility and producer access, then freezes a shared vertical contract. It
+defines write ownership, handoffs, blocked-work fallbacks and dependency-ordered
+PRs so parallel implementation does not create competing contracts.
+
+This remains planning only: no Conductor tracks or GitHub issues have been
+created for the proposed packages, and no dependency upgrade or scientific
+promotion is implied. The former [software frontier page](docs/roadmaps/software-frontier.md)
+now directs readers to the consolidated plan.
+
 ## Comprehensive Rust-First Polyglot Programme
 
 GitHub issue #1033 and archived Conductor track

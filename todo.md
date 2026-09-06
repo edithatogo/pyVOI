@@ -727,6 +727,12 @@ as recorded in the active task above; earlier route decisions below are historic
 
 ## Done
 
+*   [x] Document the integrated 20-package VOI and software expansion roadmap
+    in `docs/roadmaps/voi-methods-expansion.md`, including Rust-first dependency
+    policy, architecture, acceptance criteria, source receipts, parallel lanes
+    and early blocker dispositions. Implementation remains proposed; no new
+    Conductor tracks or GitHub issues were created.
+
 *   [x] Reconcile post-merge release/venue evidence and the historical backlog
     under R13f (PR #1052; `a6d748cc`). Full local tox passed all 15 environments
     with 4,601 tests passed and 95.11 percent coverage. At that checkpoint,

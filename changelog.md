@@ -24,6 +24,11 @@
 
 ## Unreleased
 
+- Add an integrated 20-package VOI and software roadmap with Rust-first
+  dependencies, statistical/economic/public-health extensions, dated dependency
+  evidence, and parallel delivery lanes that resolve shared-contract, scientific,
+  MSRV and producer-access blockers early. Planning only; no new tracks/issues.
+
 - Make the maintainer the sole human repository decision-maker, with separated
   agent assessments and explicit historical H8 validation boundaries. Advance
   venue, scientific, security and registry evidence; correct the bounded tox
