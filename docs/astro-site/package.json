@@ -21,7 +21,7 @@
     "@astrojs/starlight": "0.42.0",
     "astro": "7.2.10",
     "astro-polyglot": "link:../../.repo-tools/astro-polyglot/packages/astro-polyglot",
-    "starlight-links-validator": "0.25.3",
+    "starlight-links-validator": "0.26.0",
     "starlight-llms-txt": "0.11.0",
     "typescript": "^5.9.3"
   }
