@@ -10,6 +10,12 @@ on:
   schedule:
     - cron: '0 6 * * 1'  # Weekly on Monday
 
+
+# Cancel obsolete pull-request runs while preserving independent main, schedule, and manual runs.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 permissions:
   contents: read
 
