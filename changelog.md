@@ -1,5 +1,8 @@
 # Changelog
 
+- Use Astro 7.3.1 to repair the 7.3.0 internal logger export regression in
+  documentation builds.
+
 - Prepare a fail-closed pre-closeout backlog checkpoint that binds the completed
   EasyBuild and cross-venue merges while retaining native Spack, upstream HPC,
   human, scientific, registry, identifier, and venue gates.
