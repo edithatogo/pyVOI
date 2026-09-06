@@ -11,8 +11,9 @@ incorporates the VOI-method, software, statistical, economic and public-health
 comparisons into 20 proposed work packages. It owns the combined delivery
 sequence, coverage map, package dependencies, primary sources and acceptance
 criteria. The [dependency receipt](docs/reviews/roadmaps/dependency-frontier-20260906.json)
-records a dated 29-package registry observation, with separate current-runtime,
-latest-release and research/prerelease qualification lanes.
+records a dated 29-package registry observation. The roadmap proposes separate
+current-runtime, latest-release and research/prerelease qualification lanes;
+the receipt does not record results for those lanes.
 
 The sequence starts with capability reconciliation, estimator assurance and
 evidence contracts, then validated EVSI and inference/execution workflows,
