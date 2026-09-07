@@ -30,7 +30,10 @@ def test_valid_envelope_round_trips() -> None:
     assert asdict(value)["algorithm_id"] == "evpi:analytic:v1"
 
 
-@pytest.mark.parametrize("field", ["schema_version", "package_version", "algorithm_id", "rng_id", "input_schema_id"])
+@pytest.mark.parametrize(
+    "field",
+    ["schema_version", "package_version", "algorithm_id", "rng_id", "input_schema_id"],
+)
 def test_missing_required_identity_fails(field: str) -> None:
     value = envelope()
     del value[field]
@@ -53,7 +56,9 @@ def test_old_reader_new_writer_compatible_with_same_major() -> None:
 
 
 def test_migration_records_both_identities_and_rejects_same_identity() -> None:
-    migrated = migrate_version_envelope(envelope(), envelope(algorithm_id="evpi:analytic:v2"))
+    migrated = migrate_version_envelope(
+        envelope(), envelope(algorithm_id="evpi:analytic:v2")
+    )
     assert migrated["migration"] == "explicit"
     assert migrated["from"].algorithm_id != migrated["to"].algorithm_id
     with pytest.raises(VersionSyncError, match="distinct"):

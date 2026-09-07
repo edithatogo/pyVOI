@@ -76,16 +76,29 @@ def validate_version_envelope(value: object) -> VersionEnvelope:
     """Validate a version envelope without silently accepting unknown fields."""
     if not isinstance(value, dict):
         raise VersionSyncError("version envelope must be an object")
-    required = {"schema_version", "package_version", "algorithm_id", "rng_id", "input_schema_id"}
+    required = {
+        "schema_version",
+        "package_version",
+        "algorithm_id",
+        "rng_id",
+        "input_schema_id",
+    }
     missing = sorted(required - value.keys())
     unknown = sorted(set(value) - required)
     if missing:
-        raise VersionSyncError("version envelope missing required fields: " + ", ".join(missing))
+        raise VersionSyncError(
+            "version envelope missing required fields: " + ", ".join(missing)
+        )
     if unknown:
-        raise VersionSyncError("version envelope has unknown fields: " + ", ".join(unknown))
+        raise VersionSyncError(
+            "version envelope has unknown fields: " + ", ".join(unknown)
+        )
     if value["schema_version"] != "1.0":
         raise VersionSyncError("unsupported version envelope schema")
-    if any(not isinstance(value[field], str) or not value[field].strip() for field in required):
+    if any(
+        not isinstance(value[field], str) or not value[field].strip()
+        for field in required
+    ):
         raise VersionSyncError("version envelope fields must be non-empty strings")
     release_identity(value["package_version"])
     return VersionEnvelope(**value)
