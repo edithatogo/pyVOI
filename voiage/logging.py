@@ -272,6 +272,37 @@ class BoundedLogQueue:
         return self._items.popleft() if self._items else None
 
 
+def validate_vop_pilot_contract(payload: Mapping[str, object]) -> None:
+    """Validate the synthetic VOP pilot before any model evaluation."""
+    from voiage.versioning import validate_version_envelope
+
+    if payload.get("source_revision") != "3c841cd054666cf3d9ebefd962fc2ea07c20a510":
+        raise ValueError("pilot source revision mismatch")
+    envelope = payload.get("identity")
+    if not isinstance(envelope, Mapping):
+        raise TypeError("pilot identity is missing")
+    validate_version_envelope(
+        {
+            "schema_version": "1.0",
+            "package_version": payload.get("consumer_version"),
+            "algorithm_id": envelope.get("algorithm_id"),
+            "rng_id": envelope.get("rng_id"),
+            "input_schema_id": envelope.get("input_schema_id"),
+        }
+    )
+    correlation = payload.get("correlation")
+    if not isinstance(correlation, Mapping):
+        raise TypeError("pilot correlation is missing")
+    TraceContext(trace_id=str(correlation.get("trace_id", "")))
+    if not correlation.get("run_id") or not correlation.get("analysis_id"):
+        raise ValueError("pilot correlation identifiers must be non-empty")
+    if (
+        payload.get("unit") != "nzd_per_qaly"
+        or payload.get("weight_field") != "population_weight"
+    ):
+        raise ValueError("pilot units or weights are incompatible")
+
+
 @final
 class _ContextFilter(logging.Filter):
     def __init__(self, settings: LoggingSettings) -> None:

@@ -22,7 +22,7 @@
     "conductor/tracks/agent_safe_engineering_20260907/repository-boundaries.md"
   ],
   "input_sha256": {
-    "voiage/logging.py": "d7257ebff8716d788b928dc6b24bdcf5564ba21df6a30744c6b12ed7bcc659a0",
+    "voiage/logging.py": "69c868df4e40753105b08664c0f02bd6e1c2b413dc460b7dcf0f97d97b9f6b47",
     "tests/test_logging_contract.py": "e815c8d7091c2bf7d1b50201a77be48f20a718354f4cbe29086e5c8a6fb22c6b",
     "rust/crates/voiage-diagnostics/Cargo.toml": "fbc5abbdd7b779af218bd033aeeb721c3f718bf3fb08c6d782fdea3a1e09ba4c",
     "rust/crates/voiage-python/Cargo.toml": "4067a621998aececd693832bf1a98fb856b02111ae6d06f092fb6e44bd598d1b"
@@ -37,7 +37,7 @@
   "initial_file_state": {
     "rust/crates/voiage-diagnostics/src/telemetry.rs": "new-file-must-be-absent",
     "tests/test_native_logging_contract.py": "new-file-must-be-absent",
-    "voiage/logging.py": "d7257ebff8716d788b928dc6b24bdcf5564ba21df6a30744c6b12ed7bcc659a0",
+    "voiage/logging.py": "69c868df4e40753105b08664c0f02bd6e1c2b413dc460b7dcf0f97d97b9f6b47",
     "rust/crates/voiage-diagnostics/src/lib.rs": "897c4fe00e12a4b911d1ff6e2c23c643b9febefaffaf0d7fd1bfa5b9f4b07aeb",
     "rust/crates/voiage-python/src/lib.rs": "f3e646181ee83bf6e6ba4d2f43d4ccc8c6d5414634a50eeb5108c366f2a4cbf3",
     "rust/crates/voiage-diagnostics/Cargo.toml": "fbc5abbdd7b779af218bd033aeeb721c3f718bf3fb08c6d782fdea3a1e09ba4c"

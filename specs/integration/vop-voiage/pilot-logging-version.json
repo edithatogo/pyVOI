@@ -15,5 +15,7 @@
     "trace_id": "11111111111111111111111111111111"
   },
   "data_policy": "synthetic-only; local validation packet; no hosted publication",
-  "provider_policy": "semantic contract only; provider APIs are not interchangeable"
+  "provider_policy": "semantic contract only; provider APIs are not interchangeable",
+  "unit": "nzd_per_qaly",
+  "weight_field": "population_weight"
 }
