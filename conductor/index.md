@@ -23,3 +23,6 @@
 - [Tracks Registry](./tracks.md)
 - [Tracks Directory](./tracks/)
 - [Archive Directory](./archive/)
+
+- [Agent-safe engineering programme](./tracks/agent_safe_engineering_20260907/index.md)
+- [Logging/versioning orchestration](./tracks/agent_safe_engineering_20260907/orchestration.md)
