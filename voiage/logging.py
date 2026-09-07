@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections import deque
 from collections.abc import Iterable, Mapping
 from contextlib import contextmanager
 from contextvars import ContextVar
@@ -64,6 +65,7 @@ _QUERY_CREDENTIAL_RE = re.compile(
         )
     )
 )
+_ABSOLUTE_PATH_RE = re.compile(r"(?:/Users|/home|/private|[A-Za-z]:\\)[^\s,;]+")
 _ASSIGNMENT_RE = re.compile(
     "".join(
         (
@@ -95,7 +97,8 @@ def _redact_text(value: str) -> str:
     value = _BEARER_RE.sub("Bearer [REDACTED]", value)
     value = _JWT_RE.sub("[REDACTED]", value)
     value = _QUERY_CREDENTIAL_RE.sub(r"\1[REDACTED]", value)
-    return _ASSIGNMENT_RE.sub(r"\1\2[REDACTED]", value)
+    value = _ASSIGNMENT_RE.sub(r"\1\2[REDACTED]", value)
+    return _ABSOLUTE_PATH_RE.sub("[PATH_REDACTED]", value)
 
 
 def _sensitive_key(key: str) -> bool:
@@ -237,6 +240,36 @@ class LoggingSettings(BaseModel):
         }
         values.update(overrides)
         return cls.model_validate(values)
+
+
+class BoundedLogQueue:
+    """Bounded, non-blocking queue with deterministic severity-aware loss."""
+
+    def __init__(self, capacity: int) -> None:
+        if capacity < 1:
+            raise ValueError("capacity must be positive")
+        self._items: deque[tuple[int, str]] = deque(maxlen=capacity)
+        self._capacity = capacity
+        self.dropped = 0
+
+    def put(self, level: int, message: str) -> bool:
+        """Add an event without blocking, dropping lower-severity entries first."""
+        if len(self._items) < self._capacity:
+            self._items.append((level, message))
+            return True
+        if level >= logging.ERROR:
+            for index, (queued_level, _) in enumerate(self._items):
+                if queued_level < logging.ERROR:
+                    del self._items[index]
+                    self._items.append((level, message))
+                    self.dropped += 1
+                    return True
+        self.dropped += 1
+        return False
+
+    def get(self) -> tuple[int, str] | None:
+        """Remove and return the oldest queued event."""
+        return self._items.popleft() if self._items else None
 
 
 @final
