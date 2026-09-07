@@ -13,7 +13,7 @@ It uses Typer for command-line argument parsing.
 
 from collections.abc import Callable, Iterable
 import csv
-import importlib.util
+import importlib
 import io
 import json
 import logging
@@ -249,6 +249,15 @@ app = typer.Typer(
 app.add_typer(ingestion_app, name="ingest")
 
 
+def _module_available(name: str) -> bool:
+    """Return whether an optional module can be imported successfully."""
+    try:
+        importlib.import_module(name)
+    except (ImportError, OSError, RuntimeError):
+        return False
+    return True
+
+
 @app.command(name="capabilities")
 def capabilities(
     json_output: bool = typer.Option(
@@ -263,7 +272,7 @@ def capabilities(
         "package_version": __version__,
         "backend": "rust-backed-cpu",
         "optional_modules": {
-            name: importlib.util.find_spec(name) is not None
+            name: _module_available(name)
             for name in ("jax", "torch", "polars", "pyarrow")
         },
         "methods": ["evpi", "evppi", "evsi", "enbs", "ceaf", "dominance"],
