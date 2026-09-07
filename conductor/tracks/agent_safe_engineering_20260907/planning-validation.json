@@ -1,0 +1,35 @@
+{
+  "recorded_at": "2026-09-06T14:20:14+00:00",
+  "scope": "planning and workflow guidance only",
+  "baseline": "1207cef979311d1f39b3e41c32e165907303dec2",
+  "conductor_full_validation": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "focused_tests": {
+    "initial_passed": 38,
+    "after_workflow_refinement_passed": 30,
+    "note": "Second count overlaps initial tests; do not add counts."
+  },
+  "packet_validation": {
+    "packages": 8,
+    "pending_tasks": 24,
+    "unique_ids": true,
+    "acyclic_order": true,
+    "read_paths_exist": true,
+    "local_links_resolve": true
+  },
+  "vale": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "full_tox": "Not rerun for planning-only changes; runtime, dependencies and tests unchanged from merged baseline. Focused governance checks run above.",
+  "hosted_checks": "not run for this local planning change",
+  "implementation": "pending; semantic enforcement is manual until G01",
+  "review": [
+    "Preserved existing active tracks and original dirty checkout.",
+    "No automatic scientific decisions, fixture rewrites, release or hidden backend promotion.",
+    "Packet candidate paths require exact per-slice refinement before code edits.",
+    "Structural JSON validation does not establish readiness or sandbox execution."
+  ]
+}

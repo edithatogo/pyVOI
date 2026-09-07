@@ -1,0 +1,217 @@
+{
+  "observed_on": "2026-09-07",
+  "account": "edithatogo",
+  "provider": "GitHub plugin",
+  "discovery": "Owner-filtered repository listing plus user:edithatogo fork:false repository search pages 1-3; page 3 empty. Discovery does not prove exhaustive source assessment.",
+  "scope": "Selected public scientific and engineering repositories; private repository details omitted from public planning artifacts.",
+  "observations": [
+    {
+      "repository": "edithatogo/mars",
+      "path": "README.md",
+      "blob_sha": "7cbf90d89e451b4cf90f25d3f218de7404ebb398",
+      "url": "https://github.com/edithatogo/mars/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-95"
+    },
+    {
+      "repository": "edithatogo/innovate",
+      "path": "README.md",
+      "blob_sha": "ea4d7b0ad0ae8cdb3856cf99867abb886e23980c",
+      "url": "https://github.com/edithatogo/innovate/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-100"
+    },
+    {
+      "repository": "edithatogo/kairos",
+      "path": "README.md",
+      "blob_sha": "92dfade6819dc54f7cb99f4f80bbbf96082255f6",
+      "url": "https://github.com/edithatogo/kairos/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-95"
+    },
+    {
+      "repository": "edithatogo/UOGTO",
+      "path": "README.md",
+      "blob_sha": "adca2658e6d106cbb03af90958894f0568c27462",
+      "url": "https://github.com/edithatogo/UOGTO/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-95"
+    },
+    {
+      "repository": "edithatogo/new-drug-reimbursement-game",
+      "path": "README.md",
+      "blob_sha": "12050dc31462bb6a531829481c5aae0e3e95c32f",
+      "url": "https://github.com/edithatogo/new-drug-reimbursement-game/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-100"
+    },
+    {
+      "repository": "edithatogo/vop_poc_nz",
+      "path": "README.md",
+      "blob_sha": "305eb5ee0c5e42b7ac5eeebf9c62c29679546595",
+      "url": "https://github.com/edithatogo/vop_poc_nz/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-100"
+    },
+    {
+      "repository": "edithatogo/lifecourse",
+      "path": "README.md",
+      "blob_sha": "cc487a19b52f68fe9f72e7804571719a8724f93a",
+      "url": "https://github.com/edithatogo/lifecourse/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-100"
+    },
+    {
+      "repository": "edithatogo/ginsim",
+      "path": "README.md",
+      "blob_sha": "5c6c8a3debd377ca5efa0c187ddef85aeb109f66",
+      "url": "https://github.com/edithatogo/ginsim/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-100"
+    },
+    {
+      "repository": "edithatogo/mchs",
+      "path": "README.md",
+      "blob_sha": "e87884ce601afb568c7f41108bb22b22576316f7",
+      "url": "https://github.com/edithatogo/mchs/blob/master/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-95"
+    },
+    {
+      "repository": "edithatogo/NwauCore.jl",
+      "path": "README.md",
+      "blob_sha": "61286de82703c8637b664e755a705cf9147103c3",
+      "url": "https://github.com/edithatogo/NwauCore.jl/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-65"
+    },
+    {
+      "repository": "edithatogo/NationalWeightedActivityUnitWrapper.jl",
+      "path": "README.md",
+      "blob_sha": "807efcf0a7384c197d22ea7742122284284096f0",
+      "url": "https://github.com/edithatogo/NationalWeightedActivityUnitWrapper.jl/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-65"
+    },
+    {
+      "repository": "edithatogo/rareburden-commons",
+      "path": "README.md",
+      "blob_sha": "511332bed6d6605d0a991b2a53f46f8f1c14264f",
+      "url": "https://github.com/edithatogo/rareburden-commons/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-100"
+    },
+    {
+      "repository": "edithatogo/reimbursement-atlas",
+      "path": "README.md",
+      "blob_sha": "a27b4ed7837ecc5463248a14f8da56acd0820a37",
+      "url": "https://github.com/edithatogo/reimbursement-atlas/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-100"
+    },
+    {
+      "repository": "edithatogo/global-medicines-atlas",
+      "path": "README.md",
+      "blob_sha": "ca9acc995d7bc72231ce2db1d9f4b24d5a5c93e2",
+      "url": "https://github.com/edithatogo/global-medicines-atlas/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-100"
+    },
+    {
+      "repository": "edithatogo/riopa-infrastructure",
+      "path": "README.md",
+      "blob_sha": "b451053695c5a79110e736d0a2f0287e8091fa28",
+      "url": "https://github.com/edithatogo/riopa-infrastructure/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-65"
+    },
+    {
+      "repository": "edithatogo/conductor-next",
+      "path": "README.md",
+      "blob_sha": "8dca97e5b9c4757de83f27719ea2ab2751bea505",
+      "url": "https://github.com/edithatogo/conductor-next/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-100"
+    },
+    {
+      "repository": "edithatogo/repository-standards",
+      "path": "README.md",
+      "blob_sha": "4de338e02a848faebae2c85dbd477823fee71eee",
+      "url": "https://github.com/edithatogo/repository-standards/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-100"
+    },
+    {
+      "repository": "edithatogo/renovate-config",
+      "path": "README.md",
+      "blob_sha": "1f0a2ed4e8a1e979dcb1dcc3e2285d9662951a70",
+      "url": "https://github.com/edithatogo/renovate-config/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-65"
+    },
+    {
+      "repository": "edithatogo/astro-polyglot",
+      "path": "README.md",
+      "blob_sha": "ce4b6dc1b7459d2877eea8c6d43d02962f4a04ee",
+      "url": "https://github.com/edithatogo/astro-polyglot/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-100"
+    },
+    {
+      "repository": "edithatogo/sourceright",
+      "path": "README.md",
+      "blob_sha": "41c011ecb434f2377a90df1155d522bb4f70a80b",
+      "url": "https://github.com/edithatogo/sourceright/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-65"
+    },
+    {
+      "repository": "edithatogo/standardflow",
+      "path": "README.md",
+      "blob_sha": "f42908ccaa5fb9158a185946cc500033c56ea42a",
+      "url": "https://github.com/edithatogo/standardflow/blob/main/README.md",
+      "evidence_level": "README inspection; no runtime qualification",
+      "read_lines": "1-65"
+    },
+    {
+      "repository": "edithatogo/mars",
+      "path": "rust-runtime/Cargo.toml",
+      "blob_sha": "2c969237a99c2f2c0e4d205ba655a3ce4d2b48b2",
+      "url": "https://github.com/edithatogo/mars/blob/main/rust-runtime/Cargo.toml",
+      "evidence_level": "source/manifest inspection; not compiled",
+      "read_lines": "1-100"
+    },
+    {
+      "repository": "edithatogo/kairos",
+      "path": "Cargo.toml",
+      "blob_sha": "ed04fc6c64706a187a766fd30eb705439b3e3086",
+      "url": "https://github.com/edithatogo/kairos/blob/main/Cargo.toml",
+      "evidence_level": "source/manifest inspection; not compiled",
+      "read_lines": "1-100"
+    },
+    {
+      "repository": "edithatogo/new-drug-reimbursement-game",
+      "path": "ecosystem.lock.toml",
+      "blob_sha": "b43d2a0b46fc39813ec0063c81123720359ba9ba",
+      "url": "https://github.com/edithatogo/new-drug-reimbursement-game/blob/main/ecosystem.lock.toml",
+      "evidence_level": "source/manifest inspection; not compiled",
+      "read_lines": "1-100"
+    },
+    {
+      "repository": "edithatogo/new-drug-reimbursement-game",
+      "path": "Cargo.toml",
+      "blob_sha": "a89b09b6cc34a341c1a545b24a4091c2112c5032",
+      "url": "https://github.com/edithatogo/new-drug-reimbursement-game/blob/main/Cargo.toml",
+      "evidence_level": "source/manifest inspection; not compiled",
+      "read_lines": "1-100"
+    },
+    {
+      "repository": "edithatogo/innovate",
+      "path": "docs/architecture_principles.md",
+      "blob_sha": "29ee730e074f00886cadb3bd8b8e17b5cf9b8afd",
+      "url": "https://github.com/edithatogo/innovate/blob/main/docs/architecture_principles.md",
+      "evidence_level": "source/manifest inspection; not compiled",
+      "read_lines": "1-100"
+    }
+  ]
+}

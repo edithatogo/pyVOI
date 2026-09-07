@@ -1,0 +1,361 @@
+{
+  "schema_version": "1.0",
+  "baseline": "1207cef979311d1f39b3e41c32e165907303dec2",
+  "enforcement": "manual_until_G01",
+  "packets": [
+    {
+      "id": "G01",
+      "title": "Execution packets and drift enforcement",
+      "status": "pending",
+      "depends_on": [],
+      "read_first": [
+        "conductor/tracks/agent_safe_engineering_20260907/repository-boundaries.md",
+        "scripts/repo_harness.py",
+        "tests/test_repo_harness.py",
+        "AGENTS.md",
+        "conductor/workflow.md"
+      ],
+      "candidate_write_scope": [
+        "scripts/repo_harness.py",
+        "tests/test_repo_harness.py",
+        "AGENTS.md",
+        "conductor/workflow.md",
+        "scripts/validate_execution_packets.py",
+        "tests/test_execution_packets.py"
+      ],
+      "implementation_ready": false,
+      "required_before_implementation": [
+        "Approved repository allocation, capability/adapter owner, excluded responsibilities and integration disposition",
+        "Exact file subset and baseline content hashes",
+        "One named owner and upstream evidence revisions",
+        "Failing acceptance test with expected result",
+        "Selected toolchain and exact commands",
+        "Integrator review of scientific/shared-contract changes",
+        "Use START_HERE.md readiness matrix; transferred child slices are never implemented from parent checkboxes"
+      ],
+      "acceptance": "Mutate one valid packet at a time: cycle, ../ traversal, symlink escape, missing prerequisite evidence, changed baseline hash, unknown field, and out-of-scope changed file must each exit nonzero; a valid read-only audit exits zero. Include staged, unstaged and untracked paths. A packet never grants shell or publication permission. Reject an absent capability owner, cross-repository write scope or implicit third-party API/ABI requirement. Assess conductor-next reuse before generic validator implementation.",
+      "validation_commands": [
+        "python -m pytest tests/test_execution_packets.py tests/test_repo_harness.py -q"
+      ],
+      "stop_condition": "A local scope checker can detect drift but cannot prove scientific correctness or sandbox an agent. Stop if the slice duplicates an external capability owner or introduces a reverse/cyclic dependency.",
+      "rollback": "Revert only the task commit through a reviewed PR; preserve old receipts and public artifacts. Never reset shared work.",
+      "delivery_repository": "edithatogo/voiage",
+      "capability_scope": "Voiage-specific execution packets and drift enforcement",
+      "external_write_authorized": false,
+      "compatibility_scope": "Existing Voiage promises only; providers require explicit semantic/interchange conformance, not API/ABI equivalence."
+    },
+    {
+      "id": "G02",
+      "title": "Rust dependency and feature qualification",
+      "status": "pending",
+      "depends_on": [
+        "G01"
+      ],
+      "read_first": [
+        "conductor/tracks/agent_safe_engineering_20260907/repository-boundaries.md",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock",
+        "rust/deny.toml",
+        ".github/workflows/rust-security.yml",
+        ".github/workflows/dependency-preview.yml",
+        "tests/test_dependency_promotion_policy.py"
+      ],
+      "candidate_write_scope": [
+        "rust/Cargo.toml",
+        "rust/Cargo.lock",
+        "rust/deny.toml",
+        ".github/workflows/rust-security.yml",
+        ".github/workflows/dependency-preview.yml",
+        "tests/test_dependency_promotion_policy.py",
+        "conductor/tracks/agent_safe_engineering_20260907/dependency-feature-matrix.json"
+      ],
+      "implementation_ready": false,
+      "required_before_implementation": [
+        "Approved repository allocation, capability/adapter owner, excluded responsibilities and integration disposition",
+        "Exact file subset and baseline content hashes",
+        "One named owner and upstream evidence revisions",
+        "Failing acceptance test with expected result",
+        "Selected toolchain and exact commands",
+        "Integrator review of scientific/shared-contract changes",
+        "Use START_HERE.md readiness matrix; transferred child slices are never implemented from parent checkboxes"
+      ],
+      "acceptance": "A deliberately unavailable optional backend must leave the minimal supported build usable; an MSRV-incompatible candidate must fail its qualification lane. The matrix must name unsupported combinations and verify locked resolution. Native alternatives precede any non-Rust dependency proposal.",
+      "validation_commands": [
+        "python -m pytest tests/test_dependency_promotion_policy.py tests/test_dependency_frontier_script.py -q"
+      ],
+      "stop_condition": "Registry freshness is not compatibility. Tooling MSRV and library MSRV are distinct; no preview promotion from one passing platform. Stop if the slice duplicates an external capability owner or introduces a reverse/cyclic dependency.",
+      "rollback": "Revert only the task commit through a reviewed PR; preserve old receipts and public artifacts. Never reset shared work.",
+      "delivery_repository": "edithatogo/voiage",
+      "capability_scope": "Voiage-specific rust dependency and feature qualification",
+      "external_write_authorized": false,
+      "compatibility_scope": "Existing Voiage promises only; providers require explicit semantic/interchange conformance, not API/ABI equivalence."
+    },
+    {
+      "id": "G03",
+      "title": "Voiage compatibility and replaceable providers",
+      "status": "pending",
+      "depends_on": [
+        "G01"
+      ],
+      "read_first": [
+        "conductor/tracks/agent_safe_engineering_20260907/repository-boundaries.md",
+        "rust/crates/voiage-ffi/src/lib.rs",
+        "tests/test_ffi_sanitizer_contract.py",
+        "tests/test_consumer_matrix.py",
+        "scripts/check_consumer_matrix.py",
+        ".github/workflows/bindings-ci.yml"
+      ],
+      "candidate_write_scope": [
+        "rust/crates/voiage-ffi/src/lib.rs",
+        "tests/test_ffi_sanitizer_contract.py",
+        "tests/test_consumer_matrix.py",
+        "scripts/check_consumer_matrix.py",
+        ".github/workflows/bindings-ci.yml",
+        "tests/fixtures/compatibility_witnesses/"
+      ],
+      "implementation_ready": false,
+      "required_before_implementation": [
+        "Approved repository allocation, capability/adapter owner, excluded responsibilities and integration disposition",
+        "Exact file subset and baseline content hashes",
+        "One named owner and upstream evidence revisions",
+        "Failing acceptance test with expected result",
+        "Selected toolchain and exact commands",
+        "Integrator review of scientific/shared-contract changes",
+        "Use START_HERE.md readiness matrix; transferred child slices are never implemented from parent checkboxes"
+      ],
+      "acceptance": "Removing a public Rust item fails the API check; changing an exported C signature fails a compiled consumer; additive compatible API passes. Pin baseline/toolchain and retain a bounded documented suppression only with a regression witness. Do not regenerate old fixtures from the candidate. Different provider APIs must translate to the same input semantics without becoming part of the Voiage public API; wrong units/weights fail.",
+      "validation_commands": [
+        "python -m pytest tests/test_consumer_matrix.py tests/test_ffi_sanitizer_contract.py -q"
+      ],
+      "stop_condition": "A new release/version decision and deliberate breaking change require maintainer disposition, not automatic version bumping. Stop if the slice duplicates an external capability owner or introduces a reverse/cyclic dependency.",
+      "rollback": "Revert only the task commit through a reviewed PR; preserve old receipts and public artifacts. Never reset shared work.",
+      "delivery_repository": "edithatogo/voiage",
+      "capability_scope": "Voiage-specific api and abi compatibility witnesses",
+      "external_write_authorized": false,
+      "compatibility_scope": "Existing Voiage promises only; providers require explicit semantic/interchange conformance, not API/ABI equivalence."
+    },
+    {
+      "id": "G04",
+      "title": "CI cost and failure reproducibility",
+      "status": "pending",
+      "depends_on": [
+        "G01"
+      ],
+      "read_first": [
+        "conductor/tracks/agent_safe_engineering_20260907/repository-boundaries.md",
+        ".github/workflows/ci.yml",
+        ".github/workflows/operational-assurance.yml",
+        ".github/workflows/dependency-preview.yml",
+        "tox.ini",
+        "tests/test_exact_head_workflows.py"
+      ],
+      "candidate_write_scope": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/operational-assurance.yml",
+        ".github/workflows/dependency-preview.yml",
+        "tox.ini",
+        "tests/test_exact_head_workflows.py",
+        "conductor/tracks/agent_safe_engineering_20260907/ci-measurements.json"
+      ],
+      "implementation_ready": false,
+      "required_before_implementation": [
+        "Approved repository allocation, capability/adapter owner, excluded responsibilities and integration disposition",
+        "Exact file subset and baseline content hashes",
+        "One named owner and upstream evidence revisions",
+        "Failing acceptance test with expected result",
+        "Selected toolchain and exact commands",
+        "Integrator review of scientific/shared-contract changes",
+        "Use START_HERE.md readiness matrix; transferred child slices are never implemented from parent checkboxes"
+      ],
+      "acceptance": "Artifact from another source head, lock or interpreter is rejected. Failed subprocess, cancelled shard and missing coverage artifact cannot produce green aggregation. Cold/warm timing and exact test counts establish any claimed saving; retries retain first failure and flaky status.",
+      "validation_commands": [
+        "python -m pytest tests/test_exact_head_workflows.py tests/test_repo_harness.py -q"
+      ],
+      "stop_condition": "Do not weaken required checks, coverage thresholds or security controls to reduce duration. Hosted ruleset changes are separate from workflow implementation. Stop if the slice duplicates an external capability owner or introduces a reverse/cyclic dependency.",
+      "rollback": "Revert only the task commit through a reviewed PR; preserve old receipts and public artifacts. Never reset shared work.",
+      "delivery_repository": "edithatogo/voiage",
+      "capability_scope": "Voiage-specific ci cost and failure reproducibility",
+      "external_write_authorized": false,
+      "compatibility_scope": "Existing Voiage promises only; providers require explicit semantic/interchange conformance, not API/ABI equivalence."
+    },
+    {
+      "id": "G05",
+      "title": "Numerical adversarial assurance",
+      "status": "pending",
+      "depends_on": [
+        "G01"
+      ],
+      "read_first": [
+        "conductor/tracks/agent_safe_engineering_20260907/repository-boundaries.md",
+        "rust/fuzz/fuzz_targets/",
+        "rust/crates/voiage-numerics/src/",
+        "rust/crates/voiage-test-support/",
+        ".github/workflows/rust-fuzz.yml",
+        ".github/workflows/rust-miri.yml"
+      ],
+      "candidate_write_scope": [
+        "rust/fuzz/fuzz_targets/",
+        "rust/crates/voiage-numerics/src/",
+        "rust/crates/voiage-test-support/",
+        ".github/workflows/rust-fuzz.yml",
+        ".github/workflows/rust-miri.yml",
+        "conductor/tracks/agent_safe_engineering_20260907/numerical-case-register.json"
+      ],
+      "implementation_ready": false,
+      "required_before_implementation": [
+        "Approved repository allocation, capability/adapter owner, excluded responsibilities and integration disposition",
+        "Exact file subset and baseline content hashes",
+        "One named owner and upstream evidence revisions",
+        "Failing acceptance test with expected result",
+        "Selected toolchain and exact commands",
+        "Integrator review of scientific/shared-contract changes",
+        "Use START_HERE.md readiness matrix; transferred child slices are never implemented from parent checkboxes"
+      ],
+      "acceptance": "For risk-neutral EVPI, a constant added to every action for each sample leaves EVPI unchanged; a positive utility scaling scales EVPI. Analytic references and declared floating-point tolerances test accuracy. Error estimates, RNG changes and unstable reductions must not be hidden by clamping or tolerance inflation.",
+      "validation_commands": [
+        "cargo test --manifest-path rust/Cargo.toml --locked -p voiage-numerics"
+      ],
+      "stop_condition": "Properties are conditional on the estimand and assumptions. A shared implementation on both sides is not an independent oracle. Stop if the slice duplicates an external capability owner or introduces a reverse/cyclic dependency.",
+      "rollback": "Revert only the task commit through a reviewed PR; preserve old receipts and public artifacts. Never reset shared work.",
+      "delivery_repository": "edithatogo/voiage",
+      "capability_scope": "Voiage-specific numerical adversarial assurance",
+      "external_write_authorized": false,
+      "compatibility_scope": "Existing Voiage promises only; providers require explicit semantic/interchange conformance, not API/ABI equivalence."
+    },
+    {
+      "id": "G06",
+      "title": "Bounded jobs and recoverable computation",
+      "status": "pending",
+      "depends_on": [
+        "G01"
+      ],
+      "read_first": [
+        "conductor/tracks/agent_safe_engineering_20260907/repository-boundaries.md",
+        "rust/crates/voiage-domain/src/",
+        "rust/crates/voiage-diagnostics/src/",
+        "rust/crates/voiage-numerics/src/",
+        "voiage/parallel/"
+      ],
+      "candidate_write_scope": [
+        "rust/crates/voiage-domain/src/",
+        "rust/crates/voiage-diagnostics/src/",
+        "rust/crates/voiage-numerics/src/",
+        "voiage/parallel/",
+        "conductor/tracks/agent_safe_engineering_20260907/execution-state-contract.json"
+      ],
+      "implementation_ready": false,
+      "required_before_implementation": [
+        "Approved repository allocation, capability/adapter owner, excluded responsibilities and integration disposition",
+        "Exact file subset and baseline content hashes",
+        "One named owner and upstream evidence revisions",
+        "Failing acceptance test with expected result",
+        "Selected toolchain and exact commands",
+        "Integrator review of scientific/shared-contract changes",
+        "Use START_HERE.md readiness matrix; transferred child slices are never implemented from parent checkboxes"
+      ],
+      "acceptance": "Budget zero performs zero model evaluations; cancellation at a defined batch boundary cannot yield a complete result. Interrupted write retains the last valid checkpoint. Resume rejects changed model/input/RNG/algorithm identities. Deterministic replay matches the declared CPU tolerance.",
+      "validation_commands": [
+        "cargo test --manifest-path rust/Cargo.toml --locked -p voiage-domain -p voiage-diagnostics -p voiage-numerics"
+      ],
+      "stop_condition": "No hard memory guarantee for external callbacks; report cooperative limits honestly. Structural contracts require integrator review before broad kernel edits. Stop if the slice duplicates an external capability owner or introduces a reverse/cyclic dependency.",
+      "rollback": "Revert only the task commit through a reviewed PR; preserve old receipts and public artifacts. Never reset shared work.",
+      "delivery_repository": "edithatogo/voiage",
+      "capability_scope": "VOI calculation budgets, cancellation and checkpoints; no DES/ABM event scheduler",
+      "external_write_authorized": false,
+      "compatibility_scope": "Existing Voiage promises only; providers require explicit semantic/interchange conformance, not API/ABI equivalence."
+    },
+    {
+      "id": "G07",
+      "title": "Capability discovery and reproducible user reports",
+      "status": "pending",
+      "depends_on": [
+        "G01",
+        "G03"
+      ],
+      "read_first": [
+        "conductor/tracks/agent_safe_engineering_20260907/repository-boundaries.md",
+        "voiage/contracts/capabilities.py",
+        "voiage/cli.py",
+        "scripts/check_consumer_matrix.py",
+        "tests/test_consumer_matrix.py",
+        "docs/astro-site/src/content/docs/"
+      ],
+      "candidate_write_scope": [
+        "voiage/contracts/capabilities.py",
+        "voiage/cli.py",
+        "scripts/check_consumer_matrix.py",
+        "tests/test_consumer_matrix.py",
+        "docs/astro-site/src/content/docs/",
+        "conductor/tracks/agent_safe_engineering_20260907/capability-report-contract.json"
+      ],
+      "implementation_ready": false,
+      "required_before_implementation": [
+        "Approved repository allocation, capability/adapter owner, excluded responsibilities and integration disposition",
+        "Exact file subset and baseline content hashes",
+        "One named owner and upstream evidence revisions",
+        "Failing acceptance test with expected result",
+        "Selected toolchain and exact commands",
+        "Integrator review of scientific/shared-contract changes",
+        "Use START_HERE.md readiness matrix; transferred child slices are never implemented from parent checkboxes"
+      ],
+      "acceptance": "Missing optional module, unsupported method/shape and stale schema return structured actionable errors. Dry run performs no model evaluation. Installed-wheel report agrees with actual dispatch. Default reports omit paths, credentials and patient-level data; explicit inclusion is documented.",
+      "validation_commands": [
+        "python -m pytest tests/test_consumer_matrix.py tests/test_astro_docs_contract.py -q"
+      ],
+      "stop_condition": "A diagnostic report is not an attestation of scientific suitability; retain experimental labels and avoid silently downloading models. Stop if the slice duplicates an external capability owner or introduces a reverse/cyclic dependency.",
+      "rollback": "Revert only the task commit through a reviewed PR; preserve old receipts and public artifacts. Never reset shared work.",
+      "delivery_repository": "edithatogo/voiage",
+      "capability_scope": "Voiage-specific capability discovery and reproducible user reports",
+      "external_write_authorized": false,
+      "compatibility_scope": "Existing Voiage promises only; providers require explicit semantic/interchange conformance, not API/ABI equivalence."
+    },
+    {
+      "id": "G08",
+      "title": "Automation and release evidence lifecycle",
+      "status": "pending",
+      "depends_on": [
+        "G01",
+        "G02",
+        "G04"
+      ],
+      "read_first": [
+        "conductor/tracks/agent_safe_engineering_20260907/repository-boundaries.md",
+        "renovate.json",
+        ".github/workflows/sbom.yml",
+        ".github/workflows/release.yml",
+        "scripts/dependency_frontier.py",
+        "tests/test_dependency_delivery_controls.py",
+        "tests/test_python_release_workflow.py"
+      ],
+      "candidate_write_scope": [
+        "renovate.json",
+        ".github/workflows/sbom.yml",
+        ".github/workflows/release.yml",
+        "scripts/dependency_frontier.py",
+        "tests/test_dependency_delivery_controls.py",
+        "tests/test_python_release_workflow.py",
+        "conductor/tracks/agent_safe_engineering_20260907/automation-policy.json"
+      ],
+      "implementation_ready": false,
+      "required_before_implementation": [
+        "Approved repository allocation, capability/adapter owner, excluded responsibilities and integration disposition",
+        "Exact file subset and baseline content hashes",
+        "One named owner and upstream evidence revisions",
+        "Failing acceptance test with expected result",
+        "Selected toolchain and exact commands",
+        "Integrator review of scientific/shared-contract changes",
+        "Use START_HERE.md readiness matrix; transferred child slices are never implemented from parent checkboxes"
+      ],
+      "acceptance": "Wrong artifact digest or signer identity, expired exception, missing platform receipt and partially published release remain distinct failed/pending states. Canaries do not automatically promote scientific features or mutate historical release bytes. A replay cannot publish a different artifact under an existing version.",
+      "validation_commands": [
+        "python -m pytest tests/test_dependency_delivery_controls.py tests/test_python_release_workflow.py tests/test_rust_release_workflow.py -q"
+      ],
+      "stop_condition": "No release, registry submission, credentials change or paid runner is authorized by these planning records. Publishing remains a separate accountable action. Stop if the slice duplicates an external capability owner or introduces a reverse/cyclic dependency.",
+      "rollback": "Revert only the task commit through a reviewed PR; preserve old receipts and public artifacts. Never reset shared work.",
+      "delivery_repository": "edithatogo/voiage",
+      "capability_scope": "Voiage-specific automation and release evidence lifecycle",
+      "external_write_authorized": false,
+      "compatibility_scope": "Existing Voiage promises only; providers require explicit semantic/interchange conformance, not API/ABI equivalence."
+    }
+  ]
+}

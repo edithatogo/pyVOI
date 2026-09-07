@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0",
+  "prepared_at": "2026-09-07T02:55:24Z",
+  "track_id": "version_identity_contracts_20260907",
+  "source_baseline": "1207cef979311d1f39b3e41c32e165907303dec2",
+  "preparation_state": "prepared",
+  "execution_state": "waiting_for_prerequisites",
+  "prerequisite_tracks": [
+    "execution_packet_guard_20260907"
+  ],
+  "delivery_repository": "edithatogo/voiage",
+  "read_before_start": [
+    "voiage/versioning.py",
+    "scripts/validate_version_sync.py",
+    "tests/test_version_sync.py",
+    "rust/Cargo.toml",
+    "conductor/tracks/agent_safe_engineering_20260907/orchestration.md",
+    "conductor/tracks/agent_safe_engineering_20260907/repository-boundaries.md"
+  ],
+  "input_sha256": {
+    "voiage/versioning.py": "a097ac4b7ccec2d02ba45318b0d7afff9b8cc61627eb43dac4dde67e4cab804b",
+    "scripts/validate_version_sync.py": "1512cdc797be9424d83e9ae517c7b5357a91a019b6f610c23406d2a5986f131a",
+    "tests/test_version_sync.py": "c43baf7b983994a89fc3ae128c2d3fa4782efcf3d7b45b3d43c2b6ea0994342d",
+    "rust/Cargo.toml": "91c0037f1361b837afc5c45c1e1d6edec1f51b094ee2739cc963895e930c7c36"
+  },
+  "reserved_implementation_files": [
+    "specs/version-identities.json",
+    "tests/test_version_identity_contracts.py",
+    "voiage/versioning.py",
+    "tests/test_version_sync.py"
+  ],
+  "initial_file_state": {
+    "specs/version-identities.json": "new-file-must-be-absent",
+    "tests/test_version_identity_contracts.py": "new-file-must-be-absent",
+    "voiage/versioning.py": "a097ac4b7ccec2d02ba45318b0d7afff9b8cc61627eb43dac4dde67e4cab804b",
+    "tests/test_version_sync.py": "c43baf7b983994a89fc3ae128c2d3fa4782efcf3d7b45b3d43c2b6ea0994342d"
+  },
+  "integrator_only": [
+    "rust/Cargo.toml",
+    "rust/Cargo.lock",
+    "rust/crates/voiage-diagnostics/Cargo.toml",
+    "rust/crates/voiage-python/Cargo.toml",
+    "uv.lock",
+    ".github/workflows/ci.yml",
+    "conductor/tracks.md"
+  ],
+  "phases": [
+    {
+      "phase": 1,
+      "task_ids": [
+        "T1.1",
+        "T1.2",
+        "T1.3"
+      ],
+      "acceptance_id": "AC1",
+      "title": "Inventory",
+      "implementation": "Map existing package, public API, C ABI, schema, algorithm, RNG and checkpoint identities and their authoritative files.",
+      "expected_result": "Each identity has one owner, increment rule and declared consumers; independent identities are not conflated.",
+      "prerequisite": "upstream-tracks-accepted",
+      "focused_command": "python -m pytest tests/test_version_identity_contracts.py tests/test_version_sync.py -q",
+      "red_test_rule": "Create the named test first; run it and observe the intended behavioral assertion failure. Missing test/module/tool is not a valid red result.",
+      "write_policy": "Use only the reserved files below; if another file is required, integrator updates this packet before code. At most five implementation files per slice."
+    },
+    {
+      "phase": 2,
+      "task_ids": [
+        "T2.1",
+        "T2.2",
+        "T2.3"
+      ],
+      "acceptance_id": "AC2",
+      "title": "Policy",
+      "implementation": "Specify compatible versus breaking changes, supported read/write windows and deprecation decisions.",
+      "expected_result": "Examples cover additive fields, changed units, renamed fields, numerical fixes and RNG changes; no silent version bump.",
+      "prerequisite": "phase-1-accepted",
+      "focused_command": "python -m pytest tests/test_version_identity_contracts.py tests/test_version_sync.py -q",
+      "red_test_rule": "Create the named test first; run it and observe the intended behavioral assertion failure. Missing test/module/tool is not a valid red result.",
+      "write_policy": "Use only the reserved files below; if another file is required, integrator updates this packet before code. At most five implementation files per slice."
+    },
+    {
+      "phase": 3,
+      "task_ids": [
+        "T3.1",
+        "T3.2",
+        "T3.3"
+      ],
+      "acceptance_id": "AC3",
+      "title": "Fixtures",
+      "implementation": "Create old-reader/new-writer and new-reader/old-writer fixtures for one existing serialized VOI contract.",
+      "expected_result": "Supported combinations pass; unsupported major versions and missing required fields fail explicitly.",
+      "prerequisite": "phase-2-accepted",
+      "focused_command": "python -m pytest tests/test_version_identity_contracts.py tests/test_version_sync.py -q",
+      "red_test_rule": "Create the named test first; run it and observe the intended behavioral assertion failure. Missing test/module/tool is not a valid red result.",
+      "write_policy": "Use only the reserved files below; if another file is required, integrator updates this packet before code. At most five implementation files per slice."
+    },
+    {
+      "phase": 4,
+      "task_ids": [
+        "T4.1",
+        "T4.2",
+        "T4.3"
+      ],
+      "acceptance_id": "AC4",
+      "title": "Identity",
+      "implementation": "Implement the smallest version-envelope/validation change using Rust-owned semantics and thin bindings.",
+      "expected_result": "Package synchronization still passes and provider APIs do not leak into public identities.",
+      "prerequisite": "phase-3-accepted",
+      "focused_command": "python -m pytest tests/test_version_identity_contracts.py tests/test_version_sync.py -q",
+      "red_test_rule": "Create the named test first; run it and observe the intended behavioral assertion failure. Missing test/module/tool is not a valid red result.",
+      "write_policy": "Use only the reserved files below; if another file is required, integrator updates this packet before code. At most five implementation files per slice."
+    },
+    {
+      "phase": 5,
+      "task_ids": [
+        "T5.1",
+        "T5.2",
+        "T5.3"
+      ],
+      "acceptance_id": "AC5",
+      "title": "Migration",
+      "implementation": "Test a single explicit migration and replay invalidation before enabling it.",
+      "expected_result": "Original artifacts remain immutable; changed algorithm/RNG/input identities invalidate incompatible checkpoints; migration records both identities.",
+      "prerequisite": "phase-4-accepted",
+      "focused_command": "python -m pytest tests/test_version_identity_contracts.py tests/test_version_sync.py -q",
+      "red_test_rule": "Create the named test first; run it and observe the intended behavioral assertion failure. Missing test/module/tool is not a valid red result.",
+      "write_policy": "Use only the reserved files below; if another file is required, integrator updates this packet before code. At most five implementation files per slice."
+    }
+  ],
+  "native_command": "cargo test --manifest-path rust/Cargo.toml --workspace --all-features --locked",
+  "final_command": "tox run-parallel -p 2",
+  "stop_conditions": [
+    "Input hashes changed without rebase review",
+    "Foreign file reservation or lease",
+    "Unaccepted prerequisite or ambiguous oracle",
+    "Scope requires another repository",
+    "Two unsuccessful repairs to same failure"
+  ],
+  "rollback": "Revert only owned commit through reviewed PR; preserve artifacts and old versions.",
+  "completion": "All phase ACs, final local/native checks, reviewed diff and required hosted source-bound evidence; external release not included.",
+  "hash_review": "Refreshed after reviewed preparation changes to parent packet; implementation not started."
+}

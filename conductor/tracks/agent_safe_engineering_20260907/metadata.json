@@ -1,0 +1,22 @@
+{
+  "track_id": "agent_safe_engineering_20260907",
+  "type": "chore",
+  "status": "new",
+  "created_at": "2026-09-06T14:18:03Z",
+  "updated_at": "2026-09-06T14:26:59Z",
+  "description": "Bounded Rust-first engineering improvements and agent execution contracts",
+  "evidence_schema": "1.0",
+  "authorization": {
+    "instruction": "Consider further improvements and incorporate them into Conductor; make implementation safe for less capable agents.",
+    "scope": "planning and execution guidance; implementation remains pending"
+  },
+  "gates": [
+    {
+      "id": "packet-readiness",
+      "kind": "repository",
+      "status": "pending",
+      "evidence": "G01 must validate refined implementation packets before downstream implementation starts."
+    }
+  ],
+  "scope_refinement": "2026-09-07 owner instruction: focused repository allocation; Rust successors need not match third-party API/ABI; inspect own GitHub libraries."
+}

@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Engineering planning packets; structural validation only",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "baseline",
+    "enforcement",
+    "packets"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "baseline": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "enforcement": {
+      "enum": [
+        "manual_until_G01",
+        "validated_by_G01"
+      ]
+    },
+    "packets": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "acceptance",
+          "stop_condition",
+          "rollback",
+          "id",
+          "status",
+          "depends_on",
+          "implementation_ready",
+          "read_first",
+          "candidate_write_scope",
+          "required_before_implementation",
+          "validation_commands",
+          "delivery_repository",
+          "capability_scope",
+          "external_write_authorized",
+          "compatibility_scope"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "acceptance": {
+            "type": "string",
+            "minLength": 1
+          },
+          "stop_condition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rollback": {
+            "type": "string",
+            "minLength": 1
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^G0[1-8]$"
+          },
+          "status": {
+            "enum": [
+              "pending",
+              "in_progress",
+              "complete"
+            ]
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^G0[1-8]$"
+            },
+            "uniqueItems": true
+          },
+          "implementation_ready": {
+            "type": "boolean"
+          },
+          "read_first": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "candidate_write_scope": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "required_before_implementation": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "validation_commands": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "delivery_repository": {
+            "const": "edithatogo/voiage"
+          },
+          "capability_scope": {
+            "type": "string",
+            "minLength": 1
+          },
+          "external_write_authorized": {
+            "const": false
+          },
+          "compatibility_scope": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

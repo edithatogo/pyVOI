@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0",
+  "prepared_at": "2026-09-07T02:55:24Z",
+  "track_id": "logging_privacy_resilience_20260907",
+  "source_baseline": "1207cef979311d1f39b3e41c32e165907303dec2",
+  "preparation_state": "prepared",
+  "execution_state": "waiting_for_prerequisites",
+  "prerequisite_tracks": [
+    "native_structured_logging_20260907"
+  ],
+  "delivery_repository": "edithatogo/voiage",
+  "read_before_start": [
+    "voiage/logging.py",
+    "tests/test_logging_contract.py",
+    "voiage/assurance_policy.py",
+    "conductor/tracks/agent_safe_engineering_20260907/orchestration.md",
+    "conductor/tracks/agent_safe_engineering_20260907/repository-boundaries.md"
+  ],
+  "input_sha256": {
+    "voiage/logging.py": "e4581ee52e649e50978c4b2eec130c7b1bb8d167cb026ad34046ca5bb26d6bea",
+    "tests/test_logging_contract.py": "e815c8d7091c2bf7d1b50201a77be48f20a718354f4cbe29086e5c8a6fb22c6b",
+    "voiage/assurance_policy.py": "128e1f598a3523605a6b7436a06fe1e9dd76a68f5bde62e73a746ffd2b38dd61"
+  },
+  "reserved_implementation_files": [
+    "tests/test_logging_resilience.py",
+    "voiage/logging.py",
+    "voiage/assurance_policy.py",
+    "tests/test_logging_contract.py"
+  ],
+  "initial_file_state": {
+    "tests/test_logging_resilience.py": "new-file-must-be-absent",
+    "voiage/logging.py": "e4581ee52e649e50978c4b2eec130c7b1bb8d167cb026ad34046ca5bb26d6bea",
+    "voiage/assurance_policy.py": "128e1f598a3523605a6b7436a06fe1e9dd76a68f5bde62e73a746ffd2b38dd61",
+    "tests/test_logging_contract.py": "e815c8d7091c2bf7d1b50201a77be48f20a718354f4cbe29086e5c8a6fb22c6b"
+  },
+  "integrator_only": [
+    "rust/Cargo.toml",
+    "rust/Cargo.lock",
+    "rust/crates/voiage-diagnostics/Cargo.toml",
+    "rust/crates/voiage-python/Cargo.toml",
+    "uv.lock",
+    ".github/workflows/ci.yml",
+    "conductor/tracks.md"
+  ],
+  "phases": [
+    {
+      "phase": 1,
+      "task_ids": [
+        "T1.1",
+        "T1.2",
+        "T1.3"
+      ],
+      "acceptance_id": "AC1",
+      "title": "Privacy",
+      "implementation": "Define event field allowlists and deployment-owned retention/redaction policy.",
+      "expected_result": "Raw patient records, parameter draws, credentials and sensitive filesystem paths are excluded by default; no universal retention period is invented.",
+      "prerequisite": "upstream-tracks-accepted",
+      "focused_command": "python -m pytest tests/test_logging_resilience.py tests/test_logging_contract.py -q",
+      "red_test_rule": "Create the named test first; run it and observe the intended behavioral assertion failure. Missing test/module/tool is not a valid red result.",
+      "write_policy": "Use only the reserved files below; if another file is required, integrator updates this packet before code. At most five implementation files per slice."
+    },
+    {
+      "phase": 2,
+      "task_ids": [
+        "T2.1",
+        "T2.2",
+        "T2.3"
+      ],
+      "acceptance_id": "AC2",
+      "title": "Adversarial",
+      "implementation": "Write nested secret, exception, object-formatting, Unicode and forged-correlation tests before extending sanitization.",
+      "expected_result": "All secret sentinels are absent from emitted records; untrusted fields cannot impersonate trusted correlation fields.",
+      "prerequisite": "phase-1-accepted",
+      "focused_command": "python -m pytest tests/test_logging_resilience.py tests/test_logging_contract.py -q",
+      "red_test_rule": "Create the named test first; run it and observe the intended behavioral assertion failure. Missing test/module/tool is not a valid red result.",
+      "write_policy": "Use only the reserved files below; if another file is required, integrator updates this packet before code. At most five implementation files per slice."
+    },
+    {
+      "phase": 3,
+      "task_ids": [
+        "T3.1",
+        "T3.2",
+        "T3.3"
+      ],
+      "acceptance_id": "AC3",
+      "title": "Queue",
+      "implementation": "Specify bounded queue capacity, severity-aware drop behavior and low-cardinality loss counters before implementing an optional queue.",
+      "expected_result": "A full queue has deterministic bounded behavior; numerical execution does not wait indefinitely; audit evidence is never silently dropped through this queue.",
+      "prerequisite": "phase-2-accepted",
+      "focused_command": "python -m pytest tests/test_logging_resilience.py tests/test_logging_contract.py -q",
+      "red_test_rule": "Create the named test first; run it and observe the intended behavioral assertion failure. Missing test/module/tool is not a valid red result.",
+      "write_policy": "Use only the reserved files below; if another file is required, integrator updates this packet before code. At most five implementation files per slice."
+    },
+    {
+      "phase": 4,
+      "task_ids": [
+        "T4.1",
+        "T4.2",
+        "T4.3"
+      ],
+      "acceptance_id": "AC4",
+      "title": "Failure",
+      "implementation": "Inject disk-full, failed writer, recursive logging and stalled sink behavior.",
+      "expected_result": "Logging failures do not mask the original calculation error or deadlock computation; loss is observable without recursive failure.",
+      "prerequisite": "phase-3-accepted",
+      "focused_command": "python -m pytest tests/test_logging_resilience.py tests/test_logging_contract.py -q",
+      "red_test_rule": "Create the named test first; run it and observe the intended behavioral assertion failure. Missing test/module/tool is not a valid red result.",
+      "write_policy": "Use only the reserved files below; if another file is required, integrator updates this packet before code. At most five implementation files per slice."
+    },
+    {
+      "phase": 5,
+      "task_ids": [
+        "T5.1",
+        "T5.2",
+        "T5.3"
+      ],
+      "acceptance_id": "AC5",
+      "title": "Shutdown",
+      "implementation": "Test cancellation, flush timeout and process shutdown ownership.",
+      "expected_result": "Applications control shutdown; bounded flushing reports incomplete delivery; hosts are not terminated and retention stays deployment-owned.",
+      "prerequisite": "phase-4-accepted",
+      "focused_command": "python -m pytest tests/test_logging_resilience.py tests/test_logging_contract.py -q",
+      "red_test_rule": "Create the named test first; run it and observe the intended behavioral assertion failure. Missing test/module/tool is not a valid red result.",
+      "write_policy": "Use only the reserved files below; if another file is required, integrator updates this packet before code. At most five implementation files per slice."
+    }
+  ],
+  "native_command": "cargo test --manifest-path rust/Cargo.toml --workspace --all-features --locked",
+  "final_command": "tox run-parallel -p 2",
+  "stop_conditions": [
+    "Input hashes changed without rebase review",
+    "Foreign file reservation or lease",
+    "Unaccepted prerequisite or ambiguous oracle",
+    "Scope requires another repository",
+    "Two unsuccessful repairs to same failure"
+  ],
+  "rollback": "Revert only owned commit through reviewed PR; preserve artifacts and old versions.",
+  "completion": "All phase ACs, final local/native checks, reviewed diff and required hosted source-bound evidence; external release not included.",
+  "hash_review": "Refreshed after reviewed preparation changes to parent packet; implementation not started."
+}

@@ -1,0 +1,32 @@
+{
+  "recorded_at": "2026-09-06T14:27:59+00:00",
+  "scope": "Repository allocation and Rust-successor compatibility planning refinement",
+  "conductor_validation": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "focused_governance_tests_passed": 38,
+  "packets": 8,
+  "pending_tasks": 24,
+  "github_source_observations": 26,
+  "public_repositories_inspected": 21,
+  "schema_negative_checks": [
+    "non-Voiage delivery repository rejected",
+    "external_write_authorized=true rejected"
+  ],
+  "checks": [
+    "unique packet IDs and dependency ordering",
+    "read-first paths exist",
+    "local Markdown links resolve",
+    "source blob identity format",
+    "all implementation tasks remain pending",
+    "Vale zero errors and warnings",
+    "git diff --check"
+  ],
+  "limits": [
+    "Source and README inspection is not compiled or installed compatibility evidence.",
+    "Schema constraints do not sandbox an agent or replace G01 semantic enforcement.",
+    "No upstream repository changes, dependency additions, new issues or runtime implementations.",
+    "Full tox and hosted CI were not repeated for this planning-only refinement."
+  ]
+}

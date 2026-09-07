@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0",
+  "prepared_at": "2026-09-07T02:55:24Z",
+  "track_id": "native_structured_logging_20260907",
+  "source_baseline": "1207cef979311d1f39b3e41c32e165907303dec2",
+  "preparation_state": "prepared",
+  "execution_state": "waiting_for_prerequisites",
+  "prerequisite_tracks": [
+    "version_identity_contracts_20260907"
+  ],
+  "delivery_repository": "edithatogo/voiage",
+  "read_before_start": [
+    "voiage/logging.py",
+    "tests/test_logging_contract.py",
+    "rust/crates/voiage-diagnostics/Cargo.toml",
+    "rust/crates/voiage-python/Cargo.toml",
+    "conductor/tracks/agent_safe_engineering_20260907/orchestration.md",
+    "conductor/tracks/agent_safe_engineering_20260907/repository-boundaries.md"
+  ],
+  "input_sha256": {
+    "voiage/logging.py": "e4581ee52e649e50978c4b2eec130c7b1bb8d167cb026ad34046ca5bb26d6bea",
+    "tests/test_logging_contract.py": "e815c8d7091c2bf7d1b50201a77be48f20a718354f4cbe29086e5c8a6fb22c6b",
+    "rust/crates/voiage-diagnostics/Cargo.toml": "e04c9c128b3dbacaf00175524a526503ebf0f76be1b6a77c156a0e5c0ceee2d8",
+    "rust/crates/voiage-python/Cargo.toml": "4067a621998aececd693832bf1a98fb856b02111ae6d06f092fb6e44bd598d1b"
+  },
+  "reserved_implementation_files": [
+    "rust/crates/voiage-diagnostics/src/telemetry.rs",
+    "tests/test_native_logging_contract.py",
+    "voiage/logging.py",
+    "rust/crates/voiage-diagnostics/src/lib.rs",
+    "rust/crates/voiage-python/src/lib.rs"
+  ],
+  "initial_file_state": {
+    "rust/crates/voiage-diagnostics/src/telemetry.rs": "new-file-must-be-absent",
+    "tests/test_native_logging_contract.py": "new-file-must-be-absent",
+    "voiage/logging.py": "e4581ee52e649e50978c4b2eec130c7b1bb8d167cb026ad34046ca5bb26d6bea",
+    "rust/crates/voiage-diagnostics/src/lib.rs": "897c4fe00e12a4b911d1ff6e2c23c643b9febefaffaf0d7fd1bfa5b9f4b07aeb",
+    "rust/crates/voiage-python/src/lib.rs": "f3e646181ee83bf6e6ba4d2f43d4ccc8c6d5414634a50eeb5108c366f2a4cbf3"
+  },
+  "integrator_only": [
+    "rust/Cargo.toml",
+    "rust/Cargo.lock",
+    "rust/crates/voiage-diagnostics/Cargo.toml",
+    "rust/crates/voiage-python/Cargo.toml",
+    "uv.lock",
+    ".github/workflows/ci.yml",
+    "conductor/tracks.md"
+  ],
+  "phases": [
+    {
+      "phase": 1,
+      "task_ids": [
+        "T1.1",
+        "T1.2",
+        "T1.3"
+      ],
+      "acceptance_id": "AC1",
+      "title": "Events",
+      "implementation": "Freeze the minimal versioned event fields, severity policy and run/analysis/trace correlation mapping.",
+      "expected_result": "Scientific results, audit evidence and operational logs have distinct contracts; diagnostics remain available with logging disabled.",
+      "prerequisite": "upstream-tracks-accepted",
+      "focused_command": "python -m pytest tests/test_native_logging_contract.py tests/test_logging_contract.py -q",
+      "red_test_rule": "Create the named test first; run it and observe the intended behavioral assertion failure. Missing test/module/tool is not a valid red result.",
+      "write_policy": "Use only the reserved files below; if another file is required, integrator updates this packet before code. At most five implementation files per slice."
+    },
+    {
+      "phase": 2,
+      "task_ids": [
+        "T2.1",
+        "T2.2",
+        "T2.3"
+      ],
+      "acceptance_id": "AC2",
+      "title": "Dependency",
+      "implementation": "Qualify tracing with minimal features and the supported MSRV; record compile-time and disabled-path costs.",
+      "expected_result": "No exporter, network client or mandatory async runtime enters the numerical core.",
+      "prerequisite": "phase-1-accepted",
+      "focused_command": "python -m pytest tests/test_native_logging_contract.py tests/test_logging_contract.py -q",
+      "red_test_rule": "Create the named test first; run it and observe the intended behavioral assertion failure. Missing test/module/tool is not a valid red result.",
+      "write_policy": "Use only the reserved files below; if another file is required, integrator updates this packet before code. At most five implementation files per slice."
+    },
+    {
+      "phase": 3,
+      "task_ids": [
+        "T3.1",
+        "T3.2",
+        "T3.3"
+      ],
+      "acceptance_id": "AC3",
+      "title": "Ownership",
+      "implementation": "Test host-installed subscriber coexistence before implementing application-owned configuration.",
+      "expected_result": "Importing/calling the library never installs a global subscriber or replaces host handlers; repeated setup does not duplicate events.",
+      "prerequisite": "phase-2-accepted",
+      "focused_command": "python -m pytest tests/test_native_logging_contract.py tests/test_logging_contract.py -q",
+      "red_test_rule": "Create the named test first; run it and observe the intended behavioral assertion failure. Missing test/module/tool is not a valid red result.",
+      "write_policy": "Use only the reserved files below; if another file is required, integrator updates this packet before code. At most five implementation files per slice."
+    },
+    {
+      "phase": 4,
+      "task_ids": [
+        "T4.1",
+        "T4.2",
+        "T4.3"
+      ],
+      "acceptance_id": "AC4",
+      "title": "Bridge",
+      "implementation": "Implement and test one Python-to-Rust correlation path and context isolation across parallel calls.",
+      "expected_result": "Two concurrent runs do not exchange IDs; nested spans preserve parentage; absent tracing remains valid.",
+      "prerequisite": "phase-3-accepted",
+      "focused_command": "python -m pytest tests/test_native_logging_contract.py tests/test_logging_contract.py -q",
+      "red_test_rule": "Create the named test first; run it and observe the intended behavioral assertion failure. Missing test/module/tool is not a valid red result.",
+      "write_policy": "Use only the reserved files below; if another file is required, integrator updates this packet before code. At most five implementation files per slice."
+    },
+    {
+      "phase": 5,
+      "task_ids": [
+        "T5.1",
+        "T5.2",
+        "T5.3"
+      ],
+      "acceptance_id": "AC5",
+      "title": "Numerics",
+      "implementation": "Compare logging disabled/enabled for a deterministic reference kernel and benchmark the boundary.",
+      "expected_result": "Results and deterministic hashes agree; timestamps/trace IDs never enter calculation identities; the reviewed overhead budget passes.",
+      "prerequisite": "phase-4-accepted",
+      "focused_command": "python -m pytest tests/test_native_logging_contract.py tests/test_logging_contract.py -q",
+      "red_test_rule": "Create the named test first; run it and observe the intended behavioral assertion failure. Missing test/module/tool is not a valid red result.",
+      "write_policy": "Use only the reserved files below; if another file is required, integrator updates this packet before code. At most five implementation files per slice."
+    }
+  ],
+  "native_command": "cargo test --manifest-path rust/Cargo.toml --workspace --all-features --locked",
+  "final_command": "tox run-parallel -p 2",
+  "stop_conditions": [
+    "Input hashes changed without rebase review",
+    "Foreign file reservation or lease",
+    "Unaccepted prerequisite or ambiguous oracle",
+    "Scope requires another repository",
+    "Two unsuccessful repairs to same failure"
+  ],
+  "rollback": "Revert only owned commit through reviewed PR; preserve artifacts and old versions.",
+  "completion": "All phase ACs, final local/native checks, reviewed diff and required hosted source-bound evidence; external release not included.",
+  "hash_review": "Refreshed after reviewed preparation changes to parent packet; implementation not started."
+}
