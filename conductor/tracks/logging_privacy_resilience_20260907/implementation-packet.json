@@ -17,7 +17,7 @@
     "conductor/tracks/agent_safe_engineering_20260907/repository-boundaries.md"
   ],
   "input_sha256": {
-    "voiage/logging.py": "69c868df4e40753105b08664c0f02bd6e1c2b413dc460b7dcf0f97d97b9f6b47",
+    "voiage/logging.py": "06ea144518de66ac1af70c0be1699304aa7e07e14285e950ae4fda9feff246c8",
     "tests/test_logging_contract.py": "e815c8d7091c2bf7d1b50201a77be48f20a718354f4cbe29086e5c8a6fb22c6b",
     "voiage/assurance_policy.py": "128e1f598a3523605a6b7436a06fe1e9dd76a68f5bde62e73a746ffd2b38dd61"
   },
@@ -29,7 +29,7 @@
   ],
   "initial_file_state": {
     "tests/test_logging_resilience.py": "new-file-must-be-absent",
-    "voiage/logging.py": "69c868df4e40753105b08664c0f02bd6e1c2b413dc460b7dcf0f97d97b9f6b47",
+    "voiage/logging.py": "06ea144518de66ac1af70c0be1699304aa7e07e14285e950ae4fda9feff246c8",
     "voiage/assurance_policy.py": "128e1f598a3523605a6b7436a06fe1e9dd76a68f5bde62e73a746ffd2b38dd61",
     "tests/test_logging_contract.py": "e815c8d7091c2bf7d1b50201a77be48f20a718354f4cbe29086e5c8a6fb22c6b"
   },

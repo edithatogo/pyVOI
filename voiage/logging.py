@@ -281,7 +281,8 @@ def validate_vop_pilot_contract(payload: Mapping[str, object]) -> None:
     envelope = payload.get("identity")
     if not isinstance(envelope, Mapping):
         raise TypeError("pilot identity is missing")
-    validate_version_envelope(
+    envelope = cast("Mapping[str, object]", envelope)
+    _ = validate_version_envelope(
         {
             "schema_version": "1.0",
             "package_version": payload.get("consumer_version"),
@@ -293,7 +294,8 @@ def validate_vop_pilot_contract(payload: Mapping[str, object]) -> None:
     correlation = payload.get("correlation")
     if not isinstance(correlation, Mapping):
         raise TypeError("pilot correlation is missing")
-    TraceContext(trace_id=str(correlation.get("trace_id", "")))
+    correlation = cast("Mapping[str, object]", correlation)
+    _ = TraceContext(trace_id=str(correlation.get("trace_id", "")))
     if not correlation.get("run_id") or not correlation.get("analysis_id"):
         raise ValueError("pilot correlation identifiers must be non-empty")
     if (
