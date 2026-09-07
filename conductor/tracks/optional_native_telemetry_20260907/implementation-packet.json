@@ -18,7 +18,7 @@
   ],
   "input_sha256": {
     "rust/Cargo.toml": "91c0037f1361b837afc5c45c1e1d6edec1f51b094ee2739cc963895e930c7c36",
-    "rust/crates/voiage-diagnostics/Cargo.toml": "e04c9c128b3dbacaf00175524a526503ebf0f76be1b6a77c156a0e5c0ceee2d8",
+    "rust/crates/voiage-diagnostics/Cargo.toml": "fbc5abbdd7b779af218bd033aeeb721c3f718bf3fb08c6d782fdea3a1e09ba4c",
     "tests/test_dependency_promotion_policy.py": "e13357f7f5e346831fe81d8121c00bc0279dc7ecd1d080ffbd2bf8697cdd298f"
   },
   "reserved_implementation_files": [
@@ -31,7 +31,8 @@
     "rust/crates/voiage-diagnostics/src/otel_export.rs": "new-file-must-be-absent",
     "tests/test_optional_telemetry_contract.py": "new-file-must-be-absent",
     "rust/crates/voiage-diagnostics/src/lib.rs": "897c4fe00e12a4b911d1ff6e2c23c643b9febefaffaf0d7fd1bfa5b9f4b07aeb",
-    "tests/test_dependency_promotion_policy.py": "e13357f7f5e346831fe81d8121c00bc0279dc7ecd1d080ffbd2bf8697cdd298f"
+    "tests/test_dependency_promotion_policy.py": "e13357f7f5e346831fe81d8121c00bc0279dc7ecd1d080ffbd2bf8697cdd298f",
+    "rust/crates/voiage-diagnostics/Cargo.toml": "fbc5abbdd7b779af218bd033aeeb721c3f718bf3fb08c6d782fdea3a1e09ba4c"
   },
   "integrator_only": [
     "rust/Cargo.toml",

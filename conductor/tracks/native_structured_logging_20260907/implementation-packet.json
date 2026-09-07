@@ -24,7 +24,7 @@
   "input_sha256": {
     "voiage/logging.py": "e4581ee52e649e50978c4b2eec130c7b1bb8d167cb026ad34046ca5bb26d6bea",
     "tests/test_logging_contract.py": "e815c8d7091c2bf7d1b50201a77be48f20a718354f4cbe29086e5c8a6fb22c6b",
-    "rust/crates/voiage-diagnostics/Cargo.toml": "e04c9c128b3dbacaf00175524a526503ebf0f76be1b6a77c156a0e5c0ceee2d8",
+    "rust/crates/voiage-diagnostics/Cargo.toml": "fbc5abbdd7b779af218bd033aeeb721c3f718bf3fb08c6d782fdea3a1e09ba4c",
     "rust/crates/voiage-python/Cargo.toml": "4067a621998aececd693832bf1a98fb856b02111ae6d06f092fb6e44bd598d1b"
   },
   "reserved_implementation_files": [
@@ -39,7 +39,8 @@
     "tests/test_native_logging_contract.py": "new-file-must-be-absent",
     "voiage/logging.py": "e4581ee52e649e50978c4b2eec130c7b1bb8d167cb026ad34046ca5bb26d6bea",
     "rust/crates/voiage-diagnostics/src/lib.rs": "897c4fe00e12a4b911d1ff6e2c23c643b9febefaffaf0d7fd1bfa5b9f4b07aeb",
-    "rust/crates/voiage-python/src/lib.rs": "f3e646181ee83bf6e6ba4d2f43d4ccc8c6d5414634a50eeb5108c366f2a4cbf3"
+    "rust/crates/voiage-python/src/lib.rs": "f3e646181ee83bf6e6ba4d2f43d4ccc8c6d5414634a50eeb5108c366f2a4cbf3",
+    "rust/crates/voiage-diagnostics/Cargo.toml": "fbc5abbdd7b779af218bd033aeeb721c3f718bf3fb08c6d782fdea3a1e09ba4c"
   },
   "integrator_only": [
     "rust/Cargo.toml",
