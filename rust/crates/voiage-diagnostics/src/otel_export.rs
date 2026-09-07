@@ -9,15 +9,6 @@ pub struct TraceExportConfig {
     pub max_retries: u8,
 }
 
-impl Default for TraceExportConfig {
-    fn default() -> Self {
-        Self {
-            enabled: false,
-            max_retries: 0,
-        }
-    }
-}
-
 impl TraceExportConfig {
     /// Reject unbounded retry policies and preserve feature-off operation.
     ///
