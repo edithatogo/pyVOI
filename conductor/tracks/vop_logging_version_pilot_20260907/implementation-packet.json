@@ -21,7 +21,7 @@
     "specs/integration/vop-voiage/bundles/UPSTREAM.json": "0f65af398e1ba2bbac704f6bb5dedc10548c6120ba6e377cb4254bc7813086d0",
     "tests/test_logging_contract.py": "e815c8d7091c2bf7d1b50201a77be48f20a718354f4cbe29086e5c8a6fb22c6b",
     "tests/test_consumer_matrix.py": "694abce953a5ea040bf034aba9fcef6649570d5549aeab015103742b41eccb07",
-    "voiage/logging.py": "b6bc37196c0129fd1ebec148bc07f8872520e82567fc53b6f4f1f5f142223aa7"
+    "voiage/logging.py": "e39108c87059fa96047186299bc3489d173847bb034c4d32a9ae8f7bd0f0e332"
   },
   "reserved_implementation_files": [
     "tests/test_vop_logging_version_pilot.py",
@@ -34,7 +34,7 @@
     "specs/integration/vop-voiage/pilot-logging-version.json": "new-file-must-be-absent",
     "tests/test_consumer_matrix.py": "694abce953a5ea040bf034aba9fcef6649570d5549aeab015103742b41eccb07",
     "tests/test_vop_research_handoff.py": "e4097c9971847e7c829f85f9a1bd60147707c2a905b949a1c6331537e1384f0a",
-    "voiage/logging.py": "b6bc37196c0129fd1ebec148bc07f8872520e82567fc53b6f4f1f5f142223aa7"
+    "voiage/logging.py": "e39108c87059fa96047186299bc3489d173847bb034c4d32a9ae8f7bd0f0e332"
   },
   "integrator_only": [
     "rust/Cargo.toml",
