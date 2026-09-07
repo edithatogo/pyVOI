@@ -1,10 +1,10 @@
 //! Durable identity and resume contracts for bounded executions.
 
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize, Deserializer, Serialize};
 use std::fmt;
 
 /// Immutable identities that must match before a checkpoint can be resumed.
-#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Serialize)]
 pub struct CheckpointIdentity {
     /// Identity of the model and its input data.
     pub model_input: String,
@@ -12,6 +12,23 @@ pub struct CheckpointIdentity {
     pub rng: String,
     /// Identity of the algorithm and its configuration.
     pub algorithm: String,
+}
+
+#[derive(Deserialize)]
+struct CheckpointIdentityWire {
+    model_input: String,
+    rng: String,
+    algorithm: String,
+}
+
+impl<'de> Deserialize<'de> for CheckpointIdentity {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let wire = CheckpointIdentityWire::deserialize(deserializer)?;
+        Self::new(wire.model_input, wire.rng, wire.algorithm).map_err(serde::de::Error::custom)
+    }
 }
 
 impl CheckpointIdentity {
@@ -37,7 +54,7 @@ impl CheckpointIdentity {
 }
 
 /// A serializable, last-valid checkpoint at a batch boundary.
-#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Serialize)]
 pub struct ExecutionCheckpoint {
     /// Identities required for safe resume.
     pub identity: CheckpointIdentity,
@@ -47,6 +64,30 @@ pub struct ExecutionCheckpoint {
     pub evaluations: u64,
     /// Digest of the committed partial result payload.
     pub payload_digest: String,
+}
+
+#[derive(Deserialize)]
+struct ExecutionCheckpointWire {
+    identity: CheckpointIdentity,
+    completed_batches: u64,
+    evaluations: u64,
+    payload_digest: String,
+}
+
+impl<'de> Deserialize<'de> for ExecutionCheckpoint {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let wire = ExecutionCheckpointWire::deserialize(deserializer)?;
+        Self::new(
+            wire.identity,
+            wire.completed_batches,
+            wire.evaluations,
+            wire.payload_digest,
+        )
+        .map_err(serde::de::Error::custom)
+    }
 }
 
 impl ExecutionCheckpoint {
@@ -119,6 +160,14 @@ mod tests {
             checkpoint.ensure_compatible(&changed),
             Err(CheckpointError::IdentityMismatch)
         );
+    }
+
+    #[test]
+    fn deserialization_revalidates_persisted_identity_and_digest() {
+        let invalid = r#"{"identity":{"model_input":"","rng":"seed","algorithm":"evsi"},"completed_batches":1,"evaluations":1,"payload_digest":"sha256:x"}"#;
+        assert!(serde_json::from_str::<ExecutionCheckpoint>(invalid).is_err());
+        let invalid_digest = r#"{"identity":{"model_input":"model","rng":"seed","algorithm":"evsi"},"completed_batches":1,"evaluations":1,"payload_digest":""}"#;
+        assert!(serde_json::from_str::<ExecutionCheckpoint>(invalid_digest).is_err());
     }
 
     #[test]
