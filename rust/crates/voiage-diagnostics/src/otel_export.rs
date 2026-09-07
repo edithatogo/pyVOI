@@ -2,6 +2,8 @@
 use std::collections::{BTreeMap, VecDeque};
 use std::sync::{Arc, Mutex};
 
+use opentelemetry::trace::SpanContext;
+
 /// OpenTelemetry API line qualified by this optional feature.
 pub const OPENTELEMETRY_API_VERSION: &str = "0.32";
 
@@ -111,7 +113,7 @@ impl TraceCollector {
                 break;
             }
         }
-        let Ok(mut events) = self.events.lock() else {
+        let Ok(mut events) = self.events.try_lock() else {
             return false;
         };
         if self.config.capacity == 0 {
@@ -124,21 +126,37 @@ impl TraceCollector {
         true
     }
 
+    /// Records a span context supplied by an application-owned OpenTelemetry tracer.
+    #[must_use]
+    pub fn record_span_context(
+        &self,
+        name: impl Into<String>,
+        context: &SpanContext,
+        attributes: BTreeMap<String, String>,
+    ) -> bool {
+        self.record(TraceEvent {
+            name: name.into(),
+            trace_id: context.trace_id().to_string(),
+            parent_id: context.is_valid().then(|| context.span_id().to_string()),
+            attributes,
+        })
+    }
+
     /// Drains records for an application-owned exporter or shutdown hook.
     #[must_use]
     pub fn drain(&self) -> Vec<TraceEvent> {
-        self.events
-            .lock()
-            .map(|mut events| events.drain(..).collect())
-            .unwrap_or_default()
+        let Ok(mut events) = self.events.try_lock() else {
+            return Vec::new();
+        };
+        std::mem::take(&mut *events).into_iter().collect()
     }
 }
 
 fn sampled(trace_id: &str, sample_rate: f64) -> bool {
-    let bucket = trace_id
-        .bytes()
-        .fold(0_u16, |sum, byte| sum.wrapping_add(u16::from(byte)))
-        % 1000;
+    let hash = trace_id.bytes().fold(0x811c_9dc5_u32, |hash, byte| {
+        hash.wrapping_mul(16_777_619) ^ u32::from(byte)
+    });
+    let bucket = hash % 1000;
     f64::from(bucket) / 1000.0 < sample_rate
 }
 
@@ -161,6 +179,7 @@ mod tests {
         let collector = TraceCollector::new(TraceExportConfig::new(true, 3).expect("valid"));
         assert!(collector.record(event("trace-1")));
         let records = collector.drain();
+        assert!(!records.is_empty(), "expected at least one record");
         assert_eq!(records[0].parent_id.as_deref(), Some("parent"));
     }
 
@@ -184,6 +203,7 @@ mod tests {
         assert!(collector.record(event("trace-3")));
         assert!(collector.record(event("trace-4")));
         let records = collector.drain();
+        assert!(!records.is_empty(), "expected at least one record");
         assert_eq!(records.len(), 1);
         assert_eq!(records[0].attributes.len(), 1);
     }
