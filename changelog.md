@@ -1,5 +1,7 @@
 # Changelog
 
+- Add a Rust-native execution budget with atomic batch reservations and validated checkpoint resume identities.
+
 - Add a deterministic Rust feature/MSRV qualification matrix covering default,
   no-default, optional-feature and all-feature lanes, with an explicit locked
   Cargo verification mode.

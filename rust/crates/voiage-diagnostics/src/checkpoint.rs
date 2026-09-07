@@ -2,6 +2,8 @@
 
 use serde::{Deserialize, Deserializer, Serialize};
 use std::fmt;
+use std::sync::atomic::{AtomicU64, Ordering};
+use std::sync::Arc;
 
 /// Immutable identities that must match before a checkpoint can be resumed.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize)]
@@ -53,27 +55,56 @@ impl CheckpointIdentity {
     }
 }
 
-/// A finite evaluation budget enforced at batch boundaries.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Serialize, Deserialize)]
+/// A finite evaluation budget with atomic batch reservations.
+#[derive(Clone, Debug)]
 pub struct ExecutionBudget {
     /// Maximum model evaluations permitted for the complete execution.
     pub max_evaluations: u64,
+    remaining: Arc<AtomicU64>,
 }
 
 impl ExecutionBudget {
     /// Construct a budget. Zero is valid and permits no evaluations.
     #[must_use]
-    pub const fn new(max_evaluations: u64) -> Self {
-        Self { max_evaluations }
+    pub fn new(max_evaluations: u64) -> Self {
+        Self {
+            max_evaluations,
+            remaining: Arc::new(AtomicU64::new(max_evaluations)),
+        }
     }
 
     /// Return whether a batch can execute without exceeding the budget.
     #[must_use]
-    pub const fn allows(self, completed_evaluations: u64, batch_size: u64) -> bool {
-        match completed_evaluations.checked_add(batch_size) {
-            Some(total) => total <= self.max_evaluations,
-            None => false,
+    pub fn allows(&self, completed_evaluations: u64, batch_size: u64) -> bool {
+        completed_evaluations
+            .checked_add(batch_size)
+            .is_some_and(|total| total <= self.max_evaluations)
+            && self.remaining.load(Ordering::Acquire) >= batch_size
+    }
+
+    /// Atomically reserve a complete batch, preventing concurrent over-admission.
+    pub fn try_reserve(&self, batch_size: u64) -> bool {
+        let mut current = self.remaining.load(Ordering::Acquire);
+        loop {
+            if current < batch_size {
+                return false;
+            }
+            match self.remaining.compare_exchange_weak(
+                current,
+                current - batch_size,
+                Ordering::AcqRel,
+                Ordering::Acquire,
+            ) {
+                Ok(_) => return true,
+                Err(observed) => current = observed,
+            }
         }
+    }
+
+    /// Return the unreserved evaluation count.
+    #[must_use]
+    pub fn remaining(&self) -> u64 {
+        self.remaining.load(Ordering::Acquire)
     }
 }
 
@@ -136,8 +167,8 @@ impl ExecutionCheckpoint {
 
     /// Return whether the next complete batch fits the supplied budget.
     #[must_use]
-    pub fn next_batch_allowed(&self, budget: ExecutionBudget, batch_size: u64) -> bool {
-        budget.allows(self.evaluations, batch_size)
+    pub fn next_batch_allowed(&self, budget: &ExecutionBudget, batch_size: u64) -> bool {
+        self.evaluations.checked_add(batch_size).is_some() && budget.try_reserve(batch_size)
     }
 
     /// Reject resume when model, RNG, or algorithm identity changed.
@@ -184,9 +215,9 @@ mod tests {
     #[test]
     fn zero_budget_performs_no_evaluations_and_batches_are_atomic() {
         let checkpoint = ExecutionCheckpoint::new(identity(), 0, 0, "sha256:empty").unwrap();
-        assert!(!checkpoint.next_batch_allowed(ExecutionBudget::new(0), 1));
-        assert!(checkpoint.next_batch_allowed(ExecutionBudget::new(2), 2));
-        assert!(!checkpoint.next_batch_allowed(ExecutionBudget::new(2), 3));
+        assert!(!checkpoint.next_batch_allowed(&ExecutionBudget::new(0), 1));
+        assert!(checkpoint.next_batch_allowed(&ExecutionBudget::new(2), 2));
+        assert!(!checkpoint.next_batch_allowed(&ExecutionBudget::new(2), 3));
     }
 
     #[test]
