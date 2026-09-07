@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "pilot_id": "vop-voiage-logging-version-20260908",
+  "source_bundle": "specs/integration/vop-voiage/bundles/UPSTREAM.json",
+  "source_revision": "3c841cd054666cf3d9ebefd962fc2ea07c20a510",
+  "consumer_version": "2.2.0",
+  "identity": {
+    "algorithm_id": "evpi:analytic:v1",
+    "rng_id": "pcg64:seeded:v1",
+    "input_schema_id": "vop-net-benefit:v1"
+  },
+  "correlation": {
+    "run_id": "pilot-synthetic-run-001",
+    "analysis_id": "pilot-synthetic-analysis-001",
+    "trace_id": "11111111111111111111111111111111"
+  },
+  "data_policy": "synthetic-only; local validation packet; no hosted publication",
+  "provider_policy": "semantic contract only; provider APIs are not interchangeable"
+}

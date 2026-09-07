@@ -4,9 +4,13 @@
   "track_id": "vop_logging_version_pilot_20260907",
   "source_baseline": "1207cef979311d1f39b3e41c32e165907303dec2",
   "preparation_state": "prepared",
-  "execution_state": "waiting_for_prerequisites",
+  "execution_state": "ready_for_preflight",
   "prerequisite_tracks": [
-    "logging_privacy_resilience_20260907"
+    {
+      "track_id": "logging_privacy_resilience_20260907",
+      "result_status": "passed",
+      "evidence": "3e33feafd68d718142b083de12d697e2ec5f42e5"
+    }
   ],
   "delivery_repository": "edithatogo/voiage",
   "read_before_start": [
