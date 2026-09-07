@@ -1,7 +1,7 @@
 //! Optional trace-export boundary, intentionally inert until an application opts in.
 
 /// Explicit opt-in configuration for a future OpenTelemetry bridge.
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Default, Eq, PartialEq)]
 pub struct TraceExportConfig {
     /// Whether an application explicitly enabled export.
     pub enabled: bool,
@@ -20,6 +20,10 @@ impl Default for TraceExportConfig {
 
 impl TraceExportConfig {
     /// Reject unbounded retry policies and preserve feature-off operation.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error when the retry budget exceeds three attempts.
     pub fn new(enabled: bool, max_retries: u8) -> Result<Self, &'static str> {
         if max_retries > 3 {
             return Err("max_retries must be <= 3");
