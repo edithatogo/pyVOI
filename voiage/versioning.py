@@ -106,7 +106,7 @@ def validate_version_envelope(value: object) -> VersionEnvelope:
     ):
         raise VersionSyncError("version envelope fields must be non-empty strings")
     release_identity(value["package_version"])
-    return VersionEnvelope(**value)
+    return VersionEnvelope(**{field: value[field] for field in required})
 
 
 def migrate_version_envelope(
