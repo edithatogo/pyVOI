@@ -43,3 +43,10 @@ def test_bounded_queue_scans_past_high_priority_entries() -> None:
     assert queue.put(logging.ERROR, "second-critical") is True
     assert queue.get() == (logging.ERROR, "critical")
     assert queue.get() == (logging.ERROR, "second-critical")
+
+
+def test_bounded_queue_rejects_when_all_entries_are_high_priority() -> None:
+    queue = BoundedLogQueue(capacity=2)
+    queue.put(logging.ERROR, "first")
+    queue.put(logging.CRITICAL, "second")
+    assert queue.put(logging.ERROR, "third") is False
