@@ -63,3 +63,13 @@ def test_migration_records_both_identities_and_rejects_same_identity() -> None:
     assert migrated["from"].algorithm_id != migrated["to"].algorithm_id
     with pytest.raises(VersionSyncError, match="distinct"):
         migrate_version_envelope(envelope(), envelope())
+
+@pytest.mark.parametrize("value", [None, [], "envelope"])
+def test_non_object_envelope_fails_closed(value: object) -> None:
+    with pytest.raises(VersionSyncError, match="must be an object"):
+        validate_version_envelope(value)
+
+
+def test_non_string_identity_fields_fail_closed() -> None:
+    with pytest.raises(VersionSyncError, match="non-empty strings"):
+        validate_version_envelope(envelope(rng_id=123))
