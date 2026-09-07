@@ -242,6 +242,7 @@ class LoggingSettings(BaseModel):
         return cls.model_validate(values)
 
 
+@final
 class BoundedLogQueue:
     """Bounded, non-blocking queue with deterministic severity-aware loss."""
 
@@ -249,8 +250,8 @@ class BoundedLogQueue:
         if capacity < 1:
             raise ValueError("capacity must be positive")
         self._items: deque[tuple[int, str]] = deque(maxlen=capacity)
-        self._capacity = capacity
-        self.dropped = 0
+        self._capacity: int = capacity
+        self.dropped: int = 0
 
     def put(self, level: int, message: str) -> bool:
         """Add an event without blocking, dropping lower-severity entries first."""
