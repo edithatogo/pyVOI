@@ -11,7 +11,7 @@ mod domain_mapping;
 pub mod otel_export;
 pub mod telemetry;
 
-pub use checkpoint::{CheckpointError, CheckpointIdentity, ExecutionCheckpoint};
+pub use checkpoint::{CheckpointError, CheckpointIdentity, ExecutionBudget, ExecutionCheckpoint};
 pub use contracts::{
     ApproximationStatus, DiagnosticStatus, Diagnostics, MethodMaturity, MethodMetadata,
     WarningRecord, WarningSeverity,
