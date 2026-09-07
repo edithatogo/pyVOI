@@ -74,3 +74,22 @@ def test_rust_feature_matrix_names_default_optional_and_all_feature_lanes() -> N
         "feature:otel",
         "all-features",
     ]
+
+
+def test_rust_feature_matrix_verification_is_locked_and_covers_minimal_lane(
+    monkeypatch,
+):
+    from pathlib import Path
+
+    from scripts.rust_feature_matrix import build_matrix, verify_matrix
+
+    commands = []
+    monkeypatch.setattr(
+        "scripts.rust_feature_matrix.subprocess.run",
+        lambda command, **kwargs: commands.append((command, kwargs)),
+    )
+    verify_matrix(Path.cwd(), build_matrix(Path.cwd()))
+    assert commands
+    assert all(item[0][item[0].index("--locked")] == "--locked" for item in commands)
+    assert any("--no-default-features" in item[0] for item in commands)
+    assert any("--all-features" in item[0] for item in commands)

@@ -64,6 +64,32 @@ def build_matrix(root: Path) -> dict[str, object]:
     }
 
 
+def verify_matrix(root: Path, report: dict[str, object]) -> list[list[str]]:
+    """Run every declared feature lane with Cargo's locked resolver."""
+    commands: list[list[str]] = []
+    for row in report["packages"]:
+        package = row["package"]
+        for lane in row["lanes"]:
+            command = [
+                "cargo",
+                "check",
+                "--manifest-path",
+                "rust/Cargo.toml",
+                "-p",
+                str(package),
+                "--locked",
+            ]
+            if lane == "no-default-features":
+                command.append("--no-default-features")
+            elif lane == "all-features":
+                command.append("--all-features")
+            elif lane.startswith("feature:"):
+                command.extend(["--features", lane.removeprefix("feature:")])
+            subprocess.run(command, cwd=root, check=True)  # noqa: S603 -- command is constructed from Cargo metadata
+            commands.append(command)
+    return commands
+
+
 def main() -> int:
     """Write the matrix report and return a successful process status."""
     parser = argparse.ArgumentParser()
@@ -77,25 +103,7 @@ def main() -> int:
     args = parser.parse_args()
     report = build_matrix(args.root.resolve())
     if args.verify:
-        for row in report["packages"]:
-            package = row["package"]
-            for lane in row["lanes"]:
-                command = [
-                    "cargo",
-                    "check",
-                    "--manifest-path",
-                    "rust/Cargo.toml",
-                    "-p",
-                    str(package),
-                    "--locked",
-                ]
-                if lane == "no-default-features":
-                    command.append("--no-default-features")
-                elif lane == "all-features":
-                    command.append("--all-features")
-                elif lane.startswith("feature:"):
-                    command.extend(["--features", lane.removeprefix("feature:")])
-                subprocess.run(command, cwd=args.root.resolve(), check=True)  # noqa: S603 -- command is constructed from Cargo metadata
+        verify_matrix(args.root.resolve(), report)
     destination = args.output or args.root / ".conductor/local/rust-feature-matrix.json"
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
