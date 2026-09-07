@@ -780,6 +780,7 @@ def test_cli_command_registry_matches_expected_surface() -> None:
         "calculate-validation",
         "calculate-value-of-flexibility",
         "calculate-value-of-distributional-information",
+        "capabilities",
         "assess-qualitative-information",
         "create-distributed-large-scale",
         "generate-config",
