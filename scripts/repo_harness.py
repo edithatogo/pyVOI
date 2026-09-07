@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 from dataclasses import asdict, dataclass
 import json
+import os
 from pathlib import Path
 import re
 import shutil
@@ -374,6 +375,29 @@ def check_operational_assurance(root: Path) -> list[Finding]:
     return findings
 
 
+def _changed_paths(root: Path) -> list[str]:
+    """Return staged, unstaged, and untracked paths from the current worktree."""
+    git = shutil.which("git")
+    if git is None:
+        return []
+    result = subprocess.run(  # noqa: S603 -- executable is resolved from PATH.
+        [git, "-C", str(root), "status", "--porcelain", "-z"],
+        capture_output=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        return []
+    paths: list[str] = []
+    for record in result.stdout.decode("utf-8", errors="surrogateescape").split("\0"):
+        if not record:
+            continue
+        value = record[3:]
+        if " -> " in value:
+            value = value.split(" -> ", 1)[1]
+        paths.append(value)
+    return paths
+
+
 def check_execution_packets(root: Path) -> list[Finding]:
     """Validate checked-in implementation packets without running their commands."""
     try:
@@ -388,7 +412,12 @@ def check_execution_packets(root: Path) -> list[Finding]:
     ):
         try:
             packet = json.loads(packet_path.read_text(encoding="utf-8"))
-            errors = validate_packet(packet, root)
+            errors = validate_packet(
+                packet,
+                root,
+                require_ready=packet.get("track_id") == "execution_packet_guard_20260907",
+                changed_paths=_changed_paths(root) if os.environ.get("CI") else None,
+            )
         except (OSError, json.JSONDecodeError, TypeError, ValueError) as exc:
             errors = [str(exc)]
         findings.extend(
