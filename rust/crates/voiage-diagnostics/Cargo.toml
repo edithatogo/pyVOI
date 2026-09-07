@@ -1,3 +1,7 @@
+[features]
+default = []
+otel = []
+
 [package]
 name = "voiage-diagnostics"
 description = "Structured diagnostics and error contracts for voiage."

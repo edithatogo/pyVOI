@@ -4,9 +4,13 @@
   "track_id": "optional_native_telemetry_20260907",
   "source_baseline": "1207cef979311d1f39b3e41c32e165907303dec2",
   "preparation_state": "prepared",
-  "execution_state": "waiting_for_prerequisites",
+  "execution_state": "ready_for_preflight",
   "prerequisite_tracks": [
-    "vop_logging_version_pilot_20260907"
+    {
+      "track_id": "vop_logging_version_pilot_20260907",
+      "result_status": "passed",
+      "evidence": "348db4d3e51a82b6fc6a252ef4bdabdf99db8564"
+    }
   ],
   "delivery_repository": "edithatogo/voiage",
   "read_before_start": [
@@ -18,7 +22,7 @@
   ],
   "input_sha256": {
     "rust/Cargo.toml": "91c0037f1361b837afc5c45c1e1d6edec1f51b094ee2739cc963895e930c7c36",
-    "rust/crates/voiage-diagnostics/Cargo.toml": "fbc5abbdd7b779af218bd033aeeb721c3f718bf3fb08c6d782fdea3a1e09ba4c",
+    "rust/crates/voiage-diagnostics/Cargo.toml": "232949ed8d743ffe36a2fd9213a42cf9083de7e6e478075fe038ccd7b8a42ba3",
     "tests/test_dependency_promotion_policy.py": "e13357f7f5e346831fe81d8121c00bc0279dc7ecd1d080ffbd2bf8697cdd298f"
   },
   "reserved_implementation_files": [
@@ -32,7 +36,7 @@
     "tests/test_optional_telemetry_contract.py": "new-file-must-be-absent",
     "rust/crates/voiage-diagnostics/src/lib.rs": "897c4fe00e12a4b911d1ff6e2c23c643b9febefaffaf0d7fd1bfa5b9f4b07aeb",
     "tests/test_dependency_promotion_policy.py": "e13357f7f5e346831fe81d8121c00bc0279dc7ecd1d080ffbd2bf8697cdd298f",
-    "rust/crates/voiage-diagnostics/Cargo.toml": "fbc5abbdd7b779af218bd033aeeb721c3f718bf3fb08c6d782fdea3a1e09ba4c"
+    "rust/crates/voiage-diagnostics/Cargo.toml": "232949ed8d743ffe36a2fd9213a42cf9083de7e6e478075fe038ccd7b8a42ba3"
   },
   "integrator_only": [
     "rust/Cargo.toml",
