@@ -57,3 +57,20 @@ def test_yanked_and_prerelease_versions_are_not_stable_frontier() -> None:
     )
 
     assert [str(version) for version in versions] == ["1.0"]
+
+
+def test_rust_feature_matrix_names_default_optional_and_all_feature_lanes() -> None:
+    from scripts.rust_feature_matrix import build_matrix
+
+    report = build_matrix(__import__("pathlib").Path.cwd())
+    diagnostics = next(
+        row for row in report["packages"] if row["package"] == "voiage-diagnostics"
+    )
+    assert report["workspace_rust_version"] == "1.85"
+    assert diagnostics["features"] == ["otel"]
+    assert diagnostics["lanes"] == [
+        "default",
+        "no-default-features",
+        "feature:otel",
+        "all-features",
+    ]
