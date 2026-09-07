@@ -35,6 +35,12 @@ def test_missing_required_field_is_rejected(packet: dict, field: str) -> None:
     )
 
 
+def test_unknown_packet_fields_are_rejected(packet: dict) -> None:
+    packet["unexpected"] = "must fail closed"
+    errors = validate_packet(packet, ROOT)
+    assert any("unknown packet fields: unexpected" in error for error in errors)
+
+
 def test_unknown_and_duplicate_task_ids_are_rejected(packet: dict) -> None:
     packet["phases"][0]["task_ids"] = ["T1.1", "T1.1", "T99.9"]
     errors = validate_packet(packet, ROOT)

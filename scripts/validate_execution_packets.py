@@ -25,6 +25,19 @@ REQUIRED = {
     "phases",
 }
 
+ALLOWED_FIELDS = REQUIRED | {
+    "prepared_at",
+    "prerequisite_tracks",
+    "initial_file_state",
+    "integrator_only",
+    "native_command",
+    "final_command",
+    "hash_review",
+    "rollback",
+    "stop_conditions",
+    "completion",
+}
+
 
 def _error(message: str) -> ValueError:
     return ValueError(message)
@@ -65,6 +78,9 @@ def validate_packet(
 ) -> list[str]:
     """Return deterministic validation errors for one packet."""
     errors: list[str] = []
+    unknown = sorted(set(packet) - ALLOWED_FIELDS)
+    if unknown:
+        errors.append("unknown packet fields: " + ", ".join(unknown))
     missing = sorted(REQUIRED - packet.keys())
     if missing:
         errors.append("missing required fields: " + ", ".join(missing))
