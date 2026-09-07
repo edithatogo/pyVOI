@@ -27,3 +27,19 @@ def test_bounded_queue_drops_low_severity_first() -> None:
 def test_bounded_queue_rejects_invalid_capacity() -> None:
     with pytest.raises(ValueError, match="capacity"):
         BoundedLogQueue(capacity=0)
+
+
+def test_bounded_queue_rejects_low_priority_when_full() -> None:
+    queue = BoundedLogQueue(capacity=1)
+    queue.put(logging.ERROR, "critical")
+    assert queue.put(logging.WARNING, "noise") is False
+    assert queue.dropped == 1
+
+
+def test_bounded_queue_scans_past_high_priority_entries() -> None:
+    queue = BoundedLogQueue(capacity=2)
+    queue.put(logging.ERROR, "critical")
+    queue.put(logging.INFO, "detail")
+    assert queue.put(logging.ERROR, "second-critical") is True
+    assert queue.get() == (logging.ERROR, "critical")
+    assert queue.get() == (logging.ERROR, "second-critical")
