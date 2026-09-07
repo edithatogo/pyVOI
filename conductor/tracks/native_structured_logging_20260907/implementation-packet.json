@@ -4,13 +4,9 @@
   "track_id": "native_structured_logging_20260907",
   "source_baseline": "1207cef979311d1f39b3e41c32e165907303dec2",
   "preparation_state": "prepared",
-  "execution_state": "ready_for_preflight",
+  "execution_state": "waiting_for_prerequisites",
   "prerequisite_tracks": [
-    {
-      "track_id": "version_identity_contracts_20260907",
-      "result_status": "passed",
-      "evidence": "95147116ba0102503c189a331bb3f55e0c2822a9"
-    }
+    "version_identity_contracts_20260907"
   ],
   "delivery_repository": "edithatogo/voiage",
   "read_before_start": [
