@@ -374,6 +374,29 @@ def check_operational_assurance(root: Path) -> list[Finding]:
     return findings
 
 
+def check_execution_packets(root: Path) -> list[Finding]:
+    """Validate checked-in implementation packets without running their commands."""
+    try:
+        from scripts.validate_execution_packets import validate_packet
+    except ModuleNotFoundError:
+        # ``python scripts/repo_harness.py`` puts scripts/ on sys.path.
+        from validate_execution_packets import validate_packet
+
+    findings: list[Finding] = []
+    for packet_path in sorted(
+        (root / "conductor" / "tracks").glob("*/implementation-packet.json")
+    ):
+        try:
+            packet = json.loads(packet_path.read_text(encoding="utf-8"))
+            errors = validate_packet(packet, root)
+        except (OSError, json.JSONDecodeError, TypeError, ValueError) as exc:
+            errors = [str(exc)]
+        findings.extend(
+            Finding(packet_path.relative_to(root).as_posix(), error) for error in errors
+        )
+    return findings
+
+
 def collect_findings(root: Path) -> list[Finding]:
     """Run all deterministic harness checks."""
     return (
@@ -383,6 +406,7 @@ def collect_findings(root: Path) -> list[Finding]:
         + check_docs_platform(root)
         + check_contract_governance(root)
         + check_operational_assurance(root)
+        + check_execution_packets(root)
         + check_conflict_markers(root)
     )
 
