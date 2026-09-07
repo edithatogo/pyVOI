@@ -65,7 +65,7 @@ _QUERY_CREDENTIAL_RE = re.compile(
         )
     )
 )
-_ABSOLUTE_PATH_RE = re.compile(r"(?:/Users|/home|/private|[A-Za-z]:\\)[^\s,;]+")
+_ABSOLUTE_PATH_RE = re.compile(r"(?<![\w:])/(?:[^\s,;]+)|[A-Za-z]:\\[^\s,;]+")
 _ASSIGNMENT_RE = re.compile(
     "".join(
         (
@@ -258,9 +258,10 @@ class BoundedLogQueue:
         if len(self._items) < self._capacity:
             self._items.append((level, message))
             return True
-        if level >= logging.ERROR:
+        minimum = min(queued_level for queued_level, _ in self._items)
+        if level >= logging.ERROR and minimum < logging.ERROR:
             for index, (queued_level, _) in enumerate(self._items):
-                if queued_level < logging.ERROR:
+                if queued_level == minimum:
                     del self._items[index]
                     self._items.append((level, message))
                     self.dropped += 1
