@@ -90,6 +90,6 @@ def test_rust_feature_matrix_verification_is_locked_and_covers_minimal_lane(
     )
     verify_matrix(Path.cwd(), build_matrix(Path.cwd()))
     assert commands
-    assert all(item[0][item[0].index("--locked")] == "--locked" for item in commands)
+    assert all("--locked" in item[0] for item in commands)
     assert any("--no-default-features" in item[0] for item in commands)
     assert any("--all-features" in item[0] for item in commands)
