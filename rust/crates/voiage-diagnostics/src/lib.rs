@@ -4,12 +4,14 @@
 
 use std::collections::BTreeMap;
 
+mod checkpoint;
 mod contracts;
 mod domain_mapping;
 #[cfg(feature = "otel")]
 pub mod otel_export;
 pub mod telemetry;
 
+pub use checkpoint::{CheckpointError, CheckpointIdentity, ExecutionCheckpoint};
 pub use contracts::{
     ApproximationStatus, DiagnosticStatus, Diagnostics, MethodMaturity, MethodMetadata,
     WarningRecord, WarningSeverity,
