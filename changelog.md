@@ -1,5 +1,9 @@
 # Changelog
 
+- Add a deterministic Rust feature/MSRV qualification matrix covering default,
+  no-default, optional-feature and all-feature lanes, with an explicit locked
+  Cargo verification mode.
+
 - Use Astro 7.3.1 to repair the 7.3.0 internal logger export regression in
   documentation builds.
 - Cancel superseded PR assurance runs, bound local tox parallelism and native
