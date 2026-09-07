@@ -258,14 +258,12 @@ class BoundedLogQueue:
         if len(self._items) < self._capacity:
             self._items.append((level, message))
             return True
-        minimum = min(queued_level for queued_level, _ in self._items)
+        index, (minimum, _) = min(enumerate(self._items), key=lambda item: item[1][0])
         if level >= logging.ERROR and minimum < logging.ERROR:
-            for index, (queued_level, _) in enumerate(self._items):
-                if queued_level == minimum:
-                    del self._items[index]
-                    self._items.append((level, message))
-                    self.dropped += 1
-                    return True
+            del self._items[index]
+            self._items.append((level, message))
+            self.dropped += 1
+            return True
         self.dropped += 1
         return False
 
