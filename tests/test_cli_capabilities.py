@@ -15,4 +15,6 @@ def test_capabilities_json_is_dry_run_and_machine_readable() -> None:
     assert payload["dry_run"] is True
     assert "evpi" in payload["methods"]
     assert set(payload["optional_modules"]) == {"jax", "torch", "polars", "pyarrow"}
-    assert all(isinstance(value, bool) for value in payload["optional_modules"].values())
+    assert all(
+        isinstance(value, bool) for value in payload["optional_modules"].values()
+    )
