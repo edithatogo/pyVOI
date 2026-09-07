@@ -1,6 +1,6 @@
 # Track: VOP-to-VOI version and logging pilot
 
-Status: new.
+Status: completed.
 
 GitHub issue: https://github.com/edithatogo/voiage/issues/1115
 

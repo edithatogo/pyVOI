@@ -1,6 +1,6 @@
 # Track: Logging privacy and bounded delivery
 
-Status: new.
+Status: completed.
 
 GitHub issue: https://github.com/edithatogo/voiage/issues/1114
 

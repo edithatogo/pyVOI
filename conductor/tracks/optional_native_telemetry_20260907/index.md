@@ -1,6 +1,6 @@
 # Track: Optional native telemetry qualification
 
-Status: new.
+Status: completed.
 
 GitHub issue: https://github.com/edithatogo/voiage/issues/1116
 
