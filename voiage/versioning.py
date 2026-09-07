@@ -61,6 +61,45 @@ class ReleaseIdentity:
     is_prerelease: bool
 
 
+@dataclass(frozen=True, slots=True)
+class VersionEnvelope:
+    """Version identities required to safely replay a serialized VOI result."""
+
+    schema_version: str
+    package_version: str
+    algorithm_id: str
+    rng_id: str
+    input_schema_id: str
+
+
+def validate_version_envelope(value: object) -> VersionEnvelope:
+    """Validate a version envelope without silently accepting unknown fields."""
+    if not isinstance(value, dict):
+        raise VersionSyncError("version envelope must be an object")
+    required = {"schema_version", "package_version", "algorithm_id", "rng_id", "input_schema_id"}
+    missing = sorted(required - value.keys())
+    unknown = sorted(set(value) - required)
+    if missing:
+        raise VersionSyncError("version envelope missing required fields: " + ", ".join(missing))
+    if unknown:
+        raise VersionSyncError("version envelope has unknown fields: " + ", ".join(unknown))
+    if value["schema_version"] != "1.0":
+        raise VersionSyncError("unsupported version envelope schema")
+    if any(not isinstance(value[field], str) or not value[field].strip() for field in required):
+        raise VersionSyncError("version envelope fields must be non-empty strings")
+    release_identity(value["package_version"])
+    return VersionEnvelope(**value)
+
+
+def migrate_version_envelope(old: object, new: object) -> dict[str, object]:
+    """Record an explicit envelope migration while preserving both identities."""
+    previous = validate_version_envelope(old)
+    current = validate_version_envelope(new)
+    if previous == current:
+        raise VersionSyncError("migration requires distinct version identities")
+    return {"from": previous, "to": current, "migration": "explicit"}
+
+
 class VersionSyncError(RuntimeError):
     """Raised when version synchronization fails."""
 

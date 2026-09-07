@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "identities": {
+    "package": {"owner": "rust/Cargo.toml", "increment": "release-policy", "consumers": ["Python", "R", "Julia"]},
+    "public_api": {"owner": "voiage/__init__.py", "increment": "breaking-surface-change", "consumers": ["Python callers"]},
+    "c_abi": {"owner": "rust/crates/voiage-ffi/src/lib.rs", "increment": "exported-signature-change", "consumers": ["bindings"]},
+    "schema": {"owner": "voiage/schema.py", "increment": "field-contract-change", "consumers": ["serialized inputs"]},
+    "algorithm": {"owner": "voiage/methods", "increment": "estimand-or-kernel-change", "consumers": ["checkpoints"]},
+    "rng": {"owner": "voiage/core", "increment": "stream-or-seeding-change", "consumers": ["replay"]},
+    "checkpoint": {"owner": "voiage/versioning.py", "increment": "envelope-change", "consumers": ["resume workflows"]}
+  },
+  "compatibility": {
+    "read_window": "same-major",
+    "write_window": "current-only",
+    "breaking_changes": ["renamed fields", "changed units", "algorithm or RNG identity changes"],
+    "migration": "explicit and provenance-bearing"
+  }
+}

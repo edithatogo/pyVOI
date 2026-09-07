@@ -1,6 +1,6 @@
 # Track: Version identities and compatibility policy
 
-Status: new.
+Status: in progress.
 
 GitHub issue: https://github.com/edithatogo/voiage/issues/1112
 
