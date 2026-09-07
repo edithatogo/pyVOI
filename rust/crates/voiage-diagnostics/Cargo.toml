@@ -12,6 +12,7 @@ categories = ["science"]
 
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }
+tracing = { version = "0.1", default-features = false }
 voiage-domain.workspace = true
 
 [dev-dependencies]

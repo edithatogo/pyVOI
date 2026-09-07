@@ -6,6 +6,7 @@ use std::collections::BTreeMap;
 
 mod contracts;
 mod domain_mapping;
+pub mod telemetry;
 
 pub use contracts::{
     ApproximationStatus, DiagnosticStatus, Diagnostics, MethodMaturity, MethodMetadata,
