@@ -6,7 +6,11 @@
   "preparation_state": "prepared",
   "execution_state": "ready_for_preflight",
   "prerequisite_tracks": [
-    "execution_packet_guard_20260907"
+    {
+      "track_id": "execution_packet_guard_20260907",
+      "result_status": "passed",
+      "evidence": "8bc3e4e412c51bc4f4a2677bd997b1801e751bb4"
+    }
   ],
   "delivery_repository": "edithatogo/voiage",
   "read_before_start": [

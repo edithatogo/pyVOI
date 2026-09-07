@@ -74,3 +74,8 @@ def test_non_object_envelope_fails_closed(value: object) -> None:
 def test_non_string_identity_fields_fail_closed() -> None:
     with pytest.raises(VersionSyncError, match="non-empty strings"):
         validate_version_envelope(envelope(rng_id=123))
+
+
+def test_same_major_additive_schema_is_read_compatibly() -> None:
+    value = envelope(schema_version="1.1", provider="native")
+    assert validate_version_envelope(value).schema_version == "1.1"

@@ -89,11 +89,16 @@ def validate_version_envelope(value: object) -> VersionEnvelope:
         raise VersionSyncError(
             "version envelope missing required fields: " + ", ".join(missing)
         )
-    if unknown:
+    if unknown and value.get("schema_version") == "1.0":
         raise VersionSyncError(
             "version envelope has unknown fields: " + ", ".join(unknown)
         )
-    if value["schema_version"] != "1.0":
+    schema_version = value["schema_version"]
+    if (
+        not isinstance(schema_version, str)
+        or not schema_version.startswith("1.")
+        or schema_version.count(".") != 1
+    ):
         raise VersionSyncError("unsupported version envelope schema")
     if any(
         not isinstance(value[field], str) or not value[field].strip()
@@ -104,7 +109,9 @@ def validate_version_envelope(value: object) -> VersionEnvelope:
     return VersionEnvelope(**value)
 
 
-def migrate_version_envelope(old: object, new: object) -> dict[str, object]:
+def migrate_version_envelope(
+    old: object, new: object
+) -> dict[str, VersionEnvelope | str]:
     """Record an explicit envelope migration while preserving both identities."""
     previous = validate_version_envelope(old)
     current = validate_version_envelope(new)
