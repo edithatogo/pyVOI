@@ -1,6 +1,6 @@
 [features]
 default = []
-otel = []
+otel = ["dep:opentelemetry", "dep:opentelemetry_sdk"]
 
 [package]
 name = "voiage-diagnostics"
@@ -17,6 +17,8 @@ categories = ["science"]
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }
 tracing = { version = "0.1", default-features = false }
+opentelemetry = { version = "0.32.0", default-features = false, features = ["trace"], optional = true }
+opentelemetry_sdk = { version = "0.32.1", default-features = false, features = ["trace", "testing"], optional = true }
 voiage-domain.workspace = true
 
 [dev-dependencies]
