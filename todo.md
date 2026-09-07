@@ -4,6 +4,9 @@ This document lists the actionable tasks for `voiage` development. Agents should
 
 ## To Do
 
+- [ ] Ordered implementation tracks: `conductor/tracks/agent_safe_engineering_20260907/`, `conductor/tracks/execution_packet_guard_20260907/`, `conductor/tracks/version_identity_contracts_20260907/`, `conductor/tracks/native_structured_logging_20260907/`, `conductor/tracks/logging_privacy_resilience_20260907/`, `conductor/tracks/vop_logging_version_pilot_20260907/`, and `conductor/tracks/optional_native_telemetry_20260907/`.
+- [ ] Existing active delivery tracks: `conductor/tracks/remaining_backlog_delivery_20260831/` and `conductor/tracks/v2_2_release_and_venue_submissions_20260830/`.
+
 *   [x] Advance the fourteen open issue deliverables with source-bound agent
     review, current venue inputs, upstream Julia delivery, guarded HPC retry
     and security/badge evidence in `docs/release/issue-deliverables-20260906.md`.
@@ -1317,3 +1320,17 @@ as recorded in the active task above; earlier route decisions below are historic
         from one coherent programme-adoption model for the arXiv manuscript.
 *   **[NMA]** Began the Network Meta-Analysis VOI implementation.
     *   Added the `voiage/methods/network_nma.py` workflow and supporting schema/tests.
+
+## Planned engineering improvements (2026-09-07)
+
+- [ ] Start G01.1 in `conductor/tracks/agent_safe_engineering_20260907/plan.md`: confirm repository allocations and conductor-next reuse, then freeze the Voiage drift-validator profile before implementation.
+- [ ] Follow G02–G08 only when their packet prerequisites and file reservations are satisfied. Existing active backlog/venue work retains its ownership.
+
+- [ ] Execute the logging/versioning sequence only after packet readiness: execution guard, version identities, native logging, privacy/resilience, VOP pilot, then optional telemetry. Canonical tasks: `conductor/tracks/agent_safe_engineering_20260907/orchestration.md`.
+
+- [ ] Begin prepared implementation at `execution_packet_guard_20260907/START_HERE.md`; use the active-track readiness matrix for all dependent and externally gated work.
+- [ ] Continue in order with `conductor/tracks/version_identity_contracts_20260907/`.
+- [ ] Continue in order with `conductor/tracks/native_structured_logging_20260907/`.
+- [ ] Continue in order with `conductor/tracks/logging_privacy_resilience_20260907/`.
+- [ ] Continue in order with `conductor/tracks/vop_logging_version_pilot_20260907/`.
+- [ ] Continue in order with `conductor/tracks/optional_native_telemetry_20260907/`.

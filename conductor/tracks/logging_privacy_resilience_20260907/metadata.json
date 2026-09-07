@@ -5,6 +5,7 @@
   "created_at": "2026-09-07T01:59:07Z",
   "updated_at": "2026-09-07T02:55:24Z",
   "description": "Logging privacy and bounded delivery",
+  "github_cross_reference": {"issue": "https://github.com/edithatogo/voiage/issues/1114"},
   "evidence_schema": "1.0",
   "depends_on": [
     "native_structured_logging_20260907"

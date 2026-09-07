@@ -44,6 +44,34 @@ created for the proposed packages, and no dependency upgrade or scientific
 promotion is implied. The former [software frontier page](docs/reviews/roadmaps/software-frontier.md)
 now directs readers to the consolidated plan.
 
+## Engineering execution follow-up (2026-09-07)
+
+[Agent-safe engineering improvements](conductor/tracks/agent_safe_engineering_20260907/index.md)
+adds eight bounded workstreams for drift checks, dependency features, API/ABI
+compatibility, measured CI, adversarial numerics, bounded execution, capability
+reports and automation recovery. All implementation tasks remain pending; the
+worker guide specifies exact scopes, prerequisites, witnesses and escalation.
+[Repository allocations and integration order](conductor/tracks/agent_safe_engineering_20260907/repository-boundaries.md)
+keep generic engines and applications in their capability-owner repositories.
+Future Rust-first providers may expose distinct APIs; semantic interchange and
+Voiage's own promised interfaces have separate compatibility gates.
+The original twenty method/software packages remain proposed and are mapped
+to these engineering prerequisites without activating them.
+
+Prepared track records:
+
+- `conductor/tracks/execution_packet_guard_20260907/`
+- `conductor/tracks/version_identity_contracts_20260907/`
+- `conductor/tracks/native_structured_logging_20260907/`
+- `conductor/tracks/logging_privacy_resilience_20260907/`
+- `conductor/tracks/vop_logging_version_pilot_20260907/`
+- `conductor/tracks/optional_native_telemetry_20260907/`
+
+The ordered implementation tracks are individually registered under issues
+[#1111](https://github.com/edithatogo/voiage/issues/1111) through
+[#1116](https://github.com/edithatogo/voiage/issues/1116), with execution
+guard delivery proceeding first and dependent tracks held until its merge.
+
 ## Comprehensive Rust-First Polyglot Programme
 
 GitHub issue #1033 and archived Conductor track
@@ -1306,3 +1334,10 @@ flowchart LR
   Review[pyOpenSci / rOpenSci / JOSS / NumFOCUS] --> Docs[Docs, tests, citation, support, CI]
   Docs --> Users
 ```
+
+## Detailed logging and versioning sequence
+
+Six pending tracks and their parallel investigation/serial integration boundaries
+are defined in [Conductor orchestration](conductor/tracks/agent_safe_engineering_20260907/orchestration.md).
+They separate execution controls, version identities, native logging, privacy and
+resilience, the first installed VOP pilot, and optional telemetry qualification.

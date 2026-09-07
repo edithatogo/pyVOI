@@ -2,6 +2,8 @@
 
 Status: new; all implementation tasks pending.
 
+GitHub issue: https://github.com/edithatogo/voiage/issues/1110
+
 - [Specification](./spec.md)
 - [Implementation Plan](./plan.md)
 - [Task packets](./packets.json)

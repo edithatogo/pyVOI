@@ -2,6 +2,8 @@
 
 Status: in progress.
 
+GitHub issue: https://github.com/edithatogo/voiage/issues/1111
+
 - [Specification](./spec.md)
 - [Implementation Plan](./plan.md)
 - [Metadata](./metadata.json)

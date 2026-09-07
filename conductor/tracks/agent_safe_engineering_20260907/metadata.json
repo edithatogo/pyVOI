@@ -5,6 +5,7 @@
   "created_at": "2026-09-06T14:18:03Z",
   "updated_at": "2026-09-06T14:26:59Z",
   "description": "Bounded Rust-first engineering improvements and agent execution contracts",
+  "github_cross_reference": {"issue": "https://github.com/edithatogo/voiage/issues/1110"},
   "evidence_schema": "1.0",
   "authorization": {
     "instruction": "Consider further improvements and incorporate them into Conductor; make implementation safe for less capable agents.",

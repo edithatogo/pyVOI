@@ -44,7 +44,7 @@
         "url": "https://github.com/edithatogo/voiage/issues/1022",
         "state": "closed"
       },
-      "parent_issue_url": null,
+      "parent_issue_url": "https://github.com/edithatogo/voiage/issues/1111",
       "subissues": [
         "https://github.com/edithatogo/voiage/issues/616",
         "https://github.com/edithatogo/voiage/issues/471"
@@ -5605,6 +5605,83 @@
         }
       ],
       "pull_request_evidence": "PRs #1038, #1046, #1047, #1051 and #1052 merged through protected checks. Signed immutable v2.2.0 is publicly verified. Personal declarations and withdrawals are confirmed; survey, human-written text, actual submissions and venue outcomes remain separate."
+    },
+    {
+      "track_id": "agent_safe_engineering_20260907",
+      "metadata_track_id": "agent_safe_engineering_20260907",
+      "path": "conductor/tracks/agent_safe_engineering_20260907",
+      "lifecycle": "active",
+      "issue": {"number": 1110, "url": "https://github.com/edithatogo/voiage/issues/1110", "state": "open"},
+      "parent_issue_url": "https://github.com/edithatogo/voiage/issues/1111",
+      "subissues": [],
+      "pull_requests": [],
+      "pull_request_evidence": "none_found"
+    },
+    {
+      "track_id": "execution_packet_guard_20260907",
+      "metadata_track_id": "execution_packet_guard_20260907",
+      "path": "conductor/tracks/execution_packet_guard_20260907",
+      "lifecycle": "active",
+      "issue": {"number": 1111, "url": "https://github.com/edithatogo/voiage/issues/1111", "state": "open"},
+      "parent_issue_url": "https://github.com/edithatogo/voiage/issues/1110",
+      "subissues": [],
+      "pull_requests": [{"number": 1109, "url": "https://github.com/edithatogo/voiage/pull/1109", "status": "open", "evidence": ["implementation-head:ae548db790cbecfd29d8d6f42c77de0fb8250d66"]}],
+      "pull_request_evidence": "PR #1109 open; hosted checks pending remediation"
+    },
+    {
+      "track_id": "version_identity_contracts_20260907",
+      "metadata_track_id": "version_identity_contracts_20260907",
+      "path": "conductor/tracks/version_identity_contracts_20260907",
+      "lifecycle": "active",
+      "issue": {"number": 1112, "url": "https://github.com/edithatogo/voiage/issues/1112", "state": "open"},
+      "parent_issue_url": "https://github.com/edithatogo/voiage/issues/1110",
+      "subissues": [],
+      "pull_requests": [],
+      "pull_request_evidence": "none_found"
+    },
+    {
+      "track_id": "native_structured_logging_20260907",
+      "metadata_track_id": "native_structured_logging_20260907",
+      "path": "conductor/tracks/native_structured_logging_20260907",
+      "lifecycle": "active",
+      "issue": {"number": 1113, "url": "https://github.com/edithatogo/voiage/issues/1113", "state": "open"},
+      "parent_issue_url": "https://github.com/edithatogo/voiage/issues/1110",
+      "subissues": [],
+      "pull_requests": [],
+      "pull_request_evidence": "none_found"
+    },
+    {
+      "track_id": "logging_privacy_resilience_20260907",
+      "metadata_track_id": "logging_privacy_resilience_20260907",
+      "path": "conductor/tracks/logging_privacy_resilience_20260907",
+      "lifecycle": "active",
+      "issue": {"number": 1114, "url": "https://github.com/edithatogo/voiage/issues/1114", "state": "open"},
+      "parent_issue_url": "https://github.com/edithatogo/voiage/issues/1110",
+      "subissues": [],
+      "pull_requests": [],
+      "pull_request_evidence": "none_found"
+    },
+    {
+      "track_id": "vop_logging_version_pilot_20260907",
+      "metadata_track_id": "vop_logging_version_pilot_20260907",
+      "path": "conductor/tracks/vop_logging_version_pilot_20260907",
+      "lifecycle": "active",
+      "issue": {"number": 1115, "url": "https://github.com/edithatogo/voiage/issues/1115", "state": "open"},
+      "parent_issue_url": "https://github.com/edithatogo/voiage/issues/1110",
+      "subissues": [],
+      "pull_requests": [],
+      "pull_request_evidence": "none_found"
+    },
+    {
+      "track_id": "optional_native_telemetry_20260907",
+      "metadata_track_id": "optional_native_telemetry_20260907",
+      "path": "conductor/tracks/optional_native_telemetry_20260907",
+      "lifecycle": "active",
+      "issue": {"number": 1116, "url": "https://github.com/edithatogo/voiage/issues/1116", "state": "open"},
+      "parent_issue_url": "https://github.com/edithatogo/voiage/issues/1110",
+      "subissues": [],
+      "pull_requests": [],
+      "pull_request_evidence": "none_found"
     },
     {
       "track_id": "remaining_backlog_delivery_20260831",

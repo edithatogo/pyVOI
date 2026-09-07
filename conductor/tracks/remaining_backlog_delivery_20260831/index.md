@@ -41,3 +41,5 @@ branch and worktree are pruned, before issue #1053 may close.
 The durable ref manifest excludes rotating `refs/codex/turn-diffs/*` app state,
 labels that namespace transient, and separately binds every ordered stash
 reflog entry by object ID, selector, and subject.
+
+- [Prepared continuation handoff](./implementation-handoff.md)

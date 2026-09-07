@@ -39,3 +39,5 @@ the post-merge receipt records the later result. R14 awaits survey completion an
 declarations are confirmed and prior requests withdrawn; journal-first
 sequencing supersedes the earlier arXiv prerequisite. No venue submission or
 acceptance is inferred from completed repository work.
+
+- [Prepared continuation handoff](./implementation-handoff.md)
