@@ -17,19 +17,27 @@ pub fn evpi(net_benefit: &SampleMatrix) -> Result<f64, NumericalInputError> {
             "sample count exceeds the supported numerical range",
         )
     })?);
-    let mut strategy_means = vec![0.0; strategy_count];
-    let mut perfect_information_mean = 0.0;
+    let mut strategy_values = vec![Vec::with_capacity(sample_count); strategy_count];
+    let mut perfect_information_values = Vec::with_capacity(sample_count);
 
     for row in net_benefit.rows() {
         let mut row_maximum = f64::NEG_INFINITY;
         for (strategy_index, value) in row.iter().copied().enumerate() {
-            strategy_means[strategy_index] += value / divisor;
+            strategy_values[strategy_index].push(value / divisor);
             row_maximum = row_maximum.max(value);
         }
-        perfect_information_mean += row_maximum / divisor;
+        perfect_information_values.push(row_maximum / divisor);
     }
 
-    let current_information_mean = strategy_means.into_iter().fold(f64::NEG_INFINITY, f64::max);
+    perfect_information_values.sort_by(f64::total_cmp);
+    let perfect_information_mean: f64 = perfect_information_values.into_iter().sum();
+    let current_information_mean = strategy_values
+        .into_iter()
+        .map(|mut values| {
+            values.sort_by(f64::total_cmp);
+            values.into_iter().sum::<f64>()
+        })
+        .fold(f64::NEG_INFINITY, f64::max);
 
     Ok((perfect_information_mean - current_information_mean).max(0.0))
 }
