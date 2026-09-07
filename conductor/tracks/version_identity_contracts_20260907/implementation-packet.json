@@ -18,7 +18,7 @@
     "conductor/tracks/agent_safe_engineering_20260907/repository-boundaries.md"
   ],
   "input_sha256": {
-    "voiage/versioning.py": "a097ac4b7ccec2d02ba45318b0d7afff9b8cc61627eb43dac4dde67e4cab804b",
+    "voiage/versioning.py": "73fae4e7b36ca9cc30d4d25def6646080ee05223e7177abbd3fa23556114c6c1",
     "scripts/validate_version_sync.py": "1512cdc797be9424d83e9ae517c7b5357a91a019b6f610c23406d2a5986f131a",
     "tests/test_version_sync.py": "c43baf7b983994a89fc3ae128c2d3fa4782efcf3d7b45b3d43c2b6ea0994342d",
     "rust/Cargo.toml": "91c0037f1361b837afc5c45c1e1d6edec1f51b094ee2739cc963895e930c7c36"
@@ -32,7 +32,7 @@
   "initial_file_state": {
     "specs/version-identities.json": "new-file-must-be-absent",
     "tests/test_version_identity_contracts.py": "new-file-must-be-absent",
-    "voiage/versioning.py": "a097ac4b7ccec2d02ba45318b0d7afff9b8cc61627eb43dac4dde67e4cab804b",
+    "voiage/versioning.py": "73fae4e7b36ca9cc30d4d25def6646080ee05223e7177abbd3fa23556114c6c1",
     "tests/test_version_sync.py": "c43baf7b983994a89fc3ae128c2d3fa4782efcf3d7b45b3d43c2b6ea0994342d"
   },
   "integrator_only": [
