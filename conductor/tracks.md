@@ -1063,3 +1063,31 @@ track at the top of this registry; completed repository slices stay closed.
 ## [x] Track: Legacy Archive Record — Voi Frontier Architecture Dependency Governance 20260625
 *Link: [./archive/voi-frontier-architecture-dependency-governance_20260625/index.md](./archive/voi-frontier-architecture-dependency-governance_20260625/index.md)*
 *Status: archived historical record; registration was normalized without changing its substantive outcome.*
+
+---
+- [ ] **Track: Agent-safe engineering improvements**
+  *Link: [./tracks/agent_safe_engineering_20260907/index.md](./tracks/agent_safe_engineering_20260907/index.md)*
+
+---
+- [~] **Track: Execution packet readiness and drift controls**
+  *Link: [./tracks/execution_packet_guard_20260907/index.md](./tracks/execution_packet_guard_20260907/index.md)*
+
+---
+- [ ] **Track: Version identities and compatibility policy**
+  *Link: [./tracks/version_identity_contracts_20260907/index.md](./tracks/version_identity_contracts_20260907/index.md)*
+
+---
+- [ ] **Track: Minimal Rust structured logging**
+  *Link: [./tracks/native_structured_logging_20260907/index.md](./tracks/native_structured_logging_20260907/index.md)*
+
+---
+- [ ] **Track: Logging privacy and bounded delivery**
+  *Link: [./tracks/logging_privacy_resilience_20260907/index.md](./tracks/logging_privacy_resilience_20260907/index.md)*
+
+---
+- [ ] **Track: VOP-to-VOI version and logging pilot**
+  *Link: [./tracks/vop_logging_version_pilot_20260907/index.md](./tracks/vop_logging_version_pilot_20260907/index.md)*
+
+---
+- [ ] **Track: Optional native telemetry qualification**
+  *Link: [./tracks/optional_native_telemetry_20260907/index.md](./tracks/optional_native_telemetry_20260907/index.md)*
