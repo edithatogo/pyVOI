@@ -16,6 +16,7 @@ def test_telemetry_qualifies_pinned_rust_stack_and_local_limits() -> None:
     assert 'opentelemetry = { version = "0.32.0"' in cargo
     assert 'opentelemetry_sdk = { version = "0.32.1"' in cargo
     assert 'otel = ["dep:opentelemetry", "dep:opentelemetry_sdk"]' in cargo
-    assert "TraceCollector" in Path(
-        "rust/crates/voiage-diagnostics/src/otel_export.rs"
-    ).read_text()
+    assert (
+        "TraceCollector"
+        in Path("rust/crates/voiage-diagnostics/src/otel_export.rs").read_text()
+    )
