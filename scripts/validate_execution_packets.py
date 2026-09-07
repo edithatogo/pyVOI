@@ -28,6 +28,7 @@ REQUIRED = {
 ALLOWED_FIELDS = REQUIRED | {
     "prepared_at",
     "prerequisite_tracks",
+    "result_states",
     "initial_file_state",
     "integrator_only",
     "native_command",
