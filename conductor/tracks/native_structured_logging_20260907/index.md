@@ -1,6 +1,6 @@
 # Track: Minimal Rust structured logging
 
-Status: completed.
+Status: new.
 
 GitHub issue: https://github.com/edithatogo/voiage/issues/1113
 

@@ -1,9 +1,9 @@
 {
   "track_id": "vop_logging_version_pilot_20260907",
   "type": "feature",
-  "status": "completed",
+  "status": "new",
   "created_at": "2026-09-07T01:59:07Z",
-  "updated_at": "2026-09-07T19:00:00Z",
+  "updated_at": "2026-09-07T02:55:24Z",
   "description": "VOP-to-VOI version and logging pilot",
   "github_cross_reference": {
     "issue": "https://github.com/edithatogo/voiage/issues/1115"
@@ -20,12 +20,12 @@
     {
       "id": "prerequisites",
       "kind": "repository",
-      "status": "passed",
-      "evidence": "PR merge 348db4d3e51a82b6fc6a252ef4bdabdf99db8564"
+      "status": "pending",
+      "evidence": "See orchestration.md and prerequisite track acceptance evidence."
     }
   ],
   "implementation_preparation": {
     "packet": "implementation-packet.json",
-    "state": "completed"
+    "state": "waiting_for_prerequisites"
   }
 }
