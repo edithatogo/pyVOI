@@ -64,6 +64,7 @@ def test_migration_records_both_identities_and_rejects_same_identity() -> None:
     with pytest.raises(VersionSyncError, match="distinct"):
         migrate_version_envelope(envelope(), envelope())
 
+
 @pytest.mark.parametrize("value", [None, [], "envelope"])
 def test_non_object_envelope_fails_closed(value: object) -> None:
     with pytest.raises(VersionSyncError, match="must be an object"):
