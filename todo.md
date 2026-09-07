@@ -6,6 +6,7 @@ This document lists the actionable tasks for `voiage` development. Agents should
 
 - [ ] Ordered implementation tracks: `conductor/tracks/agent_safe_engineering_20260907/`, `conductor/tracks/execution_packet_guard_20260907/`, `conductor/tracks/version_identity_contracts_20260907/`, `conductor/tracks/native_structured_logging_20260907/`, `conductor/tracks/logging_privacy_resilience_20260907/`, `conductor/tracks/vop_logging_version_pilot_20260907/`, and `conductor/tracks/optional_native_telemetry_20260907/`.
 - [ ] Existing active delivery tracks: `conductor/tracks/remaining_backlog_delivery_20260831/` and `conductor/tracks/v2_2_release_and_venue_submissions_20260830/`.
+- [x] Add the Rust feature/MSRV qualification matrix and locked verification lane.
 
 *   [x] Advance the fourteen open issue deliverables with source-bound agent
     review, current venue inputs, upstream Julia delivery, guarded HPC retry
