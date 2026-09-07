@@ -4,9 +4,9 @@
 #[derive(Clone, Debug, Default, Eq, PartialEq)]
 pub struct TraceExportConfig {
     /// Whether an application explicitly enabled export.
-    pub enabled: bool,
+    enabled: bool,
     /// Maximum number of export retries before giving up.
-    pub max_retries: u8,
+    max_retries: u8,
 }
 
 impl TraceExportConfig {
@@ -23,5 +23,17 @@ impl TraceExportConfig {
             enabled,
             max_retries,
         })
+    }
+
+    /// Returns whether export was explicitly enabled.
+    #[must_use]
+    pub const fn enabled(&self) -> bool {
+        self.enabled
+    }
+
+    /// Returns the bounded retry budget.
+    #[must_use]
+    pub const fn max_retries(&self) -> u8 {
+        self.max_retries
     }
 }
