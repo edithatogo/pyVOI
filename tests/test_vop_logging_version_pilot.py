@@ -43,3 +43,21 @@ def test_pilot_rejects_contract_mutations(mutation: dict[str, object]) -> None:
     pilot.update(mutation)
     with pytest.raises((ValueError, TypeError, RuntimeError)):
         validate_vop_pilot_contract(pilot)
+
+
+def test_production_validator_rejects_missing_identity_and_correlation() -> None:
+    pilot = json.loads(PILOT.read_text())
+    for key, value in (("identity", None), ("correlation", None)):
+        candidate = dict(pilot)
+        candidate[key] = value
+        with pytest.raises((ValueError, TypeError, RuntimeError)):
+            validate_vop_pilot_contract(candidate)
+
+    candidate = dict(pilot)
+    candidate["correlation"] = {
+        "run_id": "",
+        "analysis_id": "analysis",
+        "trace_id": pilot["correlation"]["trace_id"],
+    }
+    with pytest.raises(ValueError):
+        validate_vop_pilot_contract(candidate)
