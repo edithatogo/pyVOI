@@ -1,6 +1,6 @@
 # Implementation handoff: Logging privacy and bounded delivery
 
-Prepared; current eligibility: **waiting_for_prerequisites**.
+Prepared; current eligibility: **completed**.
 
 1. Read spec.md, plan.md, implementation-packet.json and the shared orchestration.
 2. Use a clean, isolated worktree from the accepted planning commit. Compare the
