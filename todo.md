@@ -1324,7 +1324,7 @@ as recorded in the active task above; earlier route decisions below are historic
 
 ## Planned engineering improvements (2026-09-07)
 
-- [x] Complete G01 parent reconciliation in `conductor/tracks/agent_safe_engineering_20260907/plan.md`; execution packet guard accepted in merged PR #1148. G02-G08 remain pending.
+- [x] Complete G01 parent reconciliation in `conductor/tracks/agent_safe_engineering_20260907/plan.md`; execution packet guard accepted in merged PR #1150. G02-G08 remain pending.
 - [ ] Follow G02–G08 only when their packet prerequisites and file reservations are satisfied. Existing active backlog/venue work retains its ownership.
 
 - [ ] Execute the logging/versioning sequence only after packet readiness: execution guard, version identities, native logging, privacy/resilience, VOP pilot, then optional telemetry. Canonical tasks: `conductor/tracks/agent_safe_engineering_20260907/orchestration.md`.

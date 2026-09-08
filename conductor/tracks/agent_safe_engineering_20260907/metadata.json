@@ -18,7 +18,7 @@
       "id": "packet-readiness",
       "kind": "repository",
       "status": "satisfied",
-      "evidence": "Execution packet guard is complete and accepted in merged PR #1148; G01 parent tasks are reconciled to the child track evidence. G02-G08 remain pending."
+      "evidence": "Execution packet guard is complete and accepted in merged PR #1150; G01 parent tasks are reconciled to the child track evidence. G02-G08 remain pending."
     }
   ],
   "scope_refinement": "2026-09-07 owner instruction: focused repository allocation; Rust successors need not match third-party API/ABI; inspect own GitHub libraries."
