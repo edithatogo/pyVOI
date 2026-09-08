@@ -13,7 +13,7 @@
     "native_structured_logging_20260907"
   ],
   "authorization": {
-    "scope": "Detailed track planning; implementation remains pending",
+    "scope": "Logging privacy and bounded delivery implementation and verification",
     "source": "Owner request to create comprehensive granular tracks and sequencing"
   },
   "gates": [
