@@ -39,4 +39,4 @@ Implementation exists in PR #1117; final acceptance remains pending the required
 
 ## Legacy normalization record
 
-- [x] Preserve the historical plan and registry disposition under the current Conductor schema.
+- [ ] Preserve the historical plan and registry disposition under the current Conductor schema.
