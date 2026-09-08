@@ -38,6 +38,7 @@ Implementation exists in merged PR #1119. The native structured logging prerequi
   - Source-bound prerequisite evidence: native structured logging merged PR #1148 (`a7fe6304`).
   - Privacy implementation evidence: merged PR #1119 (`3e33feaf`).
   - Focused closeout validation: 45 tests passed under tox-managed Python 3.14; exact command and environment are recorded in `evidence.jsonl`.
+  - Exact full local/native evidence is reused unchanged from merged PR #1148 (`a7fe6304`): 15 tox environments and 233 Rust tests passed; artifact digests are recorded in `evidence.jsonl`.
   - Hosted checks and merge for this closeout PR remain pending.
 - [x] CLOSE.2 — Reconcile plan, metadata, registry and append-only evidence; require satisfied upstream contracts and applicable hosted evidence before completion. Do not infer release or scientific acceptance.
   - Registry normalization and baseline validation are included in the candidate validation; hosted acceptance remains an explicit final boundary.
