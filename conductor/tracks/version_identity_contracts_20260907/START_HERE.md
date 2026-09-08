@@ -1,6 +1,6 @@
 # Implementation handoff: Version identities and compatibility policy
 
-Prepared; current eligibility: **waiting_for_prerequisites**.
+Completed in PR #1117; current eligibility: **closed**.
 
 1. Read spec.md, plan.md, implementation-packet.json and the shared orchestration.
 2. Use a clean, isolated worktree from the accepted planning commit. Compare the

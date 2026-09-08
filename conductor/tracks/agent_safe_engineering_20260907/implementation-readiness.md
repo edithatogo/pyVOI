@@ -8,7 +8,7 @@ Implementation checkboxes remain unchanged.
 | Track | Start state | First action |
 | --- | --- | --- |
 | execution_packet_guard_20260907 | Ready for bounded preflight | START_HERE.md, T1.1 ownership/profile witness |
-| version_identity_contracts_20260907 | Waiting for execution guard | Source inventory may proceed read-only; then T1.1 |
+| version_identity_contracts_20260907 | Completed in PR #1117 | Downstream native logging may consume the accepted identity contract |
 | native_structured_logging_20260907 | Waiting for version contracts | Prepare event/correlation inventory; then T1.1 |
 | logging_privacy_resilience_20260907 | Waiting for native event contract | Prepare adversarial cases without shared-file edits |
 | vop_logging_version_pilot_20260907 | Waiting for logging/privacy acceptance | Inspect existing producer export and pin candidates |

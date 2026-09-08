@@ -1073,7 +1073,7 @@ track at the top of this registry; completed repository slices stay closed.
   *Link: [./tracks/execution_packet_guard_20260907/index.md](./tracks/execution_packet_guard_20260907/index.md)*
 
 ---
-- [ ] **Track: Version identities and compatibility policy**
+- [x] **Track: Version identities and compatibility policy**
   *Link: [./tracks/version_identity_contracts_20260907/index.md](./tracks/version_identity_contracts_20260907/index.md)*
 
 ---
