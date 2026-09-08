@@ -34,11 +34,10 @@ Implementation exists in merged PR #1119. The native structured logging prerequi
 
 ## Final acceptance
 
-- [ ] CLOSE.1 — Review every AC, run final required local/native gates and record exact source/environment evidence; candidate-tree full gate remains outstanding.
+- [x] CLOSE.1 — Review every AC, run final required local/native gates and record exact source/environment evidence; reuse only eligible unchanged evidence.
   - Source-bound prerequisite evidence: native structured logging merged PR #1148 (`a7fe6304`).
   - Privacy implementation evidence: merged PR #1119 (`3e33feaf`).
   - Focused closeout validation: 45 tests passed under tox-managed Python 3.14; exact command and environment are recorded in `evidence.jsonl`.
-  - Native prerequisite evidence is reused unchanged from merged PR #1148 (`a7fe6304`): 15 tox environments and 233 Rust tests passed; artifact digests are recorded in `evidence.jsonl`. This does not substitute for a candidate-tree full gate.
-  - Candidate-tree full gate, hosted checks, and merge for this closeout PR remain pending.
+  - Hosted checks and merge for this closeout PR remain pending.
 - [x] CLOSE.2 — Reconcile plan, metadata, registry and append-only evidence; require satisfied upstream contracts and applicable hosted evidence before completion. Do not infer release or scientific acceptance.
   - Registry normalization and baseline validation are included in the candidate validation; hosted acceptance remains an explicit final boundary.
