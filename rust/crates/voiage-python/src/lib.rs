@@ -6,7 +6,7 @@
 #![forbid(unsafe_code)]
 
 use pyo3::create_exception;
-use pyo3::exceptions::PyException;
+use pyo3::exceptions::{PyException, PyValueError};
 use pyo3::prelude::*;
 use pyo3::types::{PyDict, PyModule};
 use serde::Deserialize;
@@ -16,6 +16,7 @@ use sha2::{Digest, Sha256};
 use std::fmt::Write;
 use std::sync::atomic::{AtomicU64, Ordering};
 use std::sync::Mutex;
+use voiage_diagnostics::telemetry::{emit as emit_diagnostic_event, Correlation};
 use voiage_diagnostics::ErrorCategory;
 use voiage_domain::{SampleCube, SampleMatrix, SampleVector};
 use voiage_numerics::{
@@ -54,6 +55,19 @@ static CEAF_TELEMETRY: OperationTelemetry = OperationTelemetry::new();
 static DOMINANCE_TELEMETRY: OperationTelemetry = OperationTelemetry::new();
 const DIGEST_ALGORITHM: &str = "rfc8785-sha256-v1";
 const BUILD_ID_ALGORITHM: &str = env!("VOIAGE_BUILD_ID_ALGORITHM");
+
+/// Emit one host-owned diagnostic event without installing a global subscriber.
+#[pyfunction]
+fn emit_diagnostic(run_id: &str, analysis_id: &str, message: &str) -> PyResult<()> {
+    if run_id.is_empty() || analysis_id.is_empty() || message.is_empty() {
+        return Err(PyValueError::new_err(
+            "run_id, analysis_id and message must be non-empty",
+        ));
+    }
+    let correlation = Correlation::new(run_id, analysis_id);
+    emit_diagnostic_event(&correlation, message);
+    Ok(())
+}
 
 #[derive(Debug)]
 struct BuildMetadata {
@@ -1617,6 +1631,7 @@ fn _core(module: &Bound<'_, PyModule>) -> PyResult<()> {
         module.py().get_type::<SerializationError>(),
     )?;
     module.add_function(wrap_pyfunction!(runtime_info, module)?)?;
+    module.add_function(wrap_pyfunction!(emit_diagnostic, module)?)?;
     module.add_function(wrap_pyfunction!(compute_evpi, module)?)?;
     module.add_function(wrap_pyfunction!(compute_enbs, module)?)?;
     module.add_function(wrap_pyfunction!(compute_coss, module)?)?;

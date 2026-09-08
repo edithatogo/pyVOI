@@ -36,7 +36,7 @@ Status: complete.
 
 ## Phase 5: Numerics
 
-Status: complete.
+Status: pending.
 
 - [ ] T5.1 — Freeze exact input hashes, at most five implementation paths, expected red/green result and command for AC5; split if scope exceeds one behavioral change.
 - [ ] T5.2 — Compare logging disabled/enabled for a deterministic reference kernel and benchmark the boundary. (AC5).
@@ -44,5 +44,5 @@ Status: complete.
 
 ## Final acceptance
 
-- [x] CLOSE.1 — Review every AC, run final required local/native gates and record exact source/environment evidence; reuse only eligible unchanged evidence.
-- [x] CLOSE.2 — Reconcile plan, metadata, registry and append-only evidence; require satisfied upstream contracts and applicable hosted evidence before completion. Do not infer release or scientific acceptance.
+- [ ] CLOSE.1 — Review every AC, run final required local/native gates and record exact source/environment evidence; reuse only eligible unchanged evidence.
+- [ ] CLOSE.2 — Reconcile plan, metadata, registry and append-only evidence; require satisfied upstream contracts and applicable hosted evidence before completion. Do not infer release or scientific acceptance.
