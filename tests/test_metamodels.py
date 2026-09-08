@@ -368,8 +368,15 @@ def test_tinygp_protocol() -> None:
     class InvalidGP:
         pass
 
+    class InvalidGP2:
+        def not_condition(
+            self, y: np.ndarray, x: np.ndarray
+        ) -> tuple[object, _TinyGPConditionProtocol]:
+            pass
+
     assert isinstance(ValidGP(), _TinyGPProtocol)
     assert not isinstance(InvalidGP(), _TinyGPProtocol)
+    assert not isinstance(InvalidGP2(), _TinyGPProtocol)
 
 
 def test_safe_r2_score_normal():
@@ -439,6 +446,21 @@ def test_safe_rmse() -> None:
     y_empty = np.array([])
     with pytest.raises(ValueError, match="Cannot compute RMSE for empty targets."):
         _safe_rmse(y_empty, y_empty)
+
+
+def test_as_numpy() -> None:
+    """Test the _as_numpy helper function."""
+    from voiage.metamodels import _as_numpy
+
+    # Test with standard numpy array
+    np_arr = np.array([1, 2, 3])
+    assert _as_numpy(np_arr) is np_arr
+
+    # Test with object that has a values attribute
+    class MockDataArray:
+        values = np.array([4, 5, 6])
+
+    np.testing.assert_array_equal(_as_numpy(MockDataArray()), np.array([4, 5, 6]))
 
 
 if __name__ == "__main__":
