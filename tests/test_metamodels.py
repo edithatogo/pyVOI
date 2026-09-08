@@ -108,6 +108,25 @@ def test_linear_metamodel(sample_data) -> None:
     assert rmse >= 0
 
 
+def test_metamodel_protocol_score(sample_data) -> None:
+    """Test the score method in Metamodel protocol implementations."""
+    if not SKLEARN_AVAILABLE:
+        pytest.skip("sklearn not available")
+
+    x, y = sample_data
+
+    # We test on RandomForestMetamodel as a concrete implementation
+    model = RandomForestMetamodel()
+    model.fit(x, y)
+
+    # Check that score exists and returns a float
+    score = model.score(x, y)
+    assert isinstance(score, float)
+
+    # The score should be R^2, so it should be bounded above by 1.0
+    assert score <= 1.0
+
+
 def test_random_forest_metamodel(sample_data) -> None:
     """Test the RandomForestMetamodel."""
     # Skip if sklearn is not available
