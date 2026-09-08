@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+from importlib.metadata import version
 import importlib.util
 import json
 from pathlib import Path
@@ -53,6 +54,33 @@ def test_load_handoff_binds_receipt_and_csv(tmp_path: Path) -> None:
     matrix, record = handoff.load_handoff(receipt, digest)
     np.testing.assert_array_equal(matrix, [[0, 10], [10, 0]])
     assert record["draws"] == 2
+
+
+def test_ac5_writes_redacted_synthetic_replay_packet(tmp_path: Path) -> None:
+    """Replay synthetic export bytes and retain only bounded validation metadata."""
+    receipt, receipt_sha256 = _packet(tmp_path)
+    matrix, record = handoff.load_handoff(receipt, receipt_sha256)
+    result = float(np.max(matrix, axis=1).mean() - np.max(matrix.mean(axis=0)))
+    csv_path = tmp_path / "hpv_vaccination_net_benefit.csv"
+    packet = {
+        "schema_version": "1.0.0",
+        "data_policy": "synthetic-only; local validation packet",
+        "voiage_version": version("voiage"),
+        "source_revision": record["source_revision"],
+        "export_receipt_sha256": receipt_sha256,
+        "net_benefit_csv_sha256": hashlib.sha256(csv_path.read_bytes()).hexdigest(),
+        "expected_voi": result,
+        "limitations": ["two synthetic draws", "no hosted publication or release"],
+    }
+    output = tmp_path / "redacted-validation-packet.json"
+    output.write_text(json.dumps(packet, sort_keys=True), encoding="utf-8")
+    retained = json.loads(output.read_text(encoding="utf-8"))
+    assert retained["data_policy"].startswith("synthetic-only")
+    assert retained["expected_voi"] == 5.0
+    assert retained["net_benefit_csv_sha256"] == hashlib.sha256(
+        csv_path.read_bytes()
+    ).hexdigest()
+    assert "standard_care" not in output.read_text(encoding="utf-8")
 
 
 def test_retained_replay_preserves_history_and_binds_both_environments() -> None:

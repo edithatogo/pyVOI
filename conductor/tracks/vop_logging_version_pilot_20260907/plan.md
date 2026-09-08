@@ -28,9 +28,9 @@ The implementation is present in merged PR #1120 (`348db4d3e51a82b6fc6a252ef4bda
 
 ## Phase 5: Replay
 
-- [ ] T5.1 — Freeze exact input hashes, at most five implementation paths, expected red/green result and command for AC5; split if scope exceeds one behavioral change.
-- [ ] T5.2 — Reproduce the complete export-to-result workflow and publish a local redacted validation packet. (AC5).
-- [ ] T5.3 — Validate: Packet records hashes, versions, expected results and limitations; synthetic data are labelled and no hosted publication is implied. Record source, environment, command, exit status, test count and artifact digest; review diff and stop on unresolved failure (AC5).
+- [x] T5.1 — Freeze exact input hashes, at most five implementation paths, expected red/green result and command for AC5; split if scope exceeds one behavioral change.
+- [x] T5.2 — Reproduce the complete export-to-result workflow and publish a local redacted validation packet. (AC5).
+- [x] T5.3 — Validate: Packet records hashes, versions, expected results and limitations; synthetic data are labelled and no hosted publication is implied. Record source, environment, command, exit status, test count and artifact digest; review diff and stop on unresolved failure (AC5).
 
 ## Final acceptance
 
