@@ -21,12 +21,110 @@
     ]
   },
   "packages": [
-    {"package": "voiage-diagnostics", "manifest": "rust/crates/voiage-diagnostics/Cargo.toml", "rust_version": "1.85", "features": ["otel"], "lanes": ["default", "no-default-features", "feature:otel", "all-features"]},
-    {"package": "voiage-domain", "manifest": "rust/crates/voiage-domain/Cargo.toml", "rust_version": "1.85", "features": [], "lanes": ["default", "no-default-features", "all-features"]},
-    {"package": "voiage-ffi", "manifest": "rust/crates/voiage-ffi/Cargo.toml", "rust_version": "1.85", "features": [], "lanes": ["default", "no-default-features", "all-features"]},
-    {"package": "voiage-numerics", "manifest": "rust/crates/voiage-numerics/Cargo.toml", "rust_version": "1.85", "features": [], "lanes": ["default", "no-default-features", "all-features"]},
-    {"package": "voiage-python", "manifest": "rust/crates/voiage-python/Cargo.toml", "rust_version": "1.85", "features": [], "lanes": ["default", "no-default-features", "all-features"]},
-    {"package": "voiage-serialization", "manifest": "rust/crates/voiage-serialization/Cargo.toml", "rust_version": "1.85", "features": [], "lanes": ["default", "no-default-features", "all-features"]},
-    {"package": "voiage-test-support", "manifest": "rust/crates/voiage-test-support/Cargo.toml", "rust_version": "1.85", "features": [], "lanes": ["default", "no-default-features", "all-features"]}
-  ]
+    {
+      "package": "voiage-diagnostics",
+      "manifest": "rust/crates/voiage-diagnostics/Cargo.toml",
+      "rust_version": "1.85",
+      "features": [
+        "otel"
+      ],
+      "lanes": [
+        "default",
+        "no-default-features",
+        "feature:otel",
+        "all-features"
+      ]
+    },
+    {
+      "package": "voiage-domain",
+      "manifest": "rust/crates/voiage-domain/Cargo.toml",
+      "rust_version": "1.85",
+      "features": [],
+      "lanes": [
+        "default",
+        "no-default-features",
+        "all-features"
+      ]
+    },
+    {
+      "package": "voiage-ffi",
+      "manifest": "rust/crates/voiage-ffi/Cargo.toml",
+      "rust_version": "1.85",
+      "features": [],
+      "lanes": [
+        "default",
+        "no-default-features",
+        "all-features"
+      ]
+    },
+    {
+      "package": "voiage-numerics",
+      "manifest": "rust/crates/voiage-numerics/Cargo.toml",
+      "rust_version": "1.85",
+      "features": [],
+      "lanes": [
+        "default",
+        "no-default-features",
+        "all-features"
+      ]
+    },
+    {
+      "package": "voiage-python",
+      "manifest": "rust/crates/voiage-python/Cargo.toml",
+      "rust_version": "1.85",
+      "features": [],
+      "lanes": [
+        "default",
+        "no-default-features",
+        "all-features"
+      ]
+    },
+    {
+      "package": "voiage-serialization",
+      "manifest": "rust/crates/voiage-serialization/Cargo.toml",
+      "rust_version": "1.85",
+      "features": [],
+      "lanes": [
+        "default",
+        "no-default-features",
+        "all-features"
+      ]
+    },
+    {
+      "package": "voiage-test-support",
+      "manifest": "rust/crates/voiage-test-support/Cargo.toml",
+      "rust_version": "1.85",
+      "features": [],
+      "lanes": [
+        "default",
+        "no-default-features",
+        "all-features"
+      ]
+    }
+  ],
+  "implementation_file_allowlist": [
+    "conductor/tracks/agent_safe_engineering_20260907/dependency-feature-matrix.json",
+    "conductor/tracks/agent_safe_engineering_20260907/plan.md",
+    "conductor/tracks/agent_safe_engineering_20260907/evidence.jsonl"
+  ],
+  "baseline_input_hashes": {
+    "rust/Cargo.toml": "91c0037f1361b837afc5c45c1e1d6edec1f51b094ee2739cc963895e930c7c36",
+    "rust/Cargo.lock": "2d2f3a566a8647c19e1b0d63c393dd4897931f312cacf2e8ff473c1addf8d40e",
+    "rust/deny.toml": "0d659ff56d13c4806cbbd39bf09d93d10f283a49e93866567a6c0359d40a8f73",
+    ".github/workflows/rust-security.yml": "d1ff670458787e955c2b0ee97fd52cf69005d05faabdb55b4666c0448fc23888",
+    ".github/workflows/dependency-preview.yml": "39ad79ec9024aa5bce0111340b2e5b2ddce974ea87f506d9836df51f4a079193",
+    "tests/test_dependency_promotion_policy.py": "e13357f7f5e346831fe81d8121c00bc0279dc7ecd1d080ffbd2bf8697cdd298f",
+    "scripts/rust_feature_matrix.py": "2109bc6f89b3cbe231409e2a3a39b94480fefa62cf37e92d065b9ac783210c83"
+  },
+  "acceptance_witness": {
+    "command": "uv run pytest tests/test_dependency_promotion_policy.py tests/test_dependency_frontier_script.py -q",
+    "expected_red": "A candidate feature or dependency change without a locked lane, CPU fallback, or MSRV evidence is rejected before promotion.",
+    "expected_green": "The current policy and frontier contracts pass without changing the minimal dependency graph."
+  },
+  "toolchain": {
+    "python": "3.14.6",
+    "rustc": "1.98.0",
+    "cargo": "1.98.0",
+    "workspace_msrv": "1.85"
+  }
 }
