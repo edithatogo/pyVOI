@@ -7,10 +7,12 @@ import subprocess
 import sys
 from unittest.mock import Mock
 
+import numpy as np
 from pydantic import ValidationError
 import pytest
 
 from voiage.logging import validate_vop_pilot_contract
+from voiage.methods.basic import evpi
 from voiage.versioning import VersionSyncError
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -77,6 +79,34 @@ def test_two_provider_apis_produce_the_same_semantic_voi_result() -> None:
         == MatrixProvider().evaluate(matrix, threshold=50_000.0)
         == 5.0
     )
+
+
+def test_ac4_replacement_providers_share_only_the_semantic_contract() -> None:
+    """Different provider APIs agree on one canonical VOI result."""
+    pilot = json.loads(PILOT.read_text())
+    assert pilot["provider_policy"].startswith("semantic contract only")
+    assert pilot["unit"] == "nzd_per_qaly"
+    assert pilot["weight_field"] == "population_weight"
+    semantic_input = {
+        "standard_care": (0.0, 10.0),
+        "hpv_vaccination": (10.0, 0.0),
+    }
+
+    class RecordProvider:
+        def value_of_information(self, records: dict[str, tuple[float, ...]]) -> float:
+            if set(records) != {"standard_care", "hpv_vaccination"}:
+                raise ValueError("semantic action contract mismatch")
+            return evpi(np.asarray(tuple(zip(*records.values(), strict=True))))
+
+    class ArrayProvider:
+        def calculate(self, matrix: tuple[tuple[float, float], ...]) -> float:
+            return evpi(np.asarray(matrix))
+
+    matrix = tuple(zip(*semantic_input.values(), strict=True))
+    assert RecordProvider().value_of_information(semantic_input) == 5.0
+    assert ArrayProvider().calculate(matrix) == 5.0
+    with pytest.raises(ValueError, match="semantic action contract mismatch"):
+        RecordProvider().value_of_information({"wrong_action": (0.0, 1.0)})
 
 
 @pytest.mark.parametrize(

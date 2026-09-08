@@ -22,9 +22,9 @@ The implementation is present in merged PR #1120 (`348db4d3e51a82b6fc6a252ef4bda
 
 ## Phase 4: Replacement
 
-- [ ] T4.1 — Freeze exact input hashes, at most five implementation paths, expected red/green result and command for AC4; split if scope exceeds one behavioral change.
-- [ ] T4.2 — Test two small providers with deliberately different APIs against the same semantic input contract. (AC4).
-- [ ] T4.3 — Validate: Both yield the expected VOI result without requiring third-party API/ABI equivalence. Record source, environment, command, exit status, test count and artifact digest; review diff and stop on unresolved failure (AC4).
+- [x] T4.1 — Freeze exact input hashes, at most five implementation paths, expected red/green result and command for AC4; split if scope exceeds one behavioral change.
+- [x] T4.2 — Test two small providers with deliberately different APIs against the same semantic input contract. (AC4).
+- [x] T4.3 — Validate: Both yield the expected VOI result without requiring third-party API/ABI equivalence. Record source, environment, command, exit status, test count and artifact digest; review diff and stop on unresolved failure (AC4).
 
 ## Phase 5: Replay
 
