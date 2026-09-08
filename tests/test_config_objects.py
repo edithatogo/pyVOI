@@ -62,21 +62,9 @@ def test_voi_analysis_config() -> None:
     assert config.n_regression_samples == 5000
     assert config.n_simulations == 2000
 
-    # Test to_dict method
-    config_dict = config.to_dict()
-    assert isinstance(config_dict, dict)
-    assert config_dict["population"] == 100000
-    assert config_dict["time_horizon"] == 10
-    assert config_dict["discount_rate"] == 0.03
-    assert config_dict["chunk_size"] == 1000
-    assert config_dict["use_jit"] is True
-    assert config_dict["backend"] == "jax"
-    assert config_dict["enable_caching"] is True
-    assert config_dict["streaming_window_size"] == 5000
-    assert config_dict["n_regression_samples"] == 5000
-    assert config_dict["regression_model"] is None
-    assert config_dict["n_simulations"] == 2000
 
+def test_voi_analysis_config_to_dict() -> None:
+    """Test VOIAnalysisConfig.to_dict."""
     # Test to_dict method on default config
     default_config = VOIAnalysisConfig()
     default_dict = default_config.to_dict()
@@ -91,6 +79,36 @@ def test_voi_analysis_config() -> None:
     assert default_dict["n_regression_samples"] is None
     assert default_dict["regression_model"] is None
     assert default_dict["n_simulations"] == 1000
+
+    # Test to_dict method with custom config including mock object for regression_model
+    mock_model = "test_regression_model"
+    config = VOIAnalysisConfig(
+        population=100000,
+        time_horizon=10,
+        discount_rate=0.03,
+        chunk_size=1000,
+        use_jit=True,
+        backend="jax",
+        enable_caching=True,
+        streaming_window_size=5000,
+        n_regression_samples=5000,
+        n_simulations=2000,
+        regression_model=mock_model,
+    )
+
+    config_dict = config.to_dict()
+    assert isinstance(config_dict, dict)
+    assert config_dict["population"] == 100000
+    assert config_dict["time_horizon"] == 10
+    assert config_dict["discount_rate"] == 0.03
+    assert config_dict["chunk_size"] == 1000
+    assert config_dict["use_jit"] is True
+    assert config_dict["backend"] == "jax"
+    assert config_dict["enable_caching"] is True
+    assert config_dict["streaming_window_size"] == 5000
+    assert config_dict["n_regression_samples"] == 5000
+    assert config_dict["regression_model"] == mock_model
+    assert config_dict["n_simulations"] == 2000
 
 
 def test_streaming_config() -> None:
@@ -485,6 +503,7 @@ def test_create_streaming_config() -> None:
 if __name__ == "__main__":
     test_create_default_config()
     test_voi_analysis_config()
+    test_voi_analysis_config_to_dict()
     test_streaming_config()
     test_metamodel_config()
     test_optimization_config()
