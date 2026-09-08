@@ -494,6 +494,7 @@ if __name__ == "__main__":
     test_parallel_config()
     test_create_healthcare_config()
     test_create_parallel_config()
+    test_create_financial_config()
     test_factory_functions()
     test_create_optimization_config()
     test_create_streaming_config()
