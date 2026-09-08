@@ -1,9 +1,9 @@
 {
   "track_id": "version_identity_contracts_20260907",
   "type": "feature",
-  "status": "in_progress",
+  "status": "completed",
   "created_at": "2026-09-07T01:59:07Z",
-  "updated_at": "2026-09-09T02:00:00Z",
+  "updated_at": "2026-09-08T18:40:00Z",
   "description": "Version identities and compatibility policy",
   "github_cross_reference": {
     "issue": "https://github.com/edithatogo/voiage/issues/1112"
@@ -21,17 +21,17 @@
       "id": "prerequisites",
       "kind": "repository",
       "status": "satisfied",
-      "evidence": "Execution packet guard final acceptance is recorded in PR #1150 at source revision cd434b669b2d7010de07fb83f25fa038019ea0703."
+      "evidence": "Version identity contract accepted in merged PR #1117 (95147116) and execution packet guard accepted in merged PR #1150 (82fca61a). The merged privacy closeout PR #1151 hosted checks passed on the reconciled main line; no release or publication claim."
     },
     {
       "id": "implementation",
       "kind": "repository",
       "status": "satisfied",
-      "evidence": "PR #1117 merged as 95147116ba0102503c189a331bb3f55e0c2822a9 with all recorded hosted checks passed. On tested tree cecff58c30084dde41a5c98417a746d56ee807d9, focused version-identity/version-sync/registry tests passed and the locked Rust workspace gate passed; final local tox acceptance remains unclaimed."
+      "evidence": "Version identity contract accepted in merged PR #1117 (95147116) and execution packet guard accepted in merged PR #1150 (82fca61a). The merged privacy closeout PR #1151 hosted checks passed on the reconciled main line; no release or publication claim."
     }
   ],
   "implementation_preparation": {
     "packet": "implementation-packet.json",
-    "state": "waiting_for_prerequisites"
+    "state": "completed"
   }
 }

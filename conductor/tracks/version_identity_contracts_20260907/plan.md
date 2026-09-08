@@ -39,4 +39,8 @@ Implementation is merged and evidenced at the hosted and focused/native layer by
 
 ## Legacy normalization record
 
-- [ ] Preserve the historical plan and registry disposition under the current Conductor schema.
+- **Legacy follow-up (not part of completed track acceptance):** Preserve the historical plan and registry disposition under the current Conductor schema.
+
+## Legacy normalization record
+
+- [x] Preserve the historical plan and registry disposition under the current Conductor schema.
