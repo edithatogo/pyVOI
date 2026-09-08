@@ -1,6 +1,6 @@
 # Implementation handoff: Execution packet readiness and drift controls
 
-Prepared; current eligibility: **ready_for_preflight**.
+Implementation merged; current eligibility: **pending_final_acceptance**.
 
 1. Read spec.md, plan.md, implementation-packet.json and the shared orchestration.
 2. Use a clean, isolated worktree from the accepted planning commit. Compare the
@@ -8,7 +8,7 @@ Prepared; current eligibility: **ready_for_preflight**.
 3. Confirm prerequisite tracks have source-bound acceptance evidence. Reading a
    packet or a green schema check does not satisfy a prerequisite.
 4. Run existing baseline checks: `python -m pytest tests/test_repo_harness.py -q`.
-5. Start T1.1. Reserved paths include proposed new files; do not claim they exist.
+5. T1.1–T5.3 are complete in merged PRs #1109 and #1129; do not reimplement them.
    Author the specified acceptance tests before implementing behavior.
 6. Use `python -m pytest tests/test_execution_packets.py tests/test_repo_harness.py -q` for focused verification. Run native checks for Rust changes and
    the final local gate required by AGENTS.md. Record actual commands/results.

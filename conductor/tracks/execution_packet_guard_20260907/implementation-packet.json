@@ -133,5 +133,5 @@
   ],
   "rollback": "Revert only owned commit through reviewed PR; preserve artifacts and old versions.",
   "completion": "All phase ACs, final local/native checks, reviewed diff and required hosted source-bound evidence; external release not included.",
-  "hash_review": "Refreshed after reviewed preparation changes to parent packet; implementation not started."
+  "hash_review": "Implementation delivered by merged PRs 1109 and 1129; track closeout evidence is being reconciled while preserving harness readiness semantics."
 }
