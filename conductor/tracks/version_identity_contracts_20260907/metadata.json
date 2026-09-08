@@ -20,8 +20,8 @@
     {
       "id": "prerequisites",
       "kind": "repository",
-      "status": "pending",
-      "evidence": "Execution packet guard implementation is merged in PR #1141, but its final local acceptance CLOSE.1/CLOSE.2 remains pending; this track remains fail-closed until that source-bound prerequisite is accepted."
+      "status": "satisfied",
+      "evidence": "Execution packet guard final acceptance is recorded in PR #1150 at source revision cd434b669b2d7010de07fb83f25fa038019ea0703."
     },
     {
       "id": "implementation",

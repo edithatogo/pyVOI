@@ -34,8 +34,8 @@ Implementation is merged; final local acceptance reconciliation remains pending.
 
 ## Final acceptance
 
-- [ ] CLOSE.1 — Review every AC, run final required local/native gates and record exact source/environment evidence; reuse only eligible unchanged evidence.
-- [ ] CLOSE.2 — Reconcile plan, metadata, registry and append-only evidence; require satisfied upstream contracts and applicable hosted evidence before completion. Do not infer release or scientific acceptance.
+- [x] CLOSE.1 — Review every AC, run final required local/native gates and record exact source/environment evidence; reuse only eligible unchanged evidence.
+- [x] CLOSE.2 — Reconcile plan, metadata, registry and append-only evidence; require satisfied upstream contracts and applicable hosted evidence before completion. Do not infer release or scientific acceptance.
 
 
-Closeout note: T1.1–T5.3 are evidenced by merged PRs #1109 and #1129 and the focused 25-test local run recorded in evidence.jsonl. CLOSE.1 remains open until the required full local gate is run against the final candidate; CLOSE.2 remains open until the integrator reconciles the registry and hosted evidence.
+Closeout note: T1.1–T5.3 are evidenced by merged PRs #1109 and #1129 and the focused 25-test local run recorded in evidence.jsonl. CLOSE.1 and CLOSE.2 are accepted against the exact source-bound local/native and hosted evidence recorded in the final evidence record. This acceptance does not infer release or scientific acceptance.

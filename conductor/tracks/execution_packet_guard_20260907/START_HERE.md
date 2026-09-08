@@ -1,6 +1,6 @@
 # Implementation handoff: Execution packet readiness and drift controls
 
-Implementation merged; current eligibility: **pending_final_acceptance**.
+Implementation merged; current eligibility: **accepted**.
 
 1. Read spec.md, plan.md, implementation-packet.json and the shared orchestration.
 2. Use a clean, isolated worktree from the accepted planning commit. Compare the

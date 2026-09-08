@@ -145,7 +145,7 @@ def test_roadmap_and_backlog_distinguish_archived_v1_from_current_queue() -> Non
     assert current_metadata[current_track_id]["status"] == "in_progress"
     current_todo = todo.split("## To Do\n", maxsplit=1)[1].split("\n## ", maxsplit=1)[0]
     for track_id, metadata in current_metadata.items():
-        assert metadata["status"] in {"new", "in_progress"}
+        assert metadata["status"] in {"new", "in_progress", "completed"}
         assert metadata["status"] == registered_current[track_id].expected_status
         current_link = f"./tracks/{track_id}/index.md"
         assert f"]({current_link})" in registry

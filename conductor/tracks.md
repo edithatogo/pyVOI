@@ -1069,7 +1069,7 @@ track at the top of this registry; completed repository slices stay closed.
   *Link: [./tracks/agent_safe_engineering_20260907/index.md](./tracks/agent_safe_engineering_20260907/index.md)*
 
 ---
-- [~] **Track: Execution packet readiness and drift controls**
+- [x] **Track: Execution packet readiness and drift controls**
   *Link: [./tracks/execution_packet_guard_20260907/index.md](./tracks/execution_packet_guard_20260907/index.md)*
 
 ---
