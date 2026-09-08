@@ -10,6 +10,7 @@ from voiage.logging import validate_vop_pilot_contract
 ROOT = Path(__file__).resolve().parents[1]
 PILOT = ROOT / "specs/integration/vop-voiage/pilot-logging-version.json"
 UPSTREAM = ROOT / "specs/integration/vop-voiage/bundles/UPSTREAM.json"
+BUNDLE_MANIFEST = ROOT / "specs/integration/vop-voiage/bundles/1.0.0/manifest.json"
 
 
 def test_pilot_reuses_pinned_upstream_and_semantic_identities() -> None:
@@ -19,6 +20,20 @@ def test_pilot_reuses_pinned_upstream_and_semantic_identities() -> None:
     assert pilot["source_bundle"] == str(UPSTREAM.relative_to(ROOT))
     assert set(pilot["identity"]) == {"algorithm_id", "rng_id", "input_schema_id"}
     assert pilot["data_policy"].startswith("synthetic-only")
+
+
+def test_pilot_binds_the_exact_bundle_and_provider_neutral_policy() -> None:
+    """Pin the installed pilot to the reviewed bundle bytes and policy."""
+    pilot = json.loads(PILOT.read_text())
+    upstream = json.loads(UPSTREAM.read_text())
+    manifest = json.loads(BUNDLE_MANIFEST.read_text())
+    assert manifest["bundle_sha256"] == upstream["bundle_sha256"]
+    assert manifest["bundle_version"] == upstream["bundle_version"]
+    assert manifest["source_repository"] == upstream["canonical_repository"]
+    assert manifest["source_path"] == upstream["canonical_path"]
+    assert pilot["provider_policy"] == (
+        "semantic contract only; provider APIs are not interchangeable"
+    )
 
 
 @pytest.mark.parametrize(

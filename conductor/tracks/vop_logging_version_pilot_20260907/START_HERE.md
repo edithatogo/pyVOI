@@ -1,6 +1,6 @@
 # Implementation handoff: VOP-to-VOI version and logging pilot
 
-Implementation exists in merged PR #1120 at commit `348db4d3e51a82b6fc6a252ef4bdabdf99db8564`; current eligibility: **waiting_for_prerequisites**.
+Implementation exists in merged PR #1120 at commit `348db4d3e51a82b6fc6a252ef4bdabdf99db8564`; current eligibility: **accepted for final gate reconciliation**.
 
 1. Read spec.md, plan.md, implementation-packet.json and the shared orchestration.
 2. Use a clean, isolated worktree from the accepted planning commit. Compare the

@@ -1,6 +1,6 @@
 # Track: VOP-to-VOI version and logging pilot
 
-Status: ready for preflight; prerequisite accepted, implementation unstarted.
+Status: implementation and focused acceptance are complete; final local/native gate reconciliation is pending.
 
 GitHub issue: https://github.com/edithatogo/voiage/issues/1115
 
