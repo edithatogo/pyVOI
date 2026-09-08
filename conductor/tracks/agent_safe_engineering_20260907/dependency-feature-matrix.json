@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "track": "G02",
+  "source_revision": "a998172cfda0dbe1034d7537c4619166ae759b1b",
+  "workspace_rust_version": "1.85",
+  "resolution": "rust/Cargo.lock",
+  "qualification_policy": {
+    "minimal_lane": "no-default-features",
+    "optional_lane": "feature:otel",
+    "promotion_requires": [
+      "cargo check --locked for every declared lane",
+      "MSRV compatibility on rust-version 1.85",
+      "CPU-only minimal build remains usable",
+      "cargo deny policy remains fail-closed for unknown registries and git sources",
+      "optional exporters are never required by the default feature set"
+    ],
+    "unsupported_combinations": [
+      "feature:otel on packages without the otel feature",
+      "unlocked dependency resolution",
+      "non-CPU backend promotion without a separate qualification receipt"
+    ]
+  },
+  "packages": [
+    {"package": "voiage-diagnostics", "manifest": "rust/crates/voiage-diagnostics/Cargo.toml", "rust_version": "1.85", "features": ["otel"], "lanes": ["default", "no-default-features", "feature:otel", "all-features"]},
+    {"package": "voiage-domain", "manifest": "rust/crates/voiage-domain/Cargo.toml", "rust_version": "1.85", "features": [], "lanes": ["default", "no-default-features", "all-features"]},
+    {"package": "voiage-ffi", "manifest": "rust/crates/voiage-ffi/Cargo.toml", "rust_version": "1.85", "features": [], "lanes": ["default", "no-default-features", "all-features"]},
+    {"package": "voiage-numerics", "manifest": "rust/crates/voiage-numerics/Cargo.toml", "rust_version": "1.85", "features": [], "lanes": ["default", "no-default-features", "all-features"]},
+    {"package": "voiage-python", "manifest": "rust/crates/voiage-python/Cargo.toml", "rust_version": "1.85", "features": [], "lanes": ["default", "no-default-features", "all-features"]},
+    {"package": "voiage-serialization", "manifest": "rust/crates/voiage-serialization/Cargo.toml", "rust_version": "1.85", "features": [], "lanes": ["default", "no-default-features", "all-features"]},
+    {"package": "voiage-test-support", "manifest": "rust/crates/voiage-test-support/Cargo.toml", "rust_version": "1.85", "features": [], "lanes": ["default", "no-default-features", "all-features"]}
+  ]
+}
