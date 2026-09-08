@@ -37,3 +37,9 @@ def test_capabilities_selects_supported_method_without_evaluation() -> None:
     payload = json.loads(result.stdout)
     assert payload["selected_method"] == "evpi"
     assert payload["dry_run"] is True
+
+
+def test_capabilities_text_reports_selected_method() -> None:
+    result = CliRunner().invoke(cli.app, ["capabilities", "--method", "EVPI"])
+    assert result.exit_code == 0
+    assert "selected method: evpi (available)" in result.stdout

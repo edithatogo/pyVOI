@@ -308,6 +308,8 @@ def capabilities(
     else:
         typer.echo(f"voiage {report['package_version']} ({report['backend']})")
         typer.echo("methods: " + ", ".join(report["methods"]))
+        if "selected_method" in report:
+            typer.echo(f"selected method: {report['selected_method']} (available)")
 
 
 OutputFormat = Literal["text", "json", "csv"]
