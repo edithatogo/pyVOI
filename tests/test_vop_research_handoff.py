@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import hashlib
-from importlib.metadata import version
 import importlib.util
 import json
 from pathlib import Path
@@ -56,20 +55,65 @@ def test_load_handoff_binds_receipt_and_csv(tmp_path: Path) -> None:
     assert record["draws"] == 2
 
 
-def test_ac5_writes_redacted_synthetic_replay_packet(tmp_path: Path) -> None:
-    """Replay synthetic export bytes and retain only bounded validation metadata."""
-    receipt, receipt_sha256 = _packet(tmp_path)
-    matrix, record = handoff.load_handoff(receipt, receipt_sha256)
-    result = float(np.max(matrix, axis=1).mean() - np.max(matrix.mean(axis=0)))
-    csv_path = tmp_path / "hpv_vaccination_net_benefit.csv"
+def test_ac5_writes_redacted_synthetic_replay_packet(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Run the real export/evaluate workflow and retain bounded metadata."""
+    import voiage
+
+    parameter_path = tmp_path / "src/vop_poc_nz/parameters.yaml"
+    parameter_path.parent.mkdir(parents=True)
+    parameter_path.write_text("pinned test fixture", encoding="utf-8")
+    monkeypatch.setattr(
+        handoff, "PARAMETER_SHA256", hashlib.sha256(parameter_path.read_bytes()).hexdigest()
+    )
+    monkeypatch.setattr(handoff.shutil, "which", lambda name: "/usr/bin/git")
+    monkeypatch.setattr(
+        handoff.subprocess,
+        "check_output",
+        lambda *args, **kwargs: handoff.VOP_REVISION
+        if args[0][-1] == "HEAD"
+        else "",
+    )
+    core = types.ModuleType("vop_poc_nz.cea_model_core")
+    analysis = types.ModuleType("vop_poc_nz.pipeline.analysis")
+    monkeypatch.setattr(core, "run_cea", lambda: None, raising=False)
+    monkeypatch.setattr(
+        analysis,
+        "load_parameters",
+        lambda path: {"hpv_vaccination": {}},
+        raising=False,
+    )
+    monkeypatch.setitem(sys.modules, core.__name__, core)
+    monkeypatch.setitem(sys.modules, analysis.__name__, analysis)
+    monkeypatch.setattr(
+        handoff, "generate_draws", lambda *args, **kwargs: np.array([[0, 10], [10, 0]])
+    )
+    export_dir = tmp_path / "export"
+    handoff.export(tmp_path, export_dir, draws=2, seed=7)
+    receipt = export_dir / "export.json"
+    receipt_sha256 = hashlib.sha256(receipt.read_bytes()).hexdigest()
+    monkeypatch.setattr(
+        handoff,
+        "verify_installed_wheel",
+        lambda wheel: {"module_path": str(Path(sys.prefix) / "lib/voiage/__init__.py")},
+    )
+    monkeypatch.setattr(voiage, "__version__", "2.2.0")
+    monkeypatch.setattr(
+        voiage, "__file__", str(Path(sys.prefix) / "lib/voiage/__init__.py")
+    )
+    evaluation = tmp_path / "evaluation.json"
+    handoff.evaluate(receipt, receipt_sha256, evaluation, wheel=tmp_path / "public.whl")
+    evaluated = json.loads(evaluation.read_text())
+    csv_path = export_dir / handoff.CSV_NAME
     packet = {
         "schema_version": "1.0.0",
         "data_policy": "synthetic-only; local validation packet",
-        "voiage_version": version("voiage"),
-        "source_revision": record["source_revision"],
+        "voiage_version": evaluated["voiage_version"],
+        "source_revision": handoff.VOP_REVISION,
         "export_receipt_sha256": receipt_sha256,
         "net_benefit_csv_sha256": hashlib.sha256(csv_path.read_bytes()).hexdigest(),
-        "expected_voi": result,
+        "expected_voi": evaluated["evpi_nzd_per_cohort"],
         "limitations": ["two synthetic draws", "no hosted publication or release"],
     }
     output = tmp_path / "redacted-validation-packet.json"
