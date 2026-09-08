@@ -1,14 +1,13 @@
 # Implementation handoff: VOP-to-VOI version and logging pilot
 
-Implementation exists in merged PR #1120 at commit `348db4d3e51a82b6fc6a252ef4bdabdf99db8564`; current eligibility: **acceptance review pending**.
+Implementation exists in merged PR #1120 at commit `348db4d3e51a82b6fc6a252ef4bdabdf99db8564`; current eligibility: **waiting_for_prerequisites**.
 
 1. Read spec.md, plan.md, implementation-packet.json and the shared orchestration.
 2. Use a clean, isolated worktree from the accepted planning commit. Compare the
    packet input hashes with its current files; changed inputs require review.
-3. Confirm prerequisite tracks have source-bound acceptance evidence. The
-   logging/privacy prerequisite is evidenced by merged PR #1119 at
-   `3e33feafd68d718142b083de12d697e2ec5f42e5`; a packet or green schema check
-   alone does not satisfy a prerequisite.
+3. Confirm the logging/privacy prerequisite has source-bound acceptance evidence.
+   PR #1119 is implementation evidence only; its final acceptance gates remain
+   open, so do not advance this track until that closeout exists.
 4. Run existing baseline checks: `python -m pytest tests/test_consumer_matrix.py tests/test_vop_research_handoff.py -q`.
 5. Review the merged implementation against each AC before any further change.
    Do not duplicate the implementation or claim final completion from the merged

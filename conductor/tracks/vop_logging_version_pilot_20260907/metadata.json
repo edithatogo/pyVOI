@@ -3,7 +3,7 @@
   "type": "feature",
   "status": "new",
   "created_at": "2026-09-07T01:59:07Z",
-  "updated_at": "2026-09-09T00:00:00Z",
+  "updated_at": "2026-09-08T14:55:33Z",
   "description": "VOP-to-VOI version and logging pilot",
   "github_cross_reference": {
     "issue": "https://github.com/edithatogo/voiage/issues/1115"
@@ -20,12 +20,12 @@
     {
       "id": "prerequisites",
       "kind": "repository",
-      "status": "satisfied",
-      "evidence": "Logging/privacy implementation merged in PR #1119 at 3e33feafd68d718142b083de12d697e2ec5f42e5; source-bound prerequisite evidence is recorded in that track."
+      "status": "pending",
+      "evidence": "PR #1119 implementation is merged, but logging/privacy CLOSE.1 and CLOSE.2 remain open; retain this prerequisite pending until source-bound acceptance evidence is recorded."
     }
   ],
   "implementation_preparation": {
     "packet": "implementation-packet.json",
-    "state": "completed"
+    "state": "waiting_for_prerequisites"
   }
 }
