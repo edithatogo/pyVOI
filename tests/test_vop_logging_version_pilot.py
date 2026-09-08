@@ -180,7 +180,8 @@ def test_ac3_consumer_replays_from_installed_artifact_outside_source_tree(
         text=True,
     )
     interpreter = environment / "bin/python"
-    wheel = next(distribution.glob("*.whl"))
+    wheel = next(distribution.glob("*.whl"), None)
+    assert wheel is not None, "wheel build produced no artifact"
     subprocess.run(
         [
             uv,
