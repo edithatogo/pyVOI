@@ -1,15 +1,17 @@
 # Implementation handoff: Logging privacy and bounded delivery
 
-Prepared; current eligibility: **waiting_for_prerequisites**.
+Prepared; current eligibility: **ready_for_closeout**.
 
 1. Read spec.md, plan.md, implementation-packet.json and the shared orchestration.
 2. Use a clean, isolated worktree from the accepted planning commit. Compare the
    packet input hashes with its current files; changed inputs require review.
-3. Confirm prerequisite tracks have source-bound acceptance evidence. Reading a
-   packet or a green schema check does not satisfy a prerequisite.
+3. Confirm prerequisite tracks have source-bound acceptance evidence. The native
+   structured logging prerequisite is accepted in merged PR #1148 (a7fe6304);
+   retain hosted evidence and this PR as the remaining closeout boundary.
 4. Run existing baseline checks: `python -m pytest tests/test_logging_contract.py -q`.
-5. Start T1.1. Reserved paths include proposed new files; do not claim they exist.
-   Author the specified acceptance tests before implementing behavior.
+5. Implementation phases T1–T5 are complete in merged PR #1119. Review the
+   phase evidence and perform closeout reconciliation; do not reopen implementation
+   work unless a focused failure is found.
 6. Use `python -m pytest tests/test_logging_resilience.py tests/test_logging_contract.py -q` for focused verification. Run native checks for Rust changes and
    the final local gate required by AGENTS.md. Record actual commands/results.
 

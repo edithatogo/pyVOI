@@ -1081,7 +1081,7 @@ track at the top of this registry; completed repository slices stay closed.
   *Link: [./tracks/native_structured_logging_20260907/index.md](./tracks/native_structured_logging_20260907/index.md)*
 
 ---
-- [ ] **Track: Logging privacy and bounded delivery**
+- [~] **Track: Logging privacy and bounded delivery**
   *Link: [./tracks/logging_privacy_resilience_20260907/index.md](./tracks/logging_privacy_resilience_20260907/index.md)*
 
 ---

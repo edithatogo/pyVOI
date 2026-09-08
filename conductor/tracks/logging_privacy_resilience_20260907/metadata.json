@@ -1,9 +1,9 @@
 {
   "track_id": "logging_privacy_resilience_20260907",
   "type": "feature",
-  "status": "new",
+  "status": "in_progress",
   "created_at": "2026-09-07T01:59:07Z",
-  "updated_at": "2026-09-08T16:45:00Z",
+  "updated_at": "2026-09-09T06:00:00Z",
   "description": "Logging privacy and bounded delivery",
   "github_cross_reference": {
     "issue": "https://github.com/edithatogo/voiage/issues/1114"
@@ -20,8 +20,8 @@
     {
       "id": "prerequisites",
       "kind": "repository",
-      "status": "pending",
-      "evidence": "PR #1119 implementation is merged, but native structured logging final acceptance and this track CLOSE.1/CLOSE.2 remain open; retain prerequisite pending until source-bound acceptance evidence exists."
+      "status": "satisfied",
+      "evidence": "Native structured logging prerequisite is accepted in merged PR #1148 (a7fe6304); its AC5, CLOSE.1 and CLOSE.2 source-bound evidence records exact current-main tox and Rust gates. Privacy implementation PR #1119 is merged; this closeout candidate records focused validation and reconciliation. Hosted checks for this closeout remain pending."
     }
   ],
   "implementation_preparation": {

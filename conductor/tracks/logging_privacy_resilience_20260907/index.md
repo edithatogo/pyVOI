@@ -1,6 +1,6 @@
 # Track: Logging privacy and bounded delivery
 
-Status: new.
+Status: in progress; implementation and local/native closeout evidence complete, hosted closeout pending.
 
 GitHub issue: https://github.com/edithatogo/voiage/issues/1114
 

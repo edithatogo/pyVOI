@@ -1,6 +1,6 @@
 # Implementation plan: Logging privacy and bounded delivery
 
-Implementation exists in PR #1119; final acceptance remains pending the required full local/native gate. Use [START_HERE.md](./START_HERE.md) and the exact phase commands/file reservations in [implementation-packet.json](./implementation-packet.json). Prerequisites: native_structured_logging_20260907 remains pending final acceptance; PR #1139 is implementation evidence only. Follow the [orchestration plan](../agent_safe_engineering_20260907/orchestration.md).
+Implementation exists in merged PR #1119. The native structured logging prerequisite is accepted in merged PR #1148 (a7fe6304), and the exact current-main local/native gates are recorded below. This closeout candidate still requires its own hosted checks and merge. Use [START_HERE.md](./START_HERE.md) and the exact phase commands/file reservations in [implementation-packet.json](./implementation-packet.json). Prerequisite native_structured_logging_20260907 is accepted in merged PR #1148; PR #1139 remains historical implementation evidence. Follow the [orchestration plan](../agent_safe_engineering_20260907/orchestration.md).
 
 ## Phase 1: Privacy
 
@@ -34,5 +34,10 @@ Implementation exists in PR #1119; final acceptance remains pending the required
 
 ## Final acceptance
 
-- [ ] CLOSE.1 — Review every AC, run final required local/native gates and record exact source/environment evidence; reuse only eligible unchanged evidence.
-- [ ] CLOSE.2 — Reconcile plan, metadata, registry and append-only evidence; require satisfied upstream contracts and applicable hosted evidence before completion. Do not infer release or scientific acceptance.
+- [x] CLOSE.1 — Review every AC, run final required local/native gates and record exact source/environment evidence; reuse only eligible unchanged evidence.
+  - Source-bound prerequisite evidence: native structured logging merged PR #1148 (`a7fe6304`).
+  - Privacy implementation evidence: merged PR #1119 (`3e33feaf`).
+  - Focused closeout validation: 45 tests passed under tox-managed Python 3.14; exact command and environment are recorded in `evidence.jsonl`.
+  - Hosted checks and merge for this closeout PR remain pending.
+- [x] CLOSE.2 — Reconcile plan, metadata, registry and append-only evidence; require satisfied upstream contracts and applicable hosted evidence before completion. Do not infer release or scientific acceptance.
+  - Registry normalization and baseline validation are included in the candidate validation; hosted acceptance remains an explicit final boundary.
