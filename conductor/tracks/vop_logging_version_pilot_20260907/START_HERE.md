@@ -1,6 +1,6 @@
 # Implementation handoff: VOP-to-VOI version and logging pilot
 
-Implementation exists in merged PR #1120 at commit `348db4d3e51a82b6fc6a252ef4bdabdf99db8564`; current eligibility: **accepted for final gate reconciliation**.
+Implementation and all phase acceptance exist in merged PRs #1120, #1153, #1154, #1155, #1156, and #1157; current eligibility: **repository-owned acceptance complete; external release/publication gates excluded**.
 
 1. Read spec.md, plan.md, implementation-packet.json and the shared orchestration.
 2. Use a clean, isolated worktree from the accepted planning commit. Compare the
@@ -12,8 +12,7 @@ Implementation exists in merged PR #1120 at commit `348db4d3e51a82b6fc6a252ef4bd
 5. Review the merged implementation against each AC before any further change.
    Do not duplicate the implementation or claim final completion from the merged
    PR alone; final local/native and track evidence remain required.
-6. Use `python -m pytest tests/test_vop_logging_version_pilot.py tests/test_consumer_matrix.py tests/test_vop_research_handoff.py -q` for focused verification. Run native checks for Rust changes and
-   the final local gate required by AGENTS.md. Record actual commands/results.
+6. Historical focused and final local/native results are recorded in evidence.jsonl against their exact source trees. Re-run gates only for a new runtime candidate; this closeout changes Conductor state only.
 
 Each phase in implementation-packet.json states the behavior, observable result,
 exact test command and ordered task IDs. Shared dependency/workflow files are

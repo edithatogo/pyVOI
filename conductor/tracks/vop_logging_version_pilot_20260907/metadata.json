@@ -20,8 +20,8 @@
     {
       "id": "prerequisites",
       "kind": "repository",
-      "status": "satisfied",
-      "evidence": "Logging privacy and bounded delivery is accepted in merged PR #1152 (25dfcdf4); required hosted checks passed and its candidate-tree full-gate evidence is recorded. The VOP implementation is present in merged PR #1120 and is undergoing final source-bound acceptance."
+    "status": "satisfied",
+    "evidence": "Logging privacy and bounded delivery is accepted in merged PR #1152 (25dfcdf4); VOP repository-owned implementation and phase/final acceptance are reconciled in PR #1158. Release, publication, and scientific acceptance remain external."
     }
   ],
   "implementation_preparation": {

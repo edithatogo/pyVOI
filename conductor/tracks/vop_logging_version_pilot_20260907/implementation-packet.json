@@ -143,5 +143,5 @@
   ],
   "rollback": "Revert only owned commit through reviewed PR; preserve artifacts and old versions.",
   "completion": "All phase ACs, final local/native checks, reviewed diff and required hosted source-bound evidence; external release not included.",
-  "hash_review": "Prerequisite projection reconciled against merged privacy closeout PR #1151 (0de02a3); implementation remains unstarted."
+  "hash_review": "Prerequisite projection and all phase inputs reconciled against merged privacy closeout PR #1152 (25dfcdf4); repository-owned implementation and acceptance are complete, with external release excluded."
 }
