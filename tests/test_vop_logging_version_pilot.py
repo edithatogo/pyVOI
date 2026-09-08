@@ -233,6 +233,7 @@ stream = __import__("io").StringIO()
 handler = logging.StreamHandler(stream)
 handler.setFormatter(JsonFormatter())
 logger = logging.getLogger("voiage")
+logger.setLevel(logging.INFO)
 logger.addHandler(handler)
 with analysis_log_context(AnalysisLogContext(
     run_id=pilot["correlation"]["run_id"],
