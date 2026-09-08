@@ -1,12 +1,13 @@
 # Implementation handoff: Version identities and compatibility policy
 
-Completed in PR #1117; current eligibility: **closed**.
+Implementation exists in PR #1117; current eligibility: **waiting_for_prerequisites**.
 
 1. Read spec.md, plan.md, implementation-packet.json and the shared orchestration.
 2. Use a clean, isolated worktree from the accepted planning commit. Compare the
    packet input hashes with its current files; changed inputs require review.
-3. Confirm prerequisite tracks have source-bound acceptance evidence. Reading a
-   packet or a green schema check does not satisfy a prerequisite.
+3. Confirm the execution-packet guard has source-bound final acceptance evidence.
+   PR #1141 records implementation reconciliation, but CLOSE.1/CLOSE.2 remain
+   open; a packet or green schema check alone does not satisfy this prerequisite.
 4. Run existing baseline checks: `python -m pytest tests/test_version_sync.py -q`.
 5. Start T1.1. Reserved paths include proposed new files; do not claim they exist.
    Author the specified acceptance tests before implementing behavior.

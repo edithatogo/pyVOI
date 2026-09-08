@@ -1,6 +1,6 @@
 # Implementation plan: Version identities and compatibility policy
 
-Implementation completed in PR #1117. Use [START_HERE.md](./START_HERE.md) and the exact phase commands/file reservations in [implementation-packet.json](./implementation-packet.json). Prerequisites: execution_packet_guard_20260907. Follow the [orchestration plan](../agent_safe_engineering_20260907/orchestration.md).
+Implementation exists in PR #1117; final acceptance remains pending the required local/native evidence. Use [START_HERE.md](./START_HERE.md) and the exact phase commands/file reservations in [implementation-packet.json](./implementation-packet.json). Prerequisites: execution_packet_guard_20260907. Follow the [orchestration plan](../agent_safe_engineering_20260907/orchestration.md).
 
 ## Phase 1: Inventory
 
@@ -34,5 +34,5 @@ Implementation completed in PR #1117. Use [START_HERE.md](./START_HERE.md) and t
 
 ## Final acceptance
 
-- [x] CLOSE.1 — Review every AC, run final required local/native gates and record exact source/environment evidence; reuse only eligible unchanged evidence.
-- [x] CLOSE.2 — Reconcile plan, metadata, registry and append-only evidence; require satisfied upstream contracts and applicable hosted evidence before completion. Do not infer release or scientific acceptance.
+- [ ] CLOSE.1 — Review every AC, run final required local/native gates and record exact source/environment evidence; reuse only eligible unchanged evidence.
+- [ ] CLOSE.2 — Reconcile plan, metadata, registry and append-only evidence; require satisfied upstream contracts and applicable hosted evidence before completion. Do not infer release or scientific acceptance.

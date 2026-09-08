@@ -1,9 +1,9 @@
 {
   "track_id": "version_identity_contracts_20260907",
   "type": "feature",
-  "status": "completed",
+  "status": "new",
   "created_at": "2026-09-07T01:59:07Z",
-  "updated_at": "2026-09-09T00:00:00Z",
+  "updated_at": "2026-09-08T15:00:00Z",
   "description": "Version identities and compatibility policy",
   "github_cross_reference": {
     "issue": "https://github.com/edithatogo/voiage/issues/1112"
@@ -20,18 +20,18 @@
     {
       "id": "prerequisites",
       "kind": "repository",
-      "status": "satisfied",
-      "evidence": "Execution packet guard merged in PR #1141 at 9a2b4762; version identity implementation merged in PR #1117 at 95147116; required hosted checks passed."
+      "status": "pending",
+      "evidence": "Execution packet guard implementation is merged in PR #1141, but final local acceptance CLOSE.1/CLOSE.2 remains open; retain prerequisite pending."
     },
     {
       "id": "implementation",
       "kind": "repository",
-      "status": "satisfied",
-      "evidence": "PR #1117 merged at 95147116ba0102503c189a331bb3f55e0c2822a9; focused compatibility, synchronization, wheel identity, and hosted checks passed."
+      "status": "pending",
+      "evidence": "PR #1117 implementation is merged and hosted checks passed; the required final local/native gate receipt is not present in this track."
     }
   ],
   "implementation_preparation": {
     "packet": "implementation-packet.json",
-    "state": "completed"
+    "state": "waiting_for_prerequisites"
   }
 }
