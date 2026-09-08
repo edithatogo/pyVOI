@@ -1,6 +1,6 @@
 # Implementation plan: Logging privacy and bounded delivery
 
-Implementation exists in PR #1119; final acceptance remains pending the required full local/native gate. Use [START_HERE.md](./START_HERE.md) and the exact phase commands/file reservations in [implementation-packet.json](./implementation-packet.json). Prerequisites: native_structured_logging_20260907. Follow the [orchestration plan](../agent_safe_engineering_20260907/orchestration.md).
+Implementation exists in PR #1119; final acceptance remains pending the required full local/native gate. Use [START_HERE.md](./START_HERE.md) and the exact phase commands/file reservations in [implementation-packet.json](./implementation-packet.json). Prerequisites: native_structured_logging_20260907 remains pending final acceptance; PR #1139 is implementation evidence only. Follow the [orchestration plan](../agent_safe_engineering_20260907/orchestration.md).
 
 ## Phase 1: Privacy
 
