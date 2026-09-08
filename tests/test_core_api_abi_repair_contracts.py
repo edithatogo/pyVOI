@@ -225,3 +225,27 @@ def test_public_binding_docs_distinguish_internal_and_unavailable_surfaces() -> 
     assert "Julia 1.12" in reference
     assert "`internal` means" in api
     assert "not exposed by the C ABI, R, or Julia" in api
+
+
+def test_abi_checker_accepts_additive_symbol_with_matching_declaration(
+    tmp_path: Path,
+) -> None:
+    header = tmp_path / "voiage_v1.h"
+    symbols = tmp_path / "symbols.txt"
+    layouts = tmp_path / "layouts.txt"
+    shutil.copyfile(ROOT / "rust/crates/voiage-ffi/include/voiage_v1.h", header)
+    shutil.copyfile(ROOT / "specs/abi/v1/symbols.txt", symbols)
+    shutil.copyfile(ROOT / "specs/abi/v1/layouts.txt", layouts)
+    extra_symbol = "voiage_v1_capability_probe"
+    header.write_text(
+        header.read_text(encoding="utf-8")
+        + f"\nVOIAGE_V1_API int {extra_symbol}(void);\n",
+        encoding="utf-8",
+    )
+    symbols.write_text(
+        symbols.read_text(encoding="utf-8") + f"{extra_symbol}\n",
+        encoding="utf-8",
+    )
+    result = compare(ABI_RELEASE, header, symbols, layouts)
+    assert result["compatible"] is True
+    assert extra_symbol in result["additive_symbols"]
