@@ -1,7 +1,7 @@
 {
   "track_id": "version_identity_contracts_20260907",
   "type": "feature",
-  "status": "new",
+  "status": "in_progress",
   "created_at": "2026-09-07T01:59:07Z",
   "updated_at": "2026-09-09T02:00:00Z",
   "description": "Version identities and compatibility policy",
@@ -27,7 +27,7 @@
       "id": "implementation",
       "kind": "repository",
       "status": "satisfied",
-      "evidence": "PR #1117 merged as 95147116ba0102503c189a331bb3f55e0c2822a9 with all recorded hosted checks passed. Focused version-identity/version-sync/registry tests and the locked Rust workspace gate pass on origin/main; final local tox acceptance is intentionally not claimed from a different revision."
+      "evidence": "PR #1117 merged as 95147116ba0102503c189a331bb3f55e0c2822a9 with all recorded hosted checks passed. On tested tree cecff58c30084dde41a5c98417a746d56ee807d9, focused version-identity/version-sync/registry tests passed and the locked Rust workspace gate passed; final local tox acceptance remains unclaimed."
     }
   ],
   "implementation_preparation": {
