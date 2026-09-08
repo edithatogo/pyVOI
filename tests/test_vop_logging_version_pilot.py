@@ -262,10 +262,14 @@ print(json.dumps({
     result = subprocess.run(
         [str(interpreter), "-I", "-c", probe],
         cwd=consumer_dir,
-        check=True,
+        check=False,
         capture_output=True,
         text=True,
         timeout=120,
+    )
+    assert result.returncode == 0, (
+        "installed consumer probe failed: "
+        f"stdout={result.stdout!r} stderr={result.stderr!r}"
     )
     assert json.loads(result.stdout) == {
         "package_version": "2.2.0",
