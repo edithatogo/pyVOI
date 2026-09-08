@@ -20,7 +20,7 @@ Prerequisites: none; planning preflight is ready.
 Prerequisites: G01. The bounded qualification matrix is frozen in [dependency-feature-matrix.json](./dependency-feature-matrix.json); runtime/dependency promotion remains pending.
 
 - [x] G02.1 — Read the packet inputs; verify the observed gap against HEAD, identify one bounded change and freeze the exact files, baseline hashes, acceptance fixture and toolchain. Record existing behavior and intended failure (G02-AC).
-- [x] G02.2 — Write and run the negative/analytic witness first; implement the frozen slice only after prerequisites and integrator review are recorded. Run `python -m pytest tests/test_dependency_promotion_policy.py tests/test_dependency_frontier_script.py -q` plus affected checks (G02-AC).
+- [ ] G02.2 — Write and run the negative/analytic witness first; implement the frozen slice only after prerequisites and integrator review are recorded. Run `python -m pytest tests/test_dependency_promotion_policy.py tests/test_dependency_frontier_script.py -q` plus affected checks (G02-AC).
 - [ ] G02.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G02-AC).
 
 ## G03: Voiage compatibility and replaceable providers

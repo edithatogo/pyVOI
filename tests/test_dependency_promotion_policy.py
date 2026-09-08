@@ -146,3 +146,22 @@ def test_g02_matrix_rejects_unqualified_feature_promotion() -> None:
     assert len(matrix["baseline_input_hashes"]) >= 7
     assert matrix["acceptance_witness"]["expected_red"]
     assert matrix["toolchain"]["workspace_msrv"] == "1.85"
+
+
+def test_g02_msrv_witness_rejects_incompatible_candidate() -> None:
+    """Model Cargo's fail-closed MSRV decision before promotion."""
+    from packaging.version import Version
+
+    matrix = _json(
+        ROOT
+        / "conductor"
+        / "tracks"
+        / "agent_safe_engineering_20260907"
+        / "dependency-feature-matrix.json"
+    )
+    msrv = Version(matrix["workspace_rust_version"])
+    candidate_required = Version("1.86")
+    assert candidate_required > msrv
+    assert matrix["qualification_policy"]["msrv_rejection"] == (
+        "reject candidate when required rust-version exceeds workspace MSRV"
+    )

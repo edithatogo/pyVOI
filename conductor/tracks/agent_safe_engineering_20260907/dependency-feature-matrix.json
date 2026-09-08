@@ -18,7 +18,8 @@
       "feature:otel on packages without the otel feature",
       "unlocked dependency resolution",
       "non-CPU backend promotion without a separate qualification receipt"
-    ]
+    ],
+    "msrv_rejection": "reject candidate when required rust-version exceeds workspace MSRV"
   },
   "packages": [
     {
@@ -105,7 +106,8 @@
   "implementation_file_allowlist": [
     "conductor/tracks/agent_safe_engineering_20260907/dependency-feature-matrix.json",
     "conductor/tracks/agent_safe_engineering_20260907/plan.md",
-    "conductor/tracks/agent_safe_engineering_20260907/evidence.jsonl"
+    "conductor/tracks/agent_safe_engineering_20260907/evidence.jsonl",
+    "tests/test_dependency_promotion_policy.py"
   ],
   "baseline_input_hashes": {
     "rust/Cargo.toml": "91c0037f1361b837afc5c45c1e1d6edec1f51b094ee2739cc963895e930c7c36",
@@ -113,7 +115,7 @@
     "rust/deny.toml": "0d659ff56d13c4806cbbd39bf09d93d10f283a49e93866567a6c0359d40a8f73",
     ".github/workflows/rust-security.yml": "d1ff670458787e955c2b0ee97fd52cf69005d05faabdb55b4666c0448fc23888",
     ".github/workflows/dependency-preview.yml": "39ad79ec9024aa5bce0111340b2e5b2ddce974ea87f506d9836df51f4a079193",
-    "tests/test_dependency_promotion_policy.py": "e13357f7f5e346831fe81d8121c00bc0279dc7ecd1d080ffbd2bf8697cdd298f",
+    "tests/test_dependency_promotion_policy.py": "120debad7b5f2d5fed9f5ca89113d390d41ee12219d51fde3b31423f226360d4",
     "scripts/rust_feature_matrix.py": "2109bc6f89b3cbe231409e2a3a39b94480fefa62cf37e92d065b9ac783210c83"
   },
   "acceptance_witness": {
