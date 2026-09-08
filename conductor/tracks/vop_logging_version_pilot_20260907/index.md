@@ -1,6 +1,6 @@
 # Track: VOP-to-VOI version and logging pilot
 
-Status: implementation and focused acceptance are complete; final local/native gate reconciliation is pending.
+Status: repository-owned implementation, phase acceptance, and final local/native gate reconciliation are complete; release, publication, and scientific acceptance remain outside this track.
 
 GitHub issue: https://github.com/edithatogo/voiage/issues/1115
 

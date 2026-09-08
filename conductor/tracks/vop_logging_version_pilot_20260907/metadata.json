@@ -1,9 +1,9 @@
 {
   "track_id": "vop_logging_version_pilot_20260907",
   "type": "feature",
-  "status": "in_progress",
+  "status": "completed",
   "created_at": "2026-09-07T01:59:07Z",
-  "updated_at": "2026-09-08T18:42:00Z",
+  "updated_at": "2026-09-08T20:57:14Z",
   "description": "VOP-to-VOI version and logging pilot",
   "github_cross_reference": {
     "issue": "https://github.com/edithatogo/voiage/issues/1115"
@@ -13,7 +13,7 @@
     "logging_privacy_resilience_20260907"
   ],
   "authorization": {
-    "scope": "Detailed track planning; implementation remains pending",
+    "scope": "Repository-owned VOP pilot implementation and acceptance; release, publication, and scientific acceptance remain external",
     "source": "Owner request to create comprehensive granular tracks and sequencing"
   },
   "gates": [

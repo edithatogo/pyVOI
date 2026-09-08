@@ -1085,7 +1085,7 @@ track at the top of this registry; completed repository slices stay closed.
   *Link: [./tracks/logging_privacy_resilience_20260907/index.md](./tracks/logging_privacy_resilience_20260907/index.md)*
 
 ---
-- [~] **Track: VOP-to-VOI version and logging pilot**
+- [x] **Track: VOP-to-VOI version and logging pilot**
   *Link: [./tracks/vop_logging_version_pilot_20260907/index.md](./tracks/vop_logging_version_pilot_20260907/index.md)*
 
 ---
