@@ -52,9 +52,13 @@ def test_two_provider_apis_produce_the_same_semantic_voi_result() -> None:
         return clairvoyant - current
 
     class MatrixProvider:
-        def evaluate(self, matrix: tuple[tuple[float, float], ...], *, threshold: float) -> float:
+        def evaluate(
+            self, matrix: tuple[tuple[float, float], ...], *, threshold: float
+        ) -> float:
             del threshold
-            current = max(sum(row[index] for row in matrix) / len(matrix) for index in range(2))
+            current = max(
+                sum(row[index] for row in matrix) / len(matrix) for index in range(2)
+            )
             clairvoyant = sum(max(row) for row in matrix) / len(matrix)
             return clairvoyant - current
 
@@ -62,9 +66,11 @@ def test_two_provider_apis_produce_the_same_semantic_voi_result() -> None:
         (record["standard_care"], record["hpv_vaccination"])
         for record in semantic_draws
     )
-    assert provider_records(semantic_draws) == MatrixProvider().evaluate(
-        matrix, threshold=50_000.0
-    ) == 5.0
+    assert (
+        provider_records(semantic_draws)
+        == MatrixProvider().evaluate(matrix, threshold=50_000.0)
+        == 5.0
+    )
 
 
 @pytest.mark.parametrize(
