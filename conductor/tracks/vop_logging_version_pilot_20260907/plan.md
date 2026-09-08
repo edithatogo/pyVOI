@@ -16,9 +16,9 @@ The implementation is present in merged PR #1120 (`348db4d3e51a82b6fc6a252ef4bda
 
 ## Phase 3: Consumer
 
-- [ ] T3.1 — Freeze exact input hashes, at most five implementation paths, expected red/green result and command for AC3; split if scope exceeds one behavioral change.
-- [ ] T3.2 — Implement only the missing consumer slice and run it from an installed artifact outside the source tree. (AC3).
-- [ ] T3.3 — Validate: The reference result, version identities and cross-boundary correlation agree on the qualified installed combination. Record source, environment, command, exit status, test count and artifact digest; review diff and stop on unresolved failure (AC3).
+- [x] T3.1 — Freeze exact input hashes, at most five implementation paths, expected red/green result and command for AC3; split if scope exceeds one behavioral change.
+- [x] T3.2 — Implement only the missing consumer slice and run it from an installed artifact outside the source tree. (AC3).
+- [x] T3.3 — Validate: The reference result, version identities and cross-boundary correlation agree on the qualified installed combination. Record source, environment, command, exit status, test count and artifact digest; review diff and stop on unresolved failure (AC3).
 
 ## Phase 4: Replacement
 
