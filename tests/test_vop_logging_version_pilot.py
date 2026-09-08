@@ -4,8 +4,8 @@ import json
 from pathlib import Path
 from unittest.mock import Mock
 
-import pytest
 from pydantic import ValidationError
+import pytest
 
 from voiage.logging import validate_vop_pilot_contract
 from voiage.versioning import VersionSyncError
