@@ -214,13 +214,13 @@ import numpy as np
 import voiage
 from voiage.logging import (
     AnalysisLogContext,
-    JsonFormatter,
+    LoggingSettings,
     TraceContext,
     analysis_log_context,
+    configure_logging,
     validate_vop_pilot_contract,
 )
 from voiage.methods.basic import evpi
-import logging
 
 pilot = json.loads(Path("pilot.json").read_text())
 validate_vop_pilot_contract(pilot)
@@ -229,12 +229,13 @@ assert module_path.is_relative_to(Path(sys.prefix).resolve())
 assert not any(Path(entry or ".").resolve() == Path.cwd() for entry in sys.path)
 reference = evpi(np.asarray(((0.0, 10.0), (10.0, 0.0))))
 assert reference == 5.0
-stream = __import__("io").StringIO()
-handler = logging.StreamHandler(stream)
-handler.setFormatter(JsonFormatter())
-logger = logging.getLogger("voiage")
-logger.setLevel(logging.INFO)
-logger.addHandler(handler)
+log_path = Path("consumer.jsonl")
+logger = configure_logging(LoggingSettings(
+    console=False,
+    json_output=True,
+    level="INFO",
+    log_file=log_path,
+))
 with analysis_log_context(AnalysisLogContext(
     run_id=pilot["correlation"]["run_id"],
     trace=TraceContext(trace_id=pilot["correlation"]["trace_id"]),
@@ -245,9 +246,9 @@ with analysis_log_context(AnalysisLogContext(
     numerical_policy_id="0" * 64,
 )):
     logger.info("consumer replay")
-handler.flush()
-logger.removeHandler(handler)
-logged = json.loads(stream.getvalue())
+for handler in logger.handlers:
+    handler.flush()
+logged = json.loads(log_path.read_text().splitlines()[-1])
 assert logged["run_id"] == pilot["correlation"]["run_id"]
 assert logged["analysis_id"] == pilot["correlation"]["analysis_id"]
 assert logged["trace_id"] == pilot["correlation"]["trace_id"]
