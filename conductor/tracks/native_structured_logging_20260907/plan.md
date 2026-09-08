@@ -1,6 +1,6 @@
 # Implementation plan: Minimal Rust structured logging
 
-Implementation and numerical overhead acceptance are present through merged PR #1145; final closeout remains pending a green current-main full gate. Use [START_HERE.md](./START_HERE.md) and the exact phase commands/file reservations in [implementation-packet.json](./implementation-packet.json). Prerequisites: version_identity_contracts_20260907. Follow the [orchestration plan](../agent_safe_engineering_20260907/orchestration.md).
+Implementation and numerical overhead acceptance are present through merged PR #1145; final closeout gates are now satisfied by exact current-main evidence. Use [START_HERE.md](./START_HERE.md) and the exact phase commands/file reservations in [implementation-packet.json](./implementation-packet.json). Prerequisites: version_identity_contracts_20260907. Follow the [orchestration plan](../agent_safe_engineering_20260907/orchestration.md).
 
 ## Phase 1: Events
 
@@ -36,7 +36,7 @@ Status: complete.
 
 ## Phase 5: Numerics
 
-Status: complete in merged PR #1145; final track closeout remains gated on the current-main full local gate.
+Status: complete in merged PR #1145; exact current-main full local and native gates pass.
 
 - [x] T5.1 — Freeze exact input hashes, at most five implementation paths, expected red/green result and command for AC5; split if scope exceeds one behavioral change.
 - [x] T5.2 — Compare logging disabled/enabled for a deterministic reference kernel and benchmark the boundary. (AC5).
@@ -44,5 +44,5 @@ Status: complete in merged PR #1145; final track closeout remains gated on the c
 
 ## Final acceptance
 
-- [ ] CLOSE.1 — Review every AC, run final required local/native gates and record exact source/environment evidence; reuse only eligible unchanged evidence.
-- [ ] CLOSE.2 — Reconcile plan, metadata, registry and append-only evidence; require satisfied upstream contracts and applicable hosted evidence before completion. Do not infer release or scientific acceptance.
+- [x] CLOSE.1 — Review every AC, run final required local/native gates and record exact source/environment evidence; reuse only eligible unchanged evidence.
+- [x] CLOSE.2 — Reconcile plan, metadata, registry and append-only evidence; require satisfied upstream contracts and applicable hosted evidence before completion. Do not infer release or scientific acceptance.

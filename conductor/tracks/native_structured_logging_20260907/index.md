@@ -1,6 +1,6 @@
 # Track: Minimal Rust structured logging
 
-Status: in progress; implementation and AC5 benchmark are merged, while current-main full-gate acceptance remains pending.
+Status: completed; implementation, AC5 benchmark, full local gate, and Rust workspace acceptance are source-bound below.
 
 GitHub issue: https://github.com/edithatogo/voiage/issues/1113
 
