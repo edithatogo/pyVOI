@@ -170,6 +170,7 @@ def test_ac3_consumer_replays_from_installed_artifact_outside_source_tree(
         check=True,
         capture_output=True,
         text=True,
+        timeout=600,
     )
     environment = tmp_path / "consumer-venv"
     subprocess.run(
@@ -178,8 +179,11 @@ def test_ac3_consumer_replays_from_installed_artifact_outside_source_tree(
         check=True,
         capture_output=True,
         text=True,
+        timeout=600,
     )
-    interpreter = environment / "bin/python"
+    interpreter = environment / (
+        "Scripts/python.exe" if sys.platform == "win32" else "bin/python"
+    )
     wheel = next(distribution.glob("*.whl"), None)
     assert wheel is not None, "wheel build produced no artifact"
     subprocess.run(
@@ -195,6 +199,7 @@ def test_ac3_consumer_replays_from_installed_artifact_outside_source_tree(
         check=True,
         capture_output=True,
         text=True,
+        timeout=600,
     )
     consumer_dir = tmp_path / "consumer"
     consumer_dir.mkdir()
@@ -205,25 +210,53 @@ from importlib.util import find_spec
 from pathlib import Path
 import sys
 
+import numpy as np
 import voiage
-from voiage.logging import validate_vop_pilot_contract
+from voiage.logging import (
+    AnalysisLogContext,
+    JsonFormatter,
+    TraceContext,
+    analysis_log_context,
+    validate_vop_pilot_contract,
+)
+from voiage.methods.basic import evpi
+import logging
 
 pilot = json.loads(Path("pilot.json").read_text())
 validate_vop_pilot_contract(pilot)
 module_path = Path(find_spec("voiage").origin).resolve()
 assert module_path.is_relative_to(Path(sys.prefix).resolve())
 assert not any(Path(entry or ".").resolve() == Path.cwd() for entry in sys.path)
-draws = ((0.0, 10.0), (10.0, 0.0))
-current = max(sum(row[index] for row in draws) / len(draws) for index in range(2))
-clairvoyant = sum(max(row) for row in draws) / len(draws)
-assert clairvoyant - current == 5.0
+reference = evpi(np.asarray(((0.0, 10.0), (10.0, 0.0))))
+assert reference == 5.0
+stream = __import__("io").StringIO()
+handler = logging.StreamHandler(stream)
+handler.setFormatter(JsonFormatter())
+logger = logging.getLogger("voiage")
+logger.addHandler(handler)
+with analysis_log_context(AnalysisLogContext(
+    run_id=pilot["correlation"]["run_id"],
+    trace=TraceContext(trace_id=pilot["correlation"]["trace_id"]),
+    analysis_id=pilot["correlation"]["analysis_id"],
+    backend_requested="python",
+    backend_selected="python",
+    fallback_code="none",
+    numerical_policy_id="0" * 64,
+)):
+    logger.info("consumer replay")
+handler.flush()
+logger.removeHandler(handler)
+logged = json.loads(stream.getvalue())
+assert logged["run_id"] == pilot["correlation"]["run_id"]
+assert logged["analysis_id"] == pilot["correlation"]["analysis_id"]
+assert logged["trace_id"] == pilot["correlation"]["trace_id"]
 print(json.dumps({
     "package_version": voiage.__version__,
     "consumer_version": pilot["consumer_version"],
     "run_id": pilot["correlation"]["run_id"],
     "analysis_id": pilot["correlation"]["analysis_id"],
     "trace_id": pilot["correlation"]["trace_id"],
-    "voi": clairvoyant - current,
+    "voi": reference,
 }))
 """
     result = subprocess.run(
