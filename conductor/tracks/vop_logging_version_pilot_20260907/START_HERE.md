@@ -6,8 +6,8 @@ Implementation exists in merged PR #1120 at commit `348db4d3e51a82b6fc6a252ef4bd
 2. Use a clean, isolated worktree from the accepted planning commit. Compare the
    packet input hashes with its current files; changed inputs require review.
 3. Confirm the logging/privacy prerequisite has source-bound acceptance evidence.
-   PR #1119 is implementation evidence only; its final acceptance gates remain
-   open, so do not advance this track until that closeout exists.
+   The prerequisite is accepted in PR #1152 at merge commit
+   `25dfcdf4f42f86301bf3ab07e659f4641a8bbb93`.
 4. Run existing baseline checks: `python -m pytest tests/test_consumer_matrix.py tests/test_vop_research_handoff.py -q`.
 5. Review the merged implementation against each AC before any further change.
    Do not duplicate the implementation or claim final completion from the merged

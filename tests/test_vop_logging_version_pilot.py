@@ -36,6 +36,37 @@ def test_pilot_binds_the_exact_bundle_and_provider_neutral_policy() -> None:
     )
 
 
+def test_two_provider_apis_produce_the_same_semantic_voi_result() -> None:
+    """Provider neutrality is behavioral, while provider APIs remain distinct."""
+    semantic_draws = [
+        {"standard_care": 0.0, "hpv_vaccination": 10.0},
+        {"standard_care": 10.0, "hpv_vaccination": 0.0},
+    ]
+
+    def provider_records(records: list[dict[str, float]]) -> float:
+        current = max(
+            sum(record[name] for record in records) / len(records)
+            for name in ("standard_care", "hpv_vaccination")
+        )
+        clairvoyant = sum(max(record.values()) for record in records) / len(records)
+        return clairvoyant - current
+
+    class MatrixProvider:
+        def evaluate(self, matrix: tuple[tuple[float, float], ...], *, threshold: float) -> float:
+            del threshold
+            current = max(sum(row[index] for row in matrix) / len(matrix) for index in range(2))
+            clairvoyant = sum(max(row) for row in matrix) / len(matrix)
+            return clairvoyant - current
+
+    matrix = tuple(
+        (record["standard_care"], record["hpv_vaccination"])
+        for record in semantic_draws
+    )
+    assert provider_records(semantic_draws) == MatrixProvider().evaluate(
+        matrix, threshold=50_000.0
+    ) == 5.0
+
+
 @pytest.mark.parametrize(
     "mutation",
     [
