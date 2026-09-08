@@ -1,5 +1,7 @@
 # Changelog
 
+- Add dry-run capability queries with structured unsupported-method errors and normalized supported-method selection.
+
 - Bind the authoritative coverage job to the exact pull-request source head and record that provenance in CI summaries.
 
 - Add a Rust-native execution budget with atomic batch reservations and validated checkpoint resume identities.

@@ -258,10 +258,16 @@ def _module_available(name: str) -> bool:
     return True
 
 
+_CAPABILITY_METHODS = ["evpi", "evppi", "evsi", "enbs", "ceaf", "dominance"]
+
+
 @app.command(name="capabilities")
 def capabilities(
     json_output: bool = typer.Option(
         False, "--json", help="Emit machine-readable JSON."
+    ),
+    method: str | None = typer.Option(
+        None, "--method", help="Check one method and return its capability status."
     ),
 ) -> None:
     """Report installed capabilities without evaluating a model."""
@@ -275,9 +281,28 @@ def capabilities(
             name: _module_available(name)
             for name in ("jax", "torch", "polars", "pyarrow")
         },
-        "methods": ["evpi", "evppi", "evsi", "enbs", "ceaf", "dominance"],
+        "methods": _CAPABILITY_METHODS,
         "dry_run": True,
     }
+    if method is not None:
+        normalized_method = method.strip().lower()
+        if normalized_method not in _CAPABILITY_METHODS:
+            error = {
+                "schema_version": report["schema_version"],
+                "error": {
+                    "code": "unsupported_method",
+                    "message": f"unsupported capability method: {method}",
+                    "available_methods": _CAPABILITY_METHODS,
+                    "action": "choose one of available_methods",
+                },
+                "dry_run": True,
+            }
+            if json_output:
+                typer.echo(json.dumps(error, sort_keys=True))
+            else:
+                typer.echo(error["error"]["message"])
+            raise typer.Exit(code=2)
+        report["selected_method"] = normalized_method
     if json_output:
         typer.echo(json.dumps(report, sort_keys=True))
     else:
