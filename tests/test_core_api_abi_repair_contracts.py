@@ -237,9 +237,12 @@ def test_abi_checker_accepts_additive_symbol_with_matching_declaration(
     shutil.copyfile(ROOT / "specs/abi/v1/symbols.txt", symbols)
     shutil.copyfile(ROOT / "specs/abi/v1/layouts.txt", layouts)
     extra_symbol = "voiage_v1_capability_probe"
+    header_text = header.read_text(encoding="utf-8")
     header.write_text(
-        header.read_text(encoding="utf-8")
-        + f"\nVOIAGE_V1_API int {extra_symbol}(void);\n",
+        header_text.replace(
+            '#ifdef __cplusplus\n} /* extern "C" */',
+            f'# VOIAGE additive fixture\nVOIAGE_V1_API int {extra_symbol}(void);\n\n#ifdef __cplusplus\n}} /* extern "C" */',
+        ),
         encoding="utf-8",
     )
     symbols.write_text(
