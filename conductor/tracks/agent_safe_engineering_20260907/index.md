@@ -1,6 +1,6 @@
 # Track: Agent-safe engineering improvements
 
-Status: new; all implementation tasks pending.
+Status: new; G01 execution-packet parent reconciliation is complete; G02-G08 remain pending.
 
 GitHub issue: https://github.com/edithatogo/voiage/issues/1110
 

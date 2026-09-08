@@ -1,6 +1,6 @@
 # Plan: Agent-safe engineering improvements
 
-All tasks are pending. Repository allocation precedes implementation;
+G01 is complete from the accepted execution-packet child track; G02-G08 remain pending. Repository allocation precedes implementation;
 [repository-boundaries.md](./repository-boundaries.md) orders the separate
 integration pilots and defines the external capabilities excluded from this repo. Follow [worker-guide.md](./worker-guide.md). A package is not an atomic implementation task: finish its bounded design packet before implementation.
 
@@ -11,9 +11,9 @@ The following parent tasks are tracking summaries only; do not execute duplicate
 
 Prerequisites: none; planning preflight is ready.
 
-- [ ] G01.1 — Confirm repository allocations and exclusions in repository-boundaries.md, inspect conductor-next reuse, and freeze the Voiage-specific validator profile; read the packet inputs; verify the observed gap against HEAD, identify one bounded change and freeze the exact files, baseline hashes, acceptance fixture and toolchain. Record existing behavior and intended failure (G01-AC).
-- [ ] G01.2 — Write and run the negative/analytic witness first; implement the frozen slice only after prerequisites and integrator review are recorded. Run `python -m pytest tests/test_execution_packets.py tests/test_repo_harness.py -q` plus affected checks (G01-AC).
-- [ ] G01.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G01-AC).
+- [x] G01.1 — Confirm repository allocations and exclusions in repository-boundaries.md, inspect conductor-next reuse, and freeze the Voiage-specific validator profile; read the packet inputs; verify the observed gap against HEAD, identify one bounded change and freeze the exact files, baseline hashes, acceptance fixture and toolchain. Record existing behavior and intended failure (G01-AC).
+- [x] G01.2 — Write and run the negative/analytic witness first; implement the frozen slice only after prerequisites and integrator review are recorded. Run `python -m pytest tests/test_execution_packets.py tests/test_repo_harness.py -q` plus affected checks (G01-AC).
+- [x] G01.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G01-AC).
 
 ## G02: Rust dependency and feature qualification
 
