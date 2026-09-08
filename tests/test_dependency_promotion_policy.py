@@ -121,3 +121,28 @@ def test_preview_workflow_is_isolated_non_blocking_and_observational() -> None:
     assert "Python 3.15 prerelease" in workflow
     assert "cargo-nextest and sccache observation" in workflow
     assert "without publishing artifacts" in workflow
+
+
+def test_g02_matrix_rejects_unqualified_feature_promotion() -> None:
+    matrix = _json(
+        ROOT
+        / "conductor"
+        / "tracks"
+        / "agent_safe_engineering_20260907"
+        / "dependency-feature-matrix.json"
+    )
+    assert matrix["workspace_rust_version"] == "1.85"
+    assert matrix["resolution"] == "rust/Cargo.lock"
+    assert matrix["qualification_policy"]["minimal_lane"] == "no-default-features"
+    packages = {row["package"]: row for row in matrix["packages"]}
+    diagnostics = packages["voiage-diagnostics"]
+    assert diagnostics["features"] == ["otel"]
+    assert "feature:otel" in diagnostics["lanes"]
+    assert all(
+        "feature:otel" not in row["lanes"]
+        for name, row in packages.items()
+        if name != "voiage-diagnostics"
+    )
+    assert len(matrix["baseline_input_hashes"]) >= 7
+    assert matrix["acceptance_witness"]["expected_red"]
+    assert matrix["toolchain"]["workspace_msrv"] == "1.85"
