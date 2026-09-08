@@ -65,15 +65,15 @@ def test_ac5_writes_redacted_synthetic_replay_packet(
     parameter_path.parent.mkdir(parents=True)
     parameter_path.write_text("pinned test fixture", encoding="utf-8")
     monkeypatch.setattr(
-        handoff, "PARAMETER_SHA256", hashlib.sha256(parameter_path.read_bytes()).hexdigest()
+        handoff,
+        "PARAMETER_SHA256",
+        hashlib.sha256(parameter_path.read_bytes()).hexdigest(),
     )
     monkeypatch.setattr(handoff.shutil, "which", lambda name: "/usr/bin/git")
     monkeypatch.setattr(
         handoff.subprocess,
         "check_output",
-        lambda *args, **kwargs: handoff.VOP_REVISION
-        if args[0][-1] == "HEAD"
-        else "",
+        lambda *args, **kwargs: handoff.VOP_REVISION if args[0][-1] == "HEAD" else "",
     )
     core = types.ModuleType("vop_poc_nz.cea_model_core")
     analysis = types.ModuleType("vop_poc_nz.pipeline.analysis")
