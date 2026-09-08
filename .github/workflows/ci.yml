@@ -424,8 +424,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
       with:
+        ref: ${{ github.event.pull_request.head.sha || github.sha }}
         fetch-depth: 0
         persist-credentials: false
+
+    - name: Assert and record exact source head
+      env:
+        EXPECTED_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+      run: |
+        tested_head="$(git rev-parse HEAD)"
+        test "${tested_head}" = "${EXPECTED_SOURCE_HEAD}"
+        printf 'tested source head: %s\n' "${tested_head}" >> "${GITHUB_STEP_SUMMARY}"
 
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990

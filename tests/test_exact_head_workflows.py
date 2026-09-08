@@ -40,3 +40,8 @@ def test_every_polyglot_job_binds_and_records_exact_source_head() -> None:
 def test_mutation_job_binds_and_records_exact_source_head() -> None:
     workflow = yaml.safe_load((WORKFLOWS / "ci.yml").read_text(encoding="utf-8"))
     _assert_exact_head_steps(workflow["jobs"]["test-mutation"]["steps"])
+
+
+def test_coverage_job_binds_and_records_exact_source_head() -> None:
+    workflow = yaml.safe_load((WORKFLOWS / "ci.yml").read_text(encoding="utf-8"))
+    _assert_exact_head_steps(workflow["jobs"]["coverage-report"]["steps"])
