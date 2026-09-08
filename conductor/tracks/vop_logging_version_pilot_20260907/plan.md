@@ -1,6 +1,6 @@
 # Implementation plan: VOP-to-VOI version and logging pilot
 
-All tasks are pending. Use [START_HERE.md](./START_HERE.md) and the exact phase commands/file reservations in [implementation-packet.json](./implementation-packet.json). Prerequisites: logging_privacy_resilience_20260907. Follow the [orchestration plan](../agent_safe_engineering_20260907/orchestration.md).
+The implementation is present in merged PR #1120 (`348db4d3e51a82b6fc6a252ef4bdabdf99db8564`). Use [START_HERE.md](./START_HERE.md) and the exact phase commands/file reservations in [implementation-packet.json](./implementation-packet.json) for acceptance review. Prerequisites: logging_privacy_resilience_20260907 is evidenced by merged PR #1119 (`3e33feafd68d718142b083de12d697e2ec5f42e5`). Follow the [orchestration plan](../agent_safe_engineering_20260907/orchestration.md). Final acceptance remains open until all required evidence is recorded.
 
 ## Phase 1: Pin
 
