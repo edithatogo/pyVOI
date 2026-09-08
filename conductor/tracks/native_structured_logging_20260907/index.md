@@ -1,6 +1,6 @@
 # Track: Minimal Rust structured logging
 
-Status: new.
+Status: in progress; bridge and ownership phases are implemented, with numerical acceptance pending.
 
 GitHub issue: https://github.com/edithatogo/voiage/issues/1113
 
