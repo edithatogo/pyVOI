@@ -20,7 +20,7 @@
     {
       "id": "prerequisites",
       "kind": "repository",
-        "status": "satisfied",
+      "status": "satisfied",
       "evidence": "Logging privacy and bounded delivery is accepted in merged PR #1152 (25dfcdf4); VOP repository-owned implementation and phase/final acceptance are reconciled in PR #1158. Release, publication, and scientific acceptance remain external."
     }
   ],
