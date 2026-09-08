@@ -3,7 +3,7 @@
   "type": "feature",
   "status": "new",
   "created_at": "2026-09-07T01:59:07Z",
-  "updated_at": "2026-09-08T15:00:00Z",
+  "updated_at": "2026-09-09T02:00:00Z",
   "description": "Version identities and compatibility policy",
   "github_cross_reference": {
     "issue": "https://github.com/edithatogo/voiage/issues/1112"
@@ -21,17 +21,17 @@
       "id": "prerequisites",
       "kind": "repository",
       "status": "pending",
-      "evidence": "Execution packet guard implementation is merged in PR #1141, but final local acceptance CLOSE.1/CLOSE.2 remains open; retain prerequisite pending."
+      "evidence": "Execution packet guard implementation is merged in PR #1141, but its final local acceptance CLOSE.1/CLOSE.2 remains pending; this track remains fail-closed until that source-bound prerequisite is accepted."
     },
     {
       "id": "implementation",
       "kind": "repository",
-      "status": "pending",
-      "evidence": "PR #1117 implementation is merged and hosted checks passed; the required final local/native gate receipt is not present in this track."
+      "status": "satisfied",
+      "evidence": "PR #1117 merged as 95147116ba0102503c189a331bb3f55e0c2822a9 with all recorded hosted checks passed. Focused version-identity/version-sync/registry tests and the locked Rust workspace gate pass on origin/main; final local tox acceptance is intentionally not claimed from a different revision."
     }
   ],
   "implementation_preparation": {
     "packet": "implementation-packet.json",
-    "state": "waiting_for_prerequisites"
+    "state": "implemented_pending_final_acceptance"
   }
 }

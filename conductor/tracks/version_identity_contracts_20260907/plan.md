@@ -1,6 +1,6 @@
 # Implementation plan: Version identities and compatibility policy
 
-Implementation exists in PR #1117; final acceptance remains pending the required local/native evidence. Use [START_HERE.md](./START_HERE.md) and the exact phase commands/file reservations in [implementation-packet.json](./implementation-packet.json). Prerequisites: execution_packet_guard_20260907. Follow the [orchestration plan](../agent_safe_engineering_20260907/orchestration.md).
+Implementation is accepted at the hosted and focused/native evidence layer from PR #1117; final track acceptance remains pending the source-bound execution-packet prerequisite and an exact-revision full local gate. No full tox result from another revision is reused. Use [START_HERE.md](./START_HERE.md) and the exact phase commands/file reservations in [implementation-packet.json](./implementation-packet.json). Prerequisites: execution_packet_guard_20260907. Follow the [orchestration plan](../agent_safe_engineering_20260907/orchestration.md).
 
 ## Phase 1: Inventory
 
