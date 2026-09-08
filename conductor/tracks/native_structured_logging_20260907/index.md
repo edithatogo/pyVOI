@@ -1,6 +1,6 @@
 # Track: Minimal Rust structured logging
 
-Status: in progress; bridge and ownership phases are implemented, with numerical acceptance pending.
+Status: in progress; implementation and AC5 benchmark are merged, while current-main full-gate acceptance remains pending.
 
 GitHub issue: https://github.com/edithatogo/voiage/issues/1113
 

@@ -1077,7 +1077,7 @@ track at the top of this registry; completed repository slices stay closed.
   *Link: [./tracks/version_identity_contracts_20260907/index.md](./tracks/version_identity_contracts_20260907/index.md)*
 
 ---
-- [ ] **Track: Minimal Rust structured logging**
+- [~] **Track: Minimal Rust structured logging**
   *Link: [./tracks/native_structured_logging_20260907/index.md](./tracks/native_structured_logging_20260907/index.md)*
 
 ---

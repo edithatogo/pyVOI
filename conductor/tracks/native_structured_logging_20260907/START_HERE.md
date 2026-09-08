@@ -1,6 +1,8 @@
 # Implementation handoff: Minimal Rust structured logging
 
-Prepared; current eligibility: **waiting_for_prerequisites**.
+Prepared; current eligibility: **acceptance_pending**.
+
+Implementation and AC5 benchmark evidence are merged in PR #1145. Do not mark final closeout until a current-main `tox run-parallel -p 2` gate passes; the latest attempt exposed native extension import failures in package environments.
 
 1. Read spec.md, plan.md, implementation-packet.json and the shared orchestration.
 2. Use a clean, isolated worktree from the accepted planning commit. Compare the
