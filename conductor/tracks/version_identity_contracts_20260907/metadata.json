@@ -32,6 +32,6 @@
   ],
   "implementation_preparation": {
     "packet": "implementation-packet.json",
-    "state": "implemented_pending_final_acceptance"
+    "state": "waiting_for_prerequisites"
   }
 }
