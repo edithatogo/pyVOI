@@ -57,7 +57,7 @@ def test_consumer_subprocess_is_bounded(
     def fake_run(
         command: list[str], **kwargs: object
     ) -> subprocess.CompletedProcess[str]:
-        assert kwargs["timeout"] == 600
+        assert kwargs["timeout"] == 1200
         assert kwargs["capture_output"] is True
         return subprocess.CompletedProcess(command, 0, "boundary passed", "")
 
@@ -88,7 +88,9 @@ def _run(command: list[str], *, cwd: Path, env: dict[str, str]) -> str:
         check=False,
         capture_output=True,
         text=True,
-        timeout=600,
+        # Cold isolated installs may resolve the scientific dependency graph on
+        # constrained runners; retain a finite bound.
+        timeout=1200,
     )
     assert result.returncode == 0, (
         f"command failed: {' '.join(command)}\nstdout:\n{result.stdout}\nstderr:\n{result.stderr}"
