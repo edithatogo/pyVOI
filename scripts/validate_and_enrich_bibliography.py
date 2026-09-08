@@ -117,7 +117,18 @@ def format_bibtex_entry(fields: dict[str, str]) -> str:
     entry_lines = [f"@{entry_type}{{{entry_key},"]
 
     # Add fields in a consistent order
-    field_order = ["title", "author", "journal", "year", "volume", "number", "pages", "doi", "url", "publisher"]
+    field_order = [
+        "title",
+        "author",
+        "journal",
+        "year",
+        "volume",
+        "number",
+        "pages",
+        "doi",
+        "url",
+        "publisher",
+    ]
 
     # Add ordered fields first
     for field in field_order:
@@ -126,7 +137,11 @@ def format_bibtex_entry(fields: dict[str, str]) -> str:
 
     # Add any remaining fields
     for field, value in fields.items():
-        if field not in ["entry_type", "entry_key"] and value and field not in field_order:
+        if (
+            field not in ["entry_type", "entry_key"]
+            and value
+            and field not in field_order
+        ):
             entry_lines.append(f"  {field} = {{{value}}},")
 
     # Close the entry
@@ -181,7 +196,9 @@ def process_bibliography_file(input_file: Path, output_file: Path) -> None:
                     enriched_count += 1
                     print("    ↻ Enriched with Crossref data")
             else:
-                print(f"  ✗ Invalid DOI for {fields.get('entry_key', 'unknown')}: {doi}")
+                print(
+                    f"  ✗ Invalid DOI for {fields.get('entry_key', 'unknown')}: {doi}"
+                )
 
         # Format the entry back
         processed_entry = format_bibtex_entry(fields)

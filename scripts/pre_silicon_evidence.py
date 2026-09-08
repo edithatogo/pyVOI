@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 import hashlib
 import json
 from pathlib import Path
@@ -396,7 +396,7 @@ def build_manifest(target: str, output_root: Path, probe_only: bool) -> dict[str
     ]
     return {
         "schema_version": "1.0",
-        "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        "generated_at": datetime.now(UTC).replace(microsecond=0).isoformat(),
         "track": metadata["track"],
         "target": target,
         "evidence_kind": "ci_pre_silicon",

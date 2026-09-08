@@ -82,15 +82,19 @@ def _fetch_page(
             payload = _http_get_json(url, token)
         except urllib.error.HTTPError as exc:
             transient = exc.code == 429 or 500 <= exc.code <= 599
-            if not transient or attempt + 1 >= retry_attempts or time.monotonic() >= deadline:
+            if (
+                not transient
+                or attempt + 1 >= retry_attempts
+                or time.monotonic() >= deadline
+            ):
                 raise
-            delay = min(30.0, 2.0 ** attempt * 5.0)
+            delay = min(30.0, 2.0**attempt * 5.0)
             time.sleep(min(delay, max(0.0, deadline - time.monotonic())))
             continue
         except urllib.error.URLError:
             if attempt + 1 >= retry_attempts or time.monotonic() >= deadline:
                 raise
-            delay = min(30.0, 2.0 ** attempt * 5.0)
+            delay = min(30.0, 2.0**attempt * 5.0)
             time.sleep(min(delay, max(0.0, deadline - time.monotonic())))
             continue
         if not isinstance(payload, list):
@@ -132,9 +136,7 @@ def alert_severity(alert: dict[str, Any]) -> str:
     return severity or str(rule.get("severity") or "").lower()
 
 
-def blocking_alerts(
-    alerts: list[dict[str, Any]], *, commit_sha: str
-) -> list[AlertHit]:
+def blocking_alerts(alerts: list[dict[str, Any]], *, commit_sha: str) -> list[AlertHit]:
     """Select high/critical alerts whose latest instance is on ``commit_sha``."""
     hits: list[AlertHit] = []
     for alert in alerts:
@@ -173,14 +175,19 @@ def main() -> int:
             retry_attempts=args.retry_attempts,
         )
     except (urllib.error.HTTPError, urllib.error.URLError, RuntimeError) as exc:
-        print(f"Failed to query code-scanning alerts after bounded retries: {exc}", file=sys.stderr)
+        print(
+            f"Failed to query code-scanning alerts after bounded retries: {exc}",
+            file=sys.stderr,
+        )
         return 1
 
     hits = blocking_alerts(alerts, commit_sha=args.commit_sha)
     if hits:
         print("Blocking code-scanning alerts found:")
         for hit in hits:
-            print(f"- #{hit.number} {hit.rule_id} [{hit.severity}] {hit.message} ({hit.html_url})")
+            print(
+                f"- #{hit.number} {hit.rule_id} [{hit.severity}] {hit.message} ({hit.html_url})"
+            )
         return 1
     print("No open high/critical code-scanning alerts found for the current commit.")
     return 0

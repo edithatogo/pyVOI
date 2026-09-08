@@ -38,6 +38,7 @@ def main() -> None:
     sys.path.insert(0, str(args.vop_root / "src"))
     from vop_poc_nz.cea_model_core import run_cea
     from vop_poc_nz.pipeline.analysis import load_parameters
+
     from voiage import __version__
     from voiage.methods.basic import evpi
 

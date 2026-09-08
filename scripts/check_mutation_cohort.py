@@ -62,7 +62,9 @@ def cohort_identity(repo: Path, config_path: Path) -> dict[str, object]:
     lock_data = lock_path.read_bytes()
     lock = tomllib.loads(lock_data.decode("utf-8"))
     packages = cast("list[dict[str, object]]", lock["package"])
-    mutmut_packages = [package for package in packages if package.get("name") == "mutmut"]
+    mutmut_packages = [
+        package for package in packages if package.get("name") == "mutmut"
+    ]
     if len(mutmut_packages) != 1:
         raise ValueError("uv.lock must contain exactly one Mutmut package record")
     mutmut_package = mutmut_packages[0]

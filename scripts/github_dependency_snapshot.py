@@ -32,8 +32,7 @@ def snapshot(document: dict[str, Any], *, sha: str, ref: str) -> dict[str, Any]:
             if dependency_ref in ref_to_purl
         ]
         for relationship in document.get("dependencies", [])
-        if isinstance(relationship, dict)
-        and isinstance(relationship.get("ref"), str)
+        if isinstance(relationship, dict) and isinstance(relationship.get("ref"), str)
     }
     resolved: dict[str, dict[str, Any]] = {}
     for component in document.get("components", []):
