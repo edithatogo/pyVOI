@@ -77,9 +77,10 @@ def test_ac5_writes_redacted_synthetic_replay_packet(tmp_path: Path) -> None:
     retained = json.loads(output.read_text(encoding="utf-8"))
     assert retained["data_policy"].startswith("synthetic-only")
     assert retained["expected_voi"] == 5.0
-    assert retained["net_benefit_csv_sha256"] == hashlib.sha256(
-        csv_path.read_bytes()
-    ).hexdigest()
+    assert (
+        retained["net_benefit_csv_sha256"]
+        == hashlib.sha256(csv_path.read_bytes()).hexdigest()
+    )
     assert "standard_care" not in output.read_text(encoding="utf-8")
 
 
