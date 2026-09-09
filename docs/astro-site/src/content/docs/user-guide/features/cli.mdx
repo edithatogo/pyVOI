@@ -20,3 +20,18 @@ voiage evsi --input data.csv --design trial_design.json
 # Plot results
 voiage plot ceac --input results.json
 ```
+
+## Capability discovery
+
+Use the dry-run capability query to inspect the installed Rust-backed methods
+without evaluating a model:
+
+```bash
+voiage capabilities --json
+voiage capabilities --json --method evpi
+```
+
+The JSON report is schema version `1.0.0`. Its `methods` and
+`dispatch_methods` fields must agree; an unsupported method exits with status
+2 and returns an actionable error. Reports contain module availability only and
+do not include filesystem paths, credentials, or patient-level data.

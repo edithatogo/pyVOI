@@ -26,6 +26,7 @@ from jsonschema.exceptions import ValidationError as JsonSchemaValidationError
 import numpy as np
 import typer
 
+from voiage.contracts.capabilities import CliCapabilityReport
 from voiage.contracts.distributional_information import (
     VALUE_OF_DISTRIBUTIONAL_INFORMATION_INPUT_SCHEMA_V1,
 )
@@ -259,6 +260,14 @@ def _module_available(name: str) -> bool:
 
 
 _CAPABILITY_METHODS = ["evpi", "evppi", "evsi", "enbs", "ceaf", "dominance"]
+_CAPABILITY_DISPATCH = {
+    "evpi": "calculate_evpi",
+    "evppi": "calculate_evppi",
+    "evsi": "calculate_evsi",
+    "enbs": "calculate_enbs",
+    "ceaf": "calculate_ceaf",
+    "dominance": "calculate_dominance",
+}
 
 
 @app.command(name="capabilities")
@@ -273,16 +282,26 @@ def capabilities(
     """Report installed capabilities without evaluating a model."""
     from voiage import __version__
 
-    report = {
-        "schema_version": "1.0.0",
-        "package_version": __version__,
-        "backend": "rust-backed-cpu",
-        "optional_modules": {
+    report_model = CliCapabilityReport(
+        package_version=__version__,
+        backend="rust-backed-cpu",
+        optional_modules={
             name: _module_available(name)
             for name in ("jax", "torch", "polars", "pyarrow")
         },
-        "methods": _CAPABILITY_METHODS,
-        "dry_run": True,
+        methods=tuple(_CAPABILITY_METHODS),
+        dispatch_methods=tuple(
+            method for method in _CAPABILITY_METHODS if _CAPABILITY_DISPATCH.get(method)
+        ),
+    )
+    report = {
+        "schema_version": report_model.schema_version,
+        "package_version": report_model.package_version,
+        "backend": report_model.backend,
+        "optional_modules": dict(report_model.optional_modules),
+        "methods": list(report_model.methods),
+        "dispatch_methods": list(report_model.dispatch_methods),
+        "dry_run": report_model.dry_run,
     }
     if method is not None:
         normalized_method = method.strip().lower()

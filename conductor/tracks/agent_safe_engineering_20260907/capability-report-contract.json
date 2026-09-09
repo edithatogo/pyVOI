@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://voiage.dev/contracts/capability-report-1.0.0.json",
+  "title": "Voiage CLI capability report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "package_version", "backend", "optional_modules", "methods", "dispatch_methods", "dry_run"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "package_version": {"type": "string", "minLength": 1},
+    "backend": {"type": "string", "minLength": 1},
+    "optional_modules": {"type": "object", "additionalProperties": {"type": "boolean"}},
+    "methods": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "dispatch_methods": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "dry_run": {"const": true}
+  }
+}
