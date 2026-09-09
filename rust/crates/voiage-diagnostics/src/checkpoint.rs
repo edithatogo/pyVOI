@@ -3,7 +3,7 @@
 use serde::{Deserialize, Deserializer, Serialize};
 use std::fmt;
 use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
-use std::sync::Arc;
+use std::sync::{Arc, Mutex};
 
 /// Immutable identities that must match before a checkpoint can be resumed.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize)]
@@ -71,6 +71,7 @@ pub struct ExecutionBudget {
 #[derive(Clone, Debug, Default)]
 pub struct CancellationToken {
     cancelled: Arc<AtomicBool>,
+    admission: Arc<Mutex<()>>,
 }
 
 impl CancellationToken {
@@ -82,6 +83,10 @@ impl CancellationToken {
 
     /// Request cancellation; callers observe it before admitting the next batch.
     pub fn cancel(&self) {
+        let _guard = self
+            .admission
+            .lock()
+            .unwrap_or_else(std::sync::PoisonError::into_inner);
         self.cancelled.store(true, Ordering::Release);
     }
 
@@ -102,6 +107,10 @@ impl CancellationToken {
         budget: &ExecutionBudget,
         batch_size: u64,
     ) -> Result<bool, CheckpointError> {
+        let _guard = self
+            .admission
+            .lock()
+            .unwrap_or_else(std::sync::PoisonError::into_inner);
         if self.is_cancelled() {
             return Err(CheckpointError::Cancelled);
         }
@@ -110,7 +119,7 @@ impl CancellationToken {
 }
 
 /// Explicit lifecycle state for a bounded VOI computation.
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub enum ExecutionState {
     /// Work is still allowed to consume budget.
     Running,
@@ -127,7 +136,7 @@ pub enum ExecutionState {
 impl ExecutionState {
     /// Whether this state cannot consume another batch without an explicit resume.
     #[must_use]
-    pub const fn is_terminal(self) -> bool {
+    pub const fn is_terminal(&self) -> bool {
         !matches!(self, Self::Running)
     }
 
@@ -136,17 +145,20 @@ impl ExecutionState {
     /// # Errors
     ///
     /// Returns [`CheckpointError::InvalidStateTransition`] for an unsupported transition.
-    pub fn transition(self, next: Self) -> Result<Self, CheckpointError> {
+    pub fn transition(&mut self, next: Self) -> Result<(), CheckpointError> {
         let allowed = matches!(
-            (self, next),
+            (self.clone(), next.clone()),
             (
                 Self::Running,
                 Self::Complete | Self::Partial | Self::Cancelled | Self::Failed
             ) | (Self::Partial | Self::Cancelled, Self::Running)
         );
-        allowed
-            .then_some(next)
-            .ok_or(CheckpointError::InvalidStateTransition)
+        if allowed {
+            *self = next;
+            Ok(())
+        } else {
+            Err(CheckpointError::InvalidStateTransition)
+        }
     }
 }
 
@@ -316,7 +328,8 @@ mod tests {
 
     #[test]
     fn lifecycle_rejects_completion_after_cancellation_until_resume() {
-        let cancelled = ExecutionState::Running
+        let mut cancelled = ExecutionState::Running;
+        cancelled
             .transition(ExecutionState::Cancelled)
             .expect("cancellation is valid");
         assert!(cancelled.is_terminal());
@@ -324,13 +337,12 @@ mod tests {
             cancelled.transition(ExecutionState::Complete),
             Err(CheckpointError::InvalidStateTransition)
         );
-        let resumed = cancelled
+        cancelled
             .transition(ExecutionState::Running)
             .expect("cancelled work can resume");
-        assert_eq!(
-            resumed.transition(ExecutionState::Complete),
-            Ok(ExecutionState::Complete)
-        );
+        cancelled
+            .transition(ExecutionState::Complete)
+            .expect("resumed work can complete");
     }
 
     #[test]
