@@ -24,7 +24,7 @@
     "rust/Cargo.toml": "91c0037f1361b837afc5c45c1e1d6edec1f51b094ee2739cc963895e930c7c36",
     "rust/crates/voiage-diagnostics/Cargo.toml": "9234a8feff5362262664a7c92b37323829cc4f0da502ba068de057b1dc68ba85",
     "tests/test_dependency_promotion_policy.py": "120debad7b5f2d5fed9f5ca89113d390d41ee12219d51fde3b31423f226360d4",
-    "rust/crates/voiage-diagnostics/src/lib.rs": "d8067e0b78f20f6f1f4f8e7b619fc12129b340bceb3fb117c698685514632060"
+    "rust/crates/voiage-diagnostics/src/lib.rs": "2fbcf3110440c53def078b8f0771b965a3cedf44b7751dc3df8b7d63377d4966"
   },
   "reserved_implementation_files": [
     "rust/crates/voiage-diagnostics/src/otel_export.rs",
@@ -35,7 +35,7 @@
   "initial_file_state": {
     "rust/crates/voiage-diagnostics/src/otel_export.rs": "new-file-must-be-absent",
     "tests/test_optional_telemetry_contract.py": "new-file-must-be-absent",
-    "rust/crates/voiage-diagnostics/src/lib.rs": "d8067e0b78f20f6f1f4f8e7b619fc12129b340bceb3fb117c698685514632060",
+    "rust/crates/voiage-diagnostics/src/lib.rs": "2fbcf3110440c53def078b8f0771b965a3cedf44b7751dc3df8b7d63377d4966",
     "tests/test_dependency_promotion_policy.py": "120debad7b5f2d5fed9f5ca89113d390d41ee12219d51fde3b31423f226360d4",
     "rust/crates/voiage-diagnostics/Cargo.toml": "9234a8feff5362262664a7c92b37323829cc4f0da502ba068de057b1dc68ba85"
   },
