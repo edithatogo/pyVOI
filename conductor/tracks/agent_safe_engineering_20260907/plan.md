@@ -32,7 +32,7 @@ Prerequisites: G01.
 
 - [ ] G03.1 — Read the packet inputs; verify the observed gap against HEAD, identify one bounded change and freeze the exact files, baseline hashes, acceptance fixture and toolchain. Record existing behavior and intended failure (G03-AC).
 - [ ] G03.2 — Write and run the negative/analytic witness first; implement the frozen slice only after prerequisites and integrator review are recorded. Run `python -m pytest tests/test_consumer_matrix.py tests/test_ffi_sanitizer_contract.py -q` plus affected checks (G03-AC).
-- [x] G03.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G03-AC). PR #1163 merged as `beb4cc547849d069adae045c3f5a6574afe0f896`; exact-head hosted checks passed.
+- [ ] G03.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G03-AC). PR #1163 delivered version identity work, but the broader API/ABI witness remains incomplete.
 
 ## G04: CI cost and failure reproducibility
 
