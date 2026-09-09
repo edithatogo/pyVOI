@@ -13,7 +13,7 @@ pub mod telemetry;
 
 pub use checkpoint::{
     CancellationToken, CheckpointError, CheckpointIdentity, CheckpointStore, ExecutionBudget,
-    ExecutionCheckpoint, ExecutionState,
+    ExecutionCheckpoint, ExecutionState, ReplayContract,
 };
 pub use contracts::{
     ApproximationStatus, DiagnosticStatus, Diagnostics, MethodMaturity, MethodMetadata,

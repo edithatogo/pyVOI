@@ -222,6 +222,60 @@ pub struct ExecutionCheckpoint {
     pub evaluations: u64,
     /// Digest of the committed partial result payload.
     pub payload_digest: String,
+    /// Contract governing deterministic replay of the committed result.
+    #[serde(default)]
+    pub replay: ReplayContract,
+}
+
+/// CPU replay tolerance and reduction-order contract persisted with a checkpoint.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+pub struct ReplayContract {
+    /// Non-negative absolute tolerance represented by its IEEE-754 bits.
+    pub cpu_tolerance_bits: u64,
+    /// Named reduction order required for deterministic replay.
+    pub reduction_order: String,
+}
+
+impl Default for ReplayContract {
+    fn default() -> Self {
+        Self::new(1e-12, "stable_serial").expect("default replay contract is valid")
+    }
+}
+
+impl ReplayContract {
+    /// Construct a replay contract with a finite non-negative CPU tolerance.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`CheckpointError::InvalidReplayContract`] for non-finite,
+    /// negative, or empty values.
+    pub fn new(
+        cpu_tolerance: f64,
+        reduction_order: impl Into<String>,
+    ) -> Result<Self, CheckpointError> {
+        let reduction_order = reduction_order.into();
+        if !cpu_tolerance.is_finite() || cpu_tolerance < 0.0 || reduction_order.is_empty() {
+            return Err(CheckpointError::InvalidReplayContract);
+        }
+        Ok(Self {
+            cpu_tolerance_bits: cpu_tolerance.to_bits(),
+            reduction_order,
+        })
+    }
+
+    /// Return the declared CPU tolerance.
+    #[must_use]
+    pub fn cpu_tolerance(&self) -> f64 {
+        f64::from_bits(self.cpu_tolerance_bits)
+    }
+
+    /// Check two replay values against the declared absolute CPU tolerance.
+    #[must_use]
+    pub fn matches(&self, expected: f64, observed: f64) -> bool {
+        expected.is_finite()
+            && observed.is_finite()
+            && (expected - observed).abs() <= self.cpu_tolerance()
+    }
 }
 
 #[derive(Deserialize)]
@@ -230,6 +284,8 @@ struct ExecutionCheckpointWire {
     completed_batches: u64,
     evaluations: u64,
     payload_digest: String,
+    #[serde(default)]
+    replay: ReplayContract,
 }
 
 impl<'de> Deserialize<'de> for ExecutionCheckpoint {
@@ -238,13 +294,23 @@ impl<'de> Deserialize<'de> for ExecutionCheckpoint {
         D: Deserializer<'de>,
     {
         let wire = ExecutionCheckpointWire::deserialize(deserializer)?;
-        Self::new(
+        let mut checkpoint = Self::new(
             wire.identity,
             wire.completed_batches,
             wire.evaluations,
             wire.payload_digest,
         )
-        .map_err(serde::de::Error::custom)
+        .map_err(serde::de::Error::custom)?;
+        checkpoint.replay = wire.replay;
+        if !checkpoint.replay.cpu_tolerance().is_finite()
+            || checkpoint.replay.cpu_tolerance() < 0.0
+            || checkpoint.replay.reduction_order.is_empty()
+        {
+            return Err(serde::de::Error::custom(
+                CheckpointError::InvalidReplayContract,
+            ));
+        }
+        Ok(checkpoint)
     }
 }
 
@@ -269,7 +335,25 @@ impl ExecutionCheckpoint {
             completed_batches,
             evaluations,
             payload_digest,
+            replay: ReplayContract::default(),
         })
+    }
+
+    /// Attach an explicit deterministic replay contract.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`CheckpointError::InvalidReplayContract`] when the metadata
+    /// is not finite and non-negative.
+    pub fn with_replay(mut self, replay: ReplayContract) -> Result<Self, CheckpointError> {
+        if !replay.cpu_tolerance().is_finite()
+            || replay.cpu_tolerance() < 0.0
+            || replay.reduction_order.is_empty()
+        {
+            return Err(CheckpointError::InvalidReplayContract);
+        }
+        self.replay = replay;
+        Ok(self)
     }
 
     /// Return whether the next complete batch fits the supplied budget.
@@ -415,6 +499,8 @@ pub enum CheckpointError {
     PersistenceFailure,
     /// Checkpoint bytes were malformed or violated serialization invariants.
     InvalidCheckpointEncoding,
+    /// Replay tolerance or reduction-order metadata is invalid.
+    InvalidReplayContract,
 }
 
 impl fmt::Display for CheckpointError {
@@ -427,6 +513,7 @@ impl fmt::Display for CheckpointError {
             Self::Cancelled => "execution was cancelled before batch admission",
             Self::PersistenceFailure => "checkpoint persistence failed",
             Self::InvalidCheckpointEncoding => "checkpoint encoding is invalid",
+            Self::InvalidReplayContract => "replay contract is invalid",
         })
     }
 }
@@ -490,6 +577,38 @@ mod tests {
         assert_eq!(
             checkpoint.ensure_compatible(&changed),
             Err(CheckpointError::IdentityMismatch)
+        );
+    }
+
+    #[test]
+    fn deterministic_replay_witness_is_bound_to_cpu_tolerance() {
+        let replay = ReplayContract::new(1e-10, "stable_serial").unwrap();
+        assert!(replay.matches(1.0, 1.0 + 5e-11));
+        assert!(!replay.matches(1.0, 1.0 + 2e-10));
+        assert_eq!(replay.reduction_order, "stable_serial");
+        let checkpoint = ExecutionCheckpoint::new(identity(), 1, 10, "sha256:replay")
+            .unwrap()
+            .with_replay(replay.clone())
+            .unwrap();
+        let encoded = serde_json::to_string(&checkpoint).unwrap();
+        let decoded: ExecutionCheckpoint = serde_json::from_str(&encoded).unwrap();
+        assert_eq!(decoded.replay, replay);
+        assert!(decoded.replay.matches(0.25, 0.25 + 1e-11));
+    }
+
+    #[test]
+    fn replay_contract_rejects_nonfinite_or_negative_tolerances() {
+        assert_eq!(
+            ReplayContract::new(f64::NAN, "stable_serial"),
+            Err(CheckpointError::InvalidReplayContract)
+        );
+        assert_eq!(
+            ReplayContract::new(-1.0, "stable_serial"),
+            Err(CheckpointError::InvalidReplayContract)
+        );
+        assert_eq!(
+            ReplayContract::new(1e-12, ""),
+            Err(CheckpointError::InvalidReplayContract)
         );
     }
 
