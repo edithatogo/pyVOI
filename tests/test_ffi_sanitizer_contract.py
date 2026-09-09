@@ -58,5 +58,6 @@ def test_public_c_consumer_compiles_against_the_versioned_header() -> None:
         check=False,
         capture_output=True,
         text=True,
+        timeout=30,
     )
     assert result.returncode == 0, result.stderr
