@@ -70,6 +70,6 @@ Prerequisites: G01, G03.
 
 Prerequisites: G01, G02, G04.
 
-- [ ] G08.1 — Read the packet inputs; verify the observed gap against HEAD, identify one bounded change and freeze the exact files, baseline hashes, acceptance fixture and toolchain. Record existing behavior and intended failure (G08-AC).
-- [ ] G08.2 — Write and run the negative/analytic witness first; implement the frozen slice only after prerequisites and integrator review are recorded. Run `python -m pytest tests/test_dependency_delivery_controls.py tests/test_python_release_workflow.py tests/test_rust_release_workflow.py -q` plus affected checks (G08-AC).
+- [x] G08.1 — Read the packet inputs; froze the exact candidate scope and baseline hashes at `3d2f9ce6`, recorded the absent-policy negative witness, selected the locked Python 3.14/uv/Ruff toolchain, and recorded repository-boundary ownership in the G08 packet readiness block (G08-AC).
+- [x] G08.2 — Added the fail-closed automation policy and negative transition guards; the required release/dependency tests pass with `28 passed` under the locked development environment (G08-AC).
 - [ ] G08.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G08-AC).

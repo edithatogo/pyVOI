@@ -17,7 +17,8 @@
     ["staged", "partial"],
     ["pending", "failed"],
     ["verified", "failed"],
-    ["staged", "failed"]
+    ["staged", "failed"],
+    ["partial", "failed"]
   ],
   "required_evidence": [
     "source_commit",
@@ -36,6 +37,26 @@
     "publication_partial",
     "replay_artifact_mismatch"
   ],
+  "failure_guards": {
+    "artifact_digest_mismatch": {
+      "blocked_transitions": [["staged", "published"]]
+    },
+    "signer_unverified": {
+      "blocked_transitions": [["staged", "published"]]
+    },
+    "exception_expired": {
+      "blocked_transitions": [["pending", "verified"], ["staged", "published"]]
+    },
+    "platform_receipt_missing": {
+      "blocked_transitions": [["staged", "published"]]
+    },
+    "publication_partial": {
+      "blocked_transitions": [["partial", "published"]]
+    },
+    "replay_artifact_mismatch": {
+      "blocked_transitions": [["staged", "published"]]
+    }
+  },
   "invariants": [
     "a digest mismatch cannot transition to staged or published",
     "an unverified signer cannot transition to staged or published",

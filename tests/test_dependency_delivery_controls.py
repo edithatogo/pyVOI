@@ -138,6 +138,7 @@ def test_release_automation_policy_has_distinct_fail_closed_states() -> None:
     transitions = {tuple(edge) for edge in policy["allowed_transitions"]}
     assert ("staged", "published") in transitions
     assert ("staged", "partial") in transitions
+    assert ("partial", "failed") in transitions
     assert ("pending", "published") not in transitions
     assert ("partial", "published") not in transitions
     assert len(policy["required_evidence"]) == len(set(policy["required_evidence"]))
@@ -149,6 +150,12 @@ def test_release_automation_policy_has_distinct_fail_closed_states() -> None:
         "publication_partial",
         "replay_artifact_mismatch",
     } <= set(policy["failure_reasons"])
+
+    guards = policy["failure_guards"]
+    assert ["staged", "published"] in guards["artifact_digest_mismatch"][
+        "blocked_transitions"
+    ]
+    assert ["staged", "published"] in guards["signer_unverified"]["blocked_transitions"]
 
 
 def test_release_automation_policy_binds_immutable_artifacts_and_no_publish_authority() -> (
@@ -170,3 +177,17 @@ def test_release_automation_policy_binds_immutable_artifacts_and_no_publish_auth
         in invariants
     )
     assert any("never authorizes" in invariant for invariant in invariants)
+
+
+def test_release_automation_policy_rejects_staged_publish_for_digest_and_signer_failures() -> (
+    None
+):
+    policy = json.loads(
+        (
+            ROOT
+            / "conductor/tracks/agent_safe_engineering_20260907/automation-policy.json"
+        ).read_text(encoding="utf-8")
+    )
+    publish_edge = ["staged", "published"]
+    for reason in ("artifact_digest_mismatch", "signer_unverified"):
+        assert publish_edge in policy["failure_guards"][reason]["blocked_transitions"]
