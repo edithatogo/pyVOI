@@ -74,8 +74,6 @@ class CapabilityReport(ContractModel):
     missing: tuple[Identifier, ...] = ()
 
 
-
-
 class CapabilityBackend(Protocol):
     """Minimal backend surface required by the generic dispatcher."""
 
