@@ -44,11 +44,14 @@ def _validate_current_membership(actual: set[str], *, root: Path = ROOT) -> None
         == 176
     )
     additions = delta["additions"]
-    assert additions == ["voiage/sampling_harm_agent_assurance.py"]
+    assert additions == [
+        "voiage/contracts/capability_report.py",
+        "voiage/sampling_harm_agent_assurance.py",
+    ]
     assert delta["removals"] == []
     assert set(modules).isdisjoint(additions)
     assert actual == set(modules) | set(additions)
-    assert len(actual) == delta["current_python_runtime_modules"] == 177
+    assert len(actual) == delta["current_python_runtime_modules"] == 178
 
 
 def test_structure_inventory_matches_current_sources() -> None:

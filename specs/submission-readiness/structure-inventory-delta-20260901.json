@@ -201,10 +201,11 @@
     "python_modules_sha256": "3d3a33c3aa830a4ec995099061ae5a73fa96bc7ca7d44a79e0b0a5e3b3318825"
   },
   "additions": [
+    "voiage/contracts/capability_report.py",
     "voiage/sampling_harm_agent_assurance.py"
   ],
   "removals": [],
-  "current_python_runtime_modules": 177,
+  "current_python_runtime_modules": 178,
   "classification": "assurance: verification support only, not numerical execution authority",
   "scope": "Python module membership only; no new API, ABI, scientific, release or publication audit is claimed."
 }

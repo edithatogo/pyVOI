@@ -12,7 +12,7 @@
     {"path": "specs/frontier/deterministic-sensitivity-analysis/v1/fixtures/normative/expected.json", "sha256": "c9327a488f58d915f9202a8012b152c68d6aea2cd4a47b38d869c531dbc26507"},
     {"path": "conductor/archive/supported_frontier_method_completion_20260723/deterministic-sensitivity-reference-review.md", "sha256": "b480cece8323bed01e9887cb59686baa92c0fdceb9e910875f0748129d9ce753"},
     {"path": "voiage/deterministic_sensitivity_contract.py", "sha256": "435fb0257962250649927f10bc5e845adcf69c24160c110369b131d528310cd5"},
-    {"path": "voiage/cli.py", "sha256": "2fe7d1b97c074682bad3a36111338ed392d0664dceb95fe5c4abaf40b4144e9f"},
+    {"path": "voiage/cli.py", "sha256": "e13c7dabcac8e3ef6c4affb8be297cbdacbd264bf11358d9c48d8f5af115056e"},
     {"path": "voiage/methods/deterministic_sensitivity.py", "sha256": "d4277431f47ed5aeeb6d21b4e16dfb9517a93ee3f4ce392f01059f0199b7b52b"},
     {"path": "voiage/plot/deterministic_sensitivity.py", "sha256": "0579dd59626c6ba09aaba67da7daa18f72810d67e7729626244a7ca96fa558f2"},
     {"path": "tests/test_deterministic_sensitivity.py", "sha256": "04d6f94968920b2471190448412cbe30b2674c7220e6f753f8c0be9e27b7a146"},
