@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "estimand": "risk_neutral_evpi",
+  "assumptions": ["finite net-benefit samples", "equal sample weights", "at least two strategies"],
+  "tolerance_policy": {"relative": 1e-10, "absolute": 1e-12},
+  "independent_references": [
+    {
+      "case_id": "evpi-affine-invariance-large-magnitude",
+      "reference": "analytic affine invariance",
+      "properties": ["constant_translation preserves EVPI", "positive scaling scales EVPI"],
+      "implementation_test": "rust/crates/voiage-numerics/src/evpi.rs::large_magnitude_translation_preserves_the_analytic_reference"
+    },
+    {
+      "case_id": "evpi-extreme-finite-scale",
+      "reference": "two-row analytic calculation",
+      "properties": ["finite extreme scale remains finite", "expected EVPI is declared explicitly"],
+      "implementation_test": "rust/crates/voiage-numerics/src/evpi.rs::extreme_finite_scale_preserves_the_analytic_evpi"
+    }
+  ],
+  "promotion_rule": "Do not hide non-finite inputs, estimator error, RNG changes, or unstable reductions through clamping or tolerance inflation."
+}

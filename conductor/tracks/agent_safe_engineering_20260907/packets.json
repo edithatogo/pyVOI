@@ -206,7 +206,7 @@
     {
       "id": "G05",
       "title": "Numerical adversarial assurance",
-      "status": "pending",
+      "status": "implemented_pending_acceptance",
       "depends_on": [
         "G01"
       ],
@@ -226,7 +226,7 @@
         ".github/workflows/rust-miri.yml",
         "conductor/tracks/agent_safe_engineering_20260907/numerical-case-register.json"
       ],
-      "implementation_ready": false,
+      "implementation_ready": true,
       "required_before_implementation": [
         "Approved repository allocation, capability/adapter owner, excluded responsibilities and integration disposition",
         "Exact file subset and baseline content hashes",
@@ -245,7 +245,29 @@
       "delivery_repository": "edithatogo/voiage",
       "capability_scope": "Voiage-specific numerical adversarial assurance",
       "external_write_authorized": false,
-      "compatibility_scope": "Existing Voiage promises only; providers require explicit semantic/interchange conformance, not API/ABI equivalence."
+      "compatibility_scope": "Existing Voiage promises only; providers require explicit semantic/interchange conformance, not API/ABI equivalence.",
+      "exact_file_subset": [
+        "rust/crates/voiage-numerics/src/evpi.rs",
+        "conductor/tracks/agent_safe_engineering_20260907/numerical-case-register.json"
+      ],
+      "baseline_hashes": {
+        "rust/crates/voiage-numerics/src/evpi.rs": "aaf84361791686116df24a6d330cdacc3969cacc7e5e57f3aacbad77a35c3566",
+        "rust/Cargo.lock": "2d2f3a566a8647c19e1b0d63c393dd4897931f312cacf2e8ff473c1addf8d40e"
+      },
+      "owner": "voiage maintainer / numerical integrator",
+      "toolchain": {
+        "rust": "1.98.0",
+        "cargo": "1.98.0"
+      },
+      "upstream_evidence_revisions": [
+        "184a3299b1d1a54a33c79bc5eb5545b7cfee3520",
+        "ca3f227076e1c9887fc5947965c2ce3c8265060b"
+      ],
+      "integrator_review": "Bounded EVPI adversarial slice reviewed against G05-AC; no tolerance changes or clamping introduced.",
+      "acceptance_witness": {
+        "negative": "case register absent or malformed fails validation",
+        "green": "cargo test --manifest-path rust/Cargo.toml --locked -p voiage-numerics"
+      }
     },
     {
       "id": "G06",

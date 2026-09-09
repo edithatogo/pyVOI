@@ -46,8 +46,8 @@ Prerequisites: G01.
 
 Prerequisites: G01.
 
-- [ ] G05.1 — Read the packet inputs; verify the observed gap against HEAD, identify one bounded change and freeze the exact files, baseline hashes, acceptance fixture and toolchain. Record existing behavior and intended failure (G05-AC).
-- [ ] G05.2 — Write and run the negative/analytic witness first; implement the frozen slice only after prerequisites and integrator review are recorded. Run `cargo test --manifest-path rust/Cargo.toml --locked -p voiage-numerics` plus affected checks (G05-AC).
+- [x] G05.1 — Froze the EVPI affine-invariance/extreme-scale case register, exact Rust source subset, baseline hashes and toolchain; absent register is the negative witness (G05-AC).
+- [x] G05.2 — Added the large-magnitude analytic EVPI witness and case register; `cargo test --manifest-path rust/Cargo.toml --locked -p voiage-numerics` passes (G05-AC).
 - [ ] G05.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G05-AC).
 
 ## G06: Bounded jobs and recoverable computation
