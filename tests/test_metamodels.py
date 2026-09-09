@@ -391,8 +391,15 @@ def test_tinygp_protocol() -> None:
     class InvalidGP:
         pass
 
+    class InvalidGP2:
+        def not_condition(
+            self, y: np.ndarray, x: np.ndarray
+        ) -> tuple[object, _TinyGPConditionProtocol]:
+            raise AssertionError("must not be called")
+
     assert isinstance(ValidGP(), _TinyGPProtocol)
     assert not isinstance(InvalidGP(), _TinyGPProtocol)
+    assert not isinstance(InvalidGP2(), _TinyGPProtocol)
 
 
 def test_safe_r2_score_normal():
@@ -516,6 +523,18 @@ def test_as_numpy_converts_xarray_values() -> None:
 
     np.testing.assert_array_equal(
         _as_numpy(xr.DataArray([1.0, 2.0, 3.0])), np.array([1.0, 2.0, 3.0])
+    )
+
+
+def test_as_numpy_converts_values_attribute() -> None:
+    """Convert array-like objects exposing a values attribute."""
+    from voiage.metamodels import _as_numpy
+
+    class ValuesContainer:
+        values = np.array([4.0, 5.0, 6.0])
+
+    np.testing.assert_array_equal(
+        _as_numpy(ValuesContainer()), np.array([4.0, 5.0, 6.0])
     )
 
 
