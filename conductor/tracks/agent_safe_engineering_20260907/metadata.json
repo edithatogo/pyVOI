@@ -1,7 +1,7 @@
 {
   "track_id": "agent_safe_engineering_20260907",
   "type": "chore",
-  "status": "active",
+  "status": "new",
   "created_at": "2026-09-06T14:18:03Z",
   "updated_at": "2026-09-09T00:00:00Z",
   "description": "Bounded Rust-first engineering improvements and agent execution contracts",

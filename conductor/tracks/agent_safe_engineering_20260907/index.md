@@ -1,6 +1,6 @@
 # Track: Agent-safe engineering improvements
 
-Status: active; G01 execution-packet parent reconciliation and G02 Rust dependency qualification are complete; G03-G08 remain pending.
+Status: new; G01 execution-packet parent reconciliation and G02 Rust dependency qualification are complete; G03-G08 remain pending.
 
 GitHub issue: https://github.com/edithatogo/voiage/issues/1110
 
