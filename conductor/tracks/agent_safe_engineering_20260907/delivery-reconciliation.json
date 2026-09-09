@@ -10,6 +10,10 @@
     "G08": {"pull_request": 1168, "merge_commit": "d4fc3bac", "status": "merged", "acceptance": "fail-closed automation and release evidence lifecycle policy"}
   },
   "packet_policy": "conductor/tracks/execution_packet_guard_20260907/implementation-packet.json and its completed baseline remain unchanged; this receipt is additive evidence only.",
-  "next_unblocked_track": "G03",
-  "blocked_tracks": {"G06": "deterministic replay witness tied to declared CPU tolerance remains incomplete"}
+  "next_unblocked_track": "G06",
+  "partial_tracks": {
+    "G03": "independent versioned C consumer witness merged; broader hosted sanitizer and consumer-matrix acceptance remains",
+    "G06": "deterministic replay witness tied to declared CPU tolerance remains"
+  },
+  "blocked_tracks": {}
 }

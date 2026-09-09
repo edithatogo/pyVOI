@@ -62,14 +62,14 @@ Prerequisites: G01.
 
 Prerequisites: G01, G03.
 
-- [ ] G07.1 — Use the ordered integration pilots in repository-boundaries.md to select at most one producer contract; read the packet inputs; verify the observed gap against HEAD, identify one bounded change and freeze the exact files, baseline hashes, acceptance fixture and toolchain. Record existing behavior and intended failure (G07-AC).
-- [ ] G07.2 — Write and run the negative/analytic witness first; implement the frozen slice only after prerequisites and integrator review are recorded. Run `python -m pytest tests/test_consumer_matrix.py tests/test_astro_docs_contract.py -q` plus affected checks (G07-AC).
-- [ ] G07.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G07-AC).
+- [x] G07.1 — Selected the Voiage CLI capability-report contract, froze the exact scope and readiness evidence in `g07-readiness.json`, and recorded the negative witness (G07-AC).
+- [x] G07.2 — Added schema-bound dry-run reports and actionable fail-closed diagnostics; the focused capability/consumer/docs checks passed on the exact PR head (G07-AC).
+- [x] G07.3 — Reviewed and merged as PR #1172 (`a4b5ddb0`); hosted required checks passed and sensitive-field exclusions remain explicit (G07-AC).
 
 ## G08: Automation and release evidence lifecycle
 
 Prerequisites: G01, G02, G04.
 
-- [ ] G08.1 — Freeze the exact candidate scope and baseline hashes at `3d2f9ce6`, record the absent-policy negative witness, selected locked Python 3.14/uv/Ruff toolchain, and repository-boundary ownership in `g08-readiness.json`; accept the readiness gate before implementation (G08-AC).
-- [ ] G08.2 — After readiness acceptance, add the fail-closed automation policy and negative transition guards; the focused release/dependency tests are prepared and currently pass with `29 passed` under the locked development environment (G08-AC).
-- [ ] G08.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G08-AC).
+- [x] G08.1 — Froze the candidate scope, baseline hashes, absent-policy witness, locked toolchain, and ownership in `g08-readiness.json` (G08-AC).
+- [x] G08.2 — Added fail-closed automation and release-evidence transition guards; the focused release/dependency tests passed with 29 tests (G08-AC).
+- [x] G08.3 — Reviewed and merged as PR #1168 (`d4fc3bac`); hosted required checks passed and publication remains an external gate (G08-AC).
