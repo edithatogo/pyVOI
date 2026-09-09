@@ -2,6 +2,9 @@
 
 use serde::{Deserialize, Deserializer, Serialize};
 use std::fmt;
+use std::fs::{self, File, OpenOptions};
+use std::io::{Read, Write};
+use std::path::{Path, PathBuf};
 use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
 use std::sync::{Arc, Mutex};
 
@@ -289,6 +292,70 @@ impl ExecutionCheckpoint {
     }
 }
 
+/// A file-backed checkpoint store that replaces a checkpoint atomically.
+#[derive(Clone, Debug)]
+pub struct CheckpointStore {
+    path: PathBuf,
+}
+
+impl CheckpointStore {
+    /// Create a store for a checkpoint path.
+    #[must_use]
+    pub fn new(path: impl Into<PathBuf>) -> Self {
+        Self { path: path.into() }
+    }
+
+    /// Persist a checkpoint through a same-directory temporary file and rename.
+    ///
+    /// The previous valid file remains in place if any write step fails before
+    /// the final rename.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`CheckpointError::PersistenceFailure`] when the file cannot be
+    /// written, or [`CheckpointError::InvalidCheckpointEncoding`] when it
+    /// cannot be encoded.
+    pub fn save(&self, checkpoint: &ExecutionCheckpoint) -> Result<(), CheckpointError> {
+        let bytes = serde_json::to_vec(checkpoint)
+            .map_err(|_| CheckpointError::InvalidCheckpointEncoding)?;
+        let parent = self.path.parent().unwrap_or_else(|| Path::new("."));
+        let temporary = self.path.with_extension("tmp");
+        let result = (|| {
+            let mut file = OpenOptions::new()
+                .create_new(true)
+                .write(true)
+                .open(&temporary)
+                .map_err(|_| CheckpointError::PersistenceFailure)?;
+            file.write_all(&bytes)
+                .and_then(|()| file.sync_all())
+                .map_err(|_| CheckpointError::PersistenceFailure)?;
+            fs::rename(&temporary, &self.path).map_err(|_| CheckpointError::PersistenceFailure)?;
+            File::open(parent)
+                .and_then(|directory| directory.sync_all())
+                .map_err(|_| CheckpointError::PersistenceFailure)
+        })();
+        if result.is_err() {
+            let _ = fs::remove_file(&temporary);
+        }
+        result
+    }
+
+    /// Load and validate the latest complete checkpoint.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`CheckpointError::PersistenceFailure`] when the file cannot
+    /// be read, or [`CheckpointError::InvalidCheckpointEncoding`] when its
+    /// contents are malformed or violate checkpoint invariants.
+    pub fn load(&self) -> Result<ExecutionCheckpoint, CheckpointError> {
+        let mut file = File::open(&self.path).map_err(|_| CheckpointError::PersistenceFailure)?;
+        let mut bytes = Vec::new();
+        file.read_to_end(&mut bytes)
+            .map_err(|_| CheckpointError::PersistenceFailure)?;
+        serde_json::from_slice(&bytes).map_err(|_| CheckpointError::InvalidCheckpointEncoding)
+    }
+}
+
 /// Fail-closed checkpoint construction or resume error.
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum CheckpointError {
@@ -302,6 +369,10 @@ pub enum CheckpointError {
     InvalidStateTransition,
     /// Cooperative cancellation was observed at a batch boundary.
     Cancelled,
+    /// Checkpoint bytes could not be durably persisted or read.
+    PersistenceFailure,
+    /// Checkpoint bytes were malformed or violated serialization invariants.
+    InvalidCheckpointEncoding,
 }
 
 impl fmt::Display for CheckpointError {
@@ -312,6 +383,8 @@ impl fmt::Display for CheckpointError {
             Self::IdentityMismatch => "checkpoint identity does not match the requested resume",
             Self::InvalidStateTransition => "execution state transition is not permitted",
             Self::Cancelled => "execution was cancelled before batch admission",
+            Self::PersistenceFailure => "checkpoint persistence failed",
+            Self::InvalidCheckpointEncoding => "checkpoint encoding is invalid",
         })
     }
 }
@@ -396,5 +469,51 @@ mod tests {
             ExecutionCheckpoint::new(identity(), 0, 0, ""),
             Err(CheckpointError::EmptyPayloadDigest)
         );
+    }
+
+    #[test]
+    fn atomic_store_round_trip_preserves_checkpoint_identity() {
+        let path = std::env::temp_dir().join(format!(
+            "voiage-checkpoint-{}-{}.json",
+            std::process::id(),
+            "round-trip"
+        ));
+        let _ = std::fs::remove_file(&path);
+        let store = CheckpointStore::new(&path);
+        let checkpoint = ExecutionCheckpoint::new(identity(), 4, 40, "sha256:stable").unwrap();
+        store.save(&checkpoint).unwrap();
+        let loaded = store.load().unwrap();
+        assert_eq!(loaded, checkpoint);
+        loaded.ensure_compatible(&identity()).unwrap();
+        let changed = CheckpointIdentity::new("model-v2", "seed-7", "evsi-v2").unwrap();
+        assert_eq!(
+            loaded.ensure_compatible(&changed),
+            Err(CheckpointError::IdentityMismatch)
+        );
+        let _ = std::fs::remove_file(path);
+    }
+
+    #[test]
+    fn failed_atomic_replacement_keeps_last_valid_checkpoint() {
+        let path = std::env::temp_dir().join(format!(
+            "voiage-checkpoint-{}-{}.json",
+            std::process::id(),
+            "failure"
+        ));
+        let temporary = path.with_extension("tmp");
+        let _ = std::fs::remove_file(&path);
+        let _ = std::fs::remove_file(&temporary);
+        let store = CheckpointStore::new(&path);
+        let checkpoint = ExecutionCheckpoint::new(identity(), 2, 20, "sha256:last-valid").unwrap();
+        store.save(&checkpoint).unwrap();
+        std::fs::write(&temporary, b"interrupted").unwrap();
+        let replacement = ExecutionCheckpoint::new(identity(), 3, 30, "sha256:new").unwrap();
+        assert_eq!(
+            store.save(&replacement),
+            Err(CheckpointError::PersistenceFailure)
+        );
+        assert_eq!(store.load().unwrap(), checkpoint);
+        let _ = std::fs::remove_file(path);
+        let _ = std::fs::remove_file(temporary);
     }
 }
