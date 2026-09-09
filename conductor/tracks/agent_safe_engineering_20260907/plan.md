@@ -32,7 +32,7 @@ Prerequisites: G01.
 
 - [ ] G03.1 — Read the packet inputs; verify the observed gap against HEAD, identify one bounded change and freeze the exact files, baseline hashes, acceptance fixture and toolchain. Record existing behavior and intended failure (G03-AC).
 - [ ] G03.2 — Write and run the negative/analytic witness first; implement the frozen slice only after prerequisites and integrator review are recorded. Run `python -m pytest tests/test_consumer_matrix.py tests/test_ffi_sanitizer_contract.py -q` plus affected checks (G03-AC).
-- [ ] G03.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G03-AC).
+- [x] G03.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G03-AC). PR #1163 merged as `beb4cc547849d069adae045c3f5a6574afe0f896`; exact-head hosted checks passed.
 
 ## G04: CI cost and failure reproducibility
 
@@ -40,7 +40,7 @@ Prerequisites: G01.
 
 - [x] G04.1 — Read the packet inputs; froze the exact measurement/test subset, baseline hashes, acceptance fixture and toolchain; the missing measurement packet is the recorded negative witness (G04-AC).
 - [x] G04.2 — Added the CI measurement contract and fail-closed policy assertions; `uv run pytest tests/test_exact_head_workflows.py tests/test_repo_harness.py -q` passes (15 tests) (G04-AC).
-- [ ] G04.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G04-AC).
+- [x] G04.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G04-AC). PR #1164 merged as `184a3299b1d1a54a33c79bc5eb5545b7cfee3520`; exact-head hosted checks passed.
 
 ## G05: Numerical adversarial assurance
 
@@ -48,7 +48,7 @@ Prerequisites: G01.
 
 - [x] G05.1 — Froze the EVPI affine-invariance/extreme-scale case register, exact Rust source subset, baseline hashes and toolchain; absent register is the negative witness (G05-AC).
 - [x] G05.2 — Added the large-magnitude analytic EVPI witness and case register; `cargo test --manifest-path rust/Cargo.toml --locked -p voiage-numerics -p voiage-test-support` passes, including live case-register validation (G05-AC).
-- [ ] G05.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G05-AC).
+- [x] G05.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G05-AC). PR #1165 merged; exact-head hosted checks passed and the numerical register witness is recorded.
 
 ## G06: Bounded jobs and recoverable computation
 

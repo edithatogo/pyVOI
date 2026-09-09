@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Record merged delivery evidence without mutating the immutable execution-packet guard baseline.",
+  "completed_tracks": {
+    "G03": {"pull_request": 1163, "merge_commit": "beb4cc547849d069adae045c3f5a6574afe0f896", "status": "merged"},
+    "G04": {"pull_request": 1164, "merge_commit": "184a3299b1d1a54a33c79bc5eb5545b7cfee3520", "status": "merged"},
+    "G05": {"pull_request": 1165, "status": "merged", "acceptance": "numerical case register and adversarial EVPI witness validated"},
+    "G06": {"pull_request": 1166, "merge_commit": "3d2f9ce6bf70f2393fca0cc2dd90250141679f29", "status": "partial", "remaining": ["durable atomic checkpoint persistence", "deterministic replay witness tied to CPU tolerance"]}
+  },
+  "packet_policy": "conductor/tracks/execution_packet_guard_20260907/implementation-packet.json and its completed baseline remain unchanged; this receipt is additive evidence only.",
+  "next_unblocked_track": "G07"
+}
