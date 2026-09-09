@@ -10,8 +10,9 @@
     "package_version": {"type": "string", "minLength": 1},
     "backend": {"type": "string", "minLength": 1},
     "optional_modules": {"type": "object", "additionalProperties": {"type": "boolean"}},
-    "methods": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
-    "dispatch_methods": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "methods": {"const": ["evpi", "evppi", "evsi", "enbs", "ceaf", "dominance"]},
+    "dispatch_methods": {"const": ["evpi", "evppi", "evsi", "enbs", "ceaf", "dominance"]},
+    "selected_method": {"type": ["string", "null"], "enum": ["evpi", "evppi", "evsi", "enbs", "ceaf", "dominance", null]},
     "dry_run": {"const": true}
   }
 }

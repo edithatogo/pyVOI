@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "track_id": "agent_safe_engineering_20260907",
+  "task_id": "G07",
+  "title": "Capability discovery and reproducible user reports",
+  "implementation_ready": true,
+  "admission": {
+    "delivery_repository": "edithatogo/voiage",
+    "capability_owner": "voiage maintainer",
+    "adapter_owner": "voiage CLI and contracts",
+    "excluded_responsibilities": [
+      "model evaluation",
+      "credential or patient-data discovery",
+      "external provider installation"
+    ],
+    "prerequisites": {
+      "G01": "accepted execution-packet guard",
+      "G03": {
+        "status": "merged",
+        "revision": "a93a7db3"
+      }
+    }
+  },
+  "exact_file_subset": [
+    "voiage/cli.py",
+    "voiage/contracts/capability_report.py",
+    "tests/test_capability_reports.py",
+    "docs/astro-site/src/content/docs/user-guide/features/cli.mdx",
+    "conductor/tracks/agent_safe_engineering_20260907/capability-report-contract.json"
+  ],
+  "baseline_revision": "ab6bcf296a9386bf5a065e269aa9f3d89a13cf97",
+  "acceptance_witness": {
+    "negative": [
+      "unsupported method returns structured exit-2 error",
+      "dispatch registry drift is rejected by Python and published JSON Schema",
+      "non-object report input is rejected"
+    ],
+    "positive": "dry-run report validates against the published schema and contains no sensitive fields",
+    "commands": [
+      "python -m pytest tests/test_capability_reports.py tests/test_consumer_matrix.py tests/test_astro_docs_contract.py -q"
+    ]
+  },
+  "sensitive_field_policy": {
+    "default_report_fields_allowlist": [
+      "schema_version",
+      "package_version",
+      "backend",
+      "optional_modules",
+      "methods",
+      "dispatch_methods",
+      "selected_method",
+      "dry_run"
+    ],
+    "paths_credentials_patient_data": "forbidden"
+  },
+  "baseline_hashes": {
+    "voiage/cli.py": "41a274ea4883bbe4105397af39472b4f7491cc1d0bb14a3227aa2f5d57a6d015",
+    "voiage/contracts/capability_report.py": "5e58e4038bf7531f441ce08f37df7d76c139e5afa4089b66b100891c5b2bff1f",
+    "tests/test_capability_reports.py": "be8c9acca2ff3e58d440abf053f7bd6629506abda269075ab3d8a74718448fcf",
+    "docs/astro-site/src/content/docs/user-guide/features/cli.mdx": "539a7ff8889daaabe41326df619877fe3dbf67dc1fd1ed486e7806f8e67378a1",
+    "conductor/tracks/agent_safe_engineering_20260907/capability-report-contract.json": "bdcaf9155d5e179ee5f9e350dd4f5745d8bb93af23d71507ee5b7e0b3a9a0aed"
+  }
+}

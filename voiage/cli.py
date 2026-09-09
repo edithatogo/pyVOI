@@ -301,6 +301,7 @@ def capabilities(
         "optional_modules": dict(report_model.optional_modules),
         "methods": list(report_model.methods),
         "dispatch_methods": list(report_model.dispatch_methods),
+        "selected_method": None,
         "dry_run": report_model.dry_run,
     }
     if method is not None:

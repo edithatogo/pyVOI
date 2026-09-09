@@ -18,6 +18,7 @@ class CliCapabilityReport(ContractModel):
     optional_modules: dict[Identifier, bool]
     methods: tuple[Identifier, ...]
     dispatch_methods: tuple[Identifier, ...]
+    selected_method: Identifier | None = None
     dry_run: Literal[True] = True
 
     @model_validator(mode="before")
