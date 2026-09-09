@@ -242,6 +242,26 @@ mod tests {
     use super::*;
 
     #[test]
+    fn loads_the_numerical_case_register_with_live_test_targets() {
+        let register = Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("../../../conductor/tracks/agent_safe_engineering_20260907/numerical-case-register.json");
+        let bytes = fs::read(register).expect("numerical case register must be present");
+        let value: Value =
+            serde_json::from_slice(&bytes).expect("numerical case register must be valid JSON");
+        assert_eq!(value["schema_version"], "1.0");
+        let cases = value["independent_references"]
+            .as_array()
+            .expect("case list");
+        assert!(!cases.is_empty());
+        for case in cases {
+            assert!(case["case_id"].as_str().is_some_and(|id| !id.is_empty()));
+            assert!(case["implementation_test"]
+                .as_str()
+                .is_some_and(|test| test.contains("::")));
+        }
+    }
+
+    #[test]
     fn locates_canonical_fixtures_from_the_crate_manifest_directory() {
         let root = fixture_root();
         assert!(root.ends_with(FIXTURE_ROOT));
