@@ -35,6 +35,10 @@ impl<'de> Deserialize<'de> for CheckpointIdentity {
 
 impl CheckpointIdentity {
     /// Construct an identity, rejecting empty components.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`CheckpointError::EmptyIdentity`] when any component is empty.
     pub fn new(
         model_input: impl Into<String>,
         rng: impl Into<String>,
@@ -83,6 +87,7 @@ impl ExecutionBudget {
     }
 
     /// Atomically reserve a complete batch, preventing concurrent over-admission.
+    #[must_use]
     pub fn try_reserve(&self, batch_size: u64) -> bool {
         let mut current = self.remaining.load(Ordering::Acquire);
         loop {
@@ -147,6 +152,10 @@ impl<'de> Deserialize<'de> for ExecutionCheckpoint {
 
 impl ExecutionCheckpoint {
     /// Construct a checkpoint with a non-empty payload digest.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`CheckpointError::EmptyPayloadDigest`] when the digest is empty.
     pub fn new(
         identity: CheckpointIdentity,
         completed_batches: u64,
@@ -172,6 +181,10 @@ impl ExecutionCheckpoint {
     }
 
     /// Reject resume when model, RNG, or algorithm identity changed.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`CheckpointError::IdentityMismatch`] when the identities differ.
     pub fn ensure_compatible(&self, identity: &CheckpointIdentity) -> Result<(), CheckpointError> {
         if &self.identity == identity {
             Ok(())

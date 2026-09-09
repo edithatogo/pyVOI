@@ -224,7 +224,8 @@
         "rust/crates/voiage-test-support/",
         ".github/workflows/rust-fuzz.yml",
         ".github/workflows/rust-miri.yml",
-        "conductor/tracks/agent_safe_engineering_20260907/numerical-case-register.json"
+        "conductor/tracks/agent_safe_engineering_20260907/numerical-case-register.json",
+        "rust/crates/voiage-diagnostics/src/checkpoint.rs"
       ],
       "implementation_ready": true,
       "required_before_implementation": [
@@ -248,11 +249,13 @@
       "compatibility_scope": "Existing Voiage promises only; providers require explicit semantic/interchange conformance, not API/ABI equivalence.",
       "exact_file_subset": [
         "rust/crates/voiage-numerics/src/evpi.rs",
-        "conductor/tracks/agent_safe_engineering_20260907/numerical-case-register.json"
+        "conductor/tracks/agent_safe_engineering_20260907/numerical-case-register.json",
+        "rust/crates/voiage-diagnostics/src/checkpoint.rs"
       ],
       "baseline_hashes": {
         "rust/crates/voiage-numerics/src/evpi.rs": "aaf84361791686116df24a6d330cdacc3969cacc7e5e57f3aacbad77a35c3566",
-        "rust/Cargo.lock": "2d2f3a566a8647c19e1b0d63c393dd4897931f312cacf2e8ff473c1addf8d40e"
+        "rust/Cargo.lock": "2d2f3a566a8647c19e1b0d63c393dd4897931f312cacf2e8ff473c1addf8d40e",
+        "rust/crates/voiage-diagnostics/src/checkpoint.rs": "69eb2adff5eb0b49572fa0117541ff5494146ac333aa4fe997da64dc29b98edf"
       },
       "owner": "voiage maintainer / numerical integrator",
       "toolchain": {
