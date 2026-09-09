@@ -228,12 +228,32 @@ pub struct ExecutionCheckpoint {
 }
 
 /// CPU replay tolerance and reduction-order contract persisted with a checkpoint.
-#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Serialize)]
 pub struct ReplayContract {
     /// Non-negative absolute tolerance represented by its IEEE-754 bits.
     pub cpu_tolerance_bits: u64,
     /// Named reduction order required for deterministic replay.
     pub reduction_order: String,
+}
+
+#[derive(Deserialize)]
+struct ReplayContractWire {
+    cpu_tolerance_bits: u64,
+    reduction_order: String,
+}
+
+impl<'de> Deserialize<'de> for ReplayContract {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let wire = ReplayContractWire::deserialize(deserializer)?;
+        Self::new(
+            f64::from_bits(wire.cpu_tolerance_bits),
+            wire.reduction_order,
+        )
+        .map_err(serde::de::Error::custom)
+    }
 }
 
 impl Default for ReplayContract {
@@ -610,6 +630,22 @@ mod tests {
             ReplayContract::new(1e-12, ""),
             Err(CheckpointError::InvalidReplayContract)
         );
+    }
+
+    #[test]
+    fn standalone_replay_deserialization_revalidates_tolerance_and_order() {
+        for tolerance in [f64::INFINITY, f64::NAN, -1.0] {
+            let encoded = format!(
+                "{{\"cpu_tolerance_bits\":{},\"reduction_order\":\"stable_serial\"}}",
+                tolerance.to_bits()
+            );
+            assert!(serde_json::from_str::<ReplayContract>(&encoded).is_err());
+        }
+        let empty_order = format!(
+            "{{\"cpu_tolerance_bits\":{},\"reduction_order\":\"\"}}",
+            1e-12_f64.to_bits()
+        );
+        assert!(serde_json::from_str::<ReplayContract>(&empty_order).is_err());
     }
 
     #[test]
