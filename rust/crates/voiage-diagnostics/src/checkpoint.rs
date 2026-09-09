@@ -318,8 +318,12 @@ impl CheckpointStore {
     pub fn save(&self, checkpoint: &ExecutionCheckpoint) -> Result<(), CheckpointError> {
         let bytes = serde_json::to_vec(checkpoint)
             .map_err(|_| CheckpointError::InvalidCheckpointEncoding)?;
-        let parent = self.path.parent().unwrap_or_else(|| Path::new("."));
-        let temporary = self.path.with_extension("tmp");
+        let parent = self
+            .path
+            .parent()
+            .filter(|path| !path.as_os_str().is_empty())
+            .unwrap_or_else(|| Path::new("."));
+        let temporary = temporary_path(&self.path)?;
         let result = (|| {
             let mut file = OpenOptions::new()
                 .create_new(true)
@@ -330,9 +334,7 @@ impl CheckpointStore {
                 .and_then(|()| file.sync_all())
                 .map_err(|_| CheckpointError::PersistenceFailure)?;
             fs::rename(&temporary, &self.path).map_err(|_| CheckpointError::PersistenceFailure)?;
-            File::open(parent)
-                .and_then(|directory| directory.sync_all())
-                .map_err(|_| CheckpointError::PersistenceFailure)
+            sync_parent_directory(parent)
         })();
         if result.is_err() {
             let _ = fs::remove_file(&temporary);
@@ -354,6 +356,46 @@ impl CheckpointStore {
             .map_err(|_| CheckpointError::PersistenceFailure)?;
         serde_json::from_slice(&bytes).map_err(|_| CheckpointError::InvalidCheckpointEncoding)
     }
+}
+
+static TEMPORARY_FILE_SEQUENCE: AtomicU64 = AtomicU64::new(0);
+
+fn temporary_path(destination: &Path) -> Result<PathBuf, CheckpointError> {
+    let parent = destination
+        .parent()
+        .filter(|path| !path.as_os_str().is_empty())
+        .unwrap_or_else(|| Path::new("."));
+    let name = destination
+        .file_name()
+        .ok_or(CheckpointError::PersistenceFailure)?;
+    for _ in 0..128 {
+        let sequence = TEMPORARY_FILE_SEQUENCE.fetch_add(1, Ordering::Relaxed);
+        let temporary_name = format!(
+            ".{}.tmp.{}.{}",
+            name.to_string_lossy(),
+            std::process::id(),
+            sequence
+        );
+        let candidate = parent.join(temporary_name);
+        if !candidate.exists() {
+            return Ok(candidate);
+        }
+    }
+    Err(CheckpointError::PersistenceFailure)
+}
+
+#[cfg(unix)]
+fn sync_parent_directory(parent: &Path) -> Result<(), CheckpointError> {
+    File::open(parent)
+        .and_then(|directory| directory.sync_all())
+        .map_err(|_| CheckpointError::PersistenceFailure)
+}
+
+#[cfg(not(unix))]
+fn sync_parent_directory(_parent: &Path) -> Result<(), CheckpointError> {
+    // Windows does not provide a portable directory-handle fsync operation.
+    // The file is flushed before rename; the rename remains the commit point.
+    Ok(())
 }
 
 /// Fail-closed checkpoint construction or resume error.
@@ -494,7 +536,7 @@ mod tests {
     }
 
     #[test]
-    fn failed_atomic_replacement_keeps_last_valid_checkpoint() {
+    fn stale_temporary_file_does_not_block_future_saves() {
         let path = std::env::temp_dir().join(format!(
             "voiage-checkpoint-{}-{}.json",
             std::process::id(),
@@ -508,12 +550,36 @@ mod tests {
         store.save(&checkpoint).unwrap();
         std::fs::write(&temporary, b"interrupted").unwrap();
         let replacement = ExecutionCheckpoint::new(identity(), 3, 30, "sha256:new").unwrap();
-        assert_eq!(
-            store.save(&replacement),
-            Err(CheckpointError::PersistenceFailure)
-        );
-        assert_eq!(store.load().unwrap(), checkpoint);
+        store.save(&replacement).unwrap();
+        assert_eq!(store.load().unwrap(), replacement);
         let _ = std::fs::remove_file(path);
         let _ = std::fs::remove_file(temporary);
+    }
+
+    #[test]
+    fn destination_with_tmp_suffix_gets_distinct_temporary_path() {
+        let path = std::env::temp_dir().join(format!(
+            "voiage-checkpoint-{}-{}.tmp",
+            std::process::id(),
+            "suffix"
+        ));
+        let store = CheckpointStore::new(&path);
+        let checkpoint = ExecutionCheckpoint::new(identity(), 1, 10, "sha256:suffix").unwrap();
+        store.save(&checkpoint).unwrap();
+        assert_eq!(store.load().unwrap(), checkpoint);
+        let _ = std::fs::remove_file(path);
+    }
+
+    #[test]
+    fn bare_relative_path_uses_current_directory_as_parent() {
+        let path = PathBuf::from(format!(
+            "voiage-checkpoint-{}-bare.json",
+            std::process::id()
+        ));
+        let store = CheckpointStore::new(&path);
+        let checkpoint = ExecutionCheckpoint::new(identity(), 1, 10, "sha256:bare").unwrap();
+        store.save(&checkpoint).unwrap();
+        assert_eq!(store.load().unwrap(), checkpoint);
+        let _ = std::fs::remove_file(path);
     }
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+- Make Rust checkpoint persistence recover safely from stale temporary files,
+  use distinct temporary names, and preserve portable directory-durability
+  behavior.
+
 - Add dry-run capability queries with structured unsupported-method errors and normalized supported-method selection.
 
 - Bind the authoritative coverage job to the exact pull-request source head and record that provenance in CI summaries.
