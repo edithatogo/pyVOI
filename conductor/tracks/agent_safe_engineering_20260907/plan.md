@@ -1,6 +1,6 @@
 # Plan: Agent-safe engineering improvements
 
-G01 is complete from the accepted execution-packet child track; G02 is complete; G03-G08 remain pending. Repository allocation precedes implementation;
+G01–G08 repository-owned slices are complete from their accepted delivery evidence. Repository allocation precedes implementation;
 [repository-boundaries.md](./repository-boundaries.md) orders the separate
 integration pilots and defines the external capabilities excluded from this repo. Follow [worker-guide.md](./worker-guide.md). A package is not an atomic implementation task: finish its bounded design packet before implementation.
 
@@ -30,9 +30,9 @@ Use [orchestration.md](./orchestration.md) to exclude transferred logging/pilot 
 
 Prerequisites: G01.
 
-- [ ] G03.1 — Read the packet inputs; verify the observed gap against HEAD, identify one bounded change and freeze the exact files, baseline hashes, acceptance fixture and toolchain. Record existing behavior and intended failure (G03-AC).
-- [ ] G03.2 — Write and run the negative/analytic witness first; implement the frozen slice only after prerequisites and integrator review are recorded. Run `python -m pytest tests/test_consumer_matrix.py tests/test_ffi_sanitizer_contract.py -q` plus affected checks (G03-AC).
-- [ ] G03.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G03-AC). PR #1163 delivered version identity work, but the broader API/ABI witness remains incomplete.
+- [x] G03.1 — Read the packet inputs; froze the compatibility witness scope and baseline evidence (G03-AC).
+- [x] G03.2 — Added independent C consumer and provider semantic/interchange witnesses; focused consumer and sanitizer contracts passed (G03-AC).
+- [x] G03.3 — Reviewed and merged as PR #1175 (`90a254db`), following witness PR #1170; hosted required checks passed (G03-AC).
 
 ## G04: CI cost and failure reproducibility
 
@@ -56,7 +56,7 @@ Prerequisites: G01.
 
 - [x] G06.1 — Read the packet inputs; verify the observed gap against HEAD, identify one bounded change and freeze the exact files, baseline hashes, acceptance fixture and toolchain. Record existing behavior and intended failure (G06-AC).
 - [x] G06.2 — Write and run the negative/analytic witness first; implement the frozen slice only after prerequisites and integrator review are recorded. Run `cargo test --manifest-path rust/Cargo.toml --locked -p voiage-domain -p voiage-diagnostics -p voiage-numerics` plus affected checks (G06-AC).
-- [ ] G06.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G06-AC).
+- [x] G06.3 — Reviewed and merged deterministic replay and CPU-tolerance evidence as PR #1174 (`819888ca`), following persistence PR #1171; hosted required checks passed (G06-AC).
 
 ## G07: Capability discovery and reproducible user reports
 

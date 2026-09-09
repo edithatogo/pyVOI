@@ -1,6 +1,6 @@
 # Track: Agent-safe engineering improvements
 
-Status: active; G01, G02, G04, G05, G07, and G08 are reconciled as complete; G03 and G06 remain partial. G06's deterministic replay witness is the next unblocked repository-owned slice; G03's broader hosted API/ABI acceptance follows.
+Status: active; G01–G08 repository-owned slices are reconciled as complete. No residual implementation track remains in this parent programme; external publication, venue, and maintainer gates remain outside packet authority.
 
 GitHub issue: https://github.com/edithatogo/voiage/issues/1110
 
