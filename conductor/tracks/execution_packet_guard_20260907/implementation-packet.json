@@ -17,7 +17,7 @@
   "input_sha256": {
     "scripts/repo_harness.py": "831b4125a964c3a29f7ed55ae9e0da51aaf45a61185130371c6b8c425f10ecd3",
     "tests/test_repo_harness.py": "55d5cd31288056b74364b341a696e98ece576d83df1d848705376702119c9e84",
-    "conductor/tracks/agent_safe_engineering_20260907/packets.json": "86ba041c455255a606af81b61214dd5255980aabc868362907b127d6dda07a0e"
+    "conductor/tracks/agent_safe_engineering_20260907/packets.json": "f600d8f39f0d1aae038f38777d2699c77c96397651668ee76f0545003b59566d"
   },
   "reserved_implementation_files": [
     "scripts/validate_execution_packets.py",
