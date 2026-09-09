@@ -37,6 +37,12 @@ def test_capability_report_rejects_dispatch_drift() -> None:
         )
 
 
+def test_capability_report_rejects_non_object_input() -> None:
+    """The JSON contract must fail closed for non-object payloads."""
+    with pytest.raises(ValueError):
+        CliCapabilityReport.model_validate(None)
+
+
 def test_capabilities_method_query_is_dry_run() -> None:
     result = CliRunner().invoke(app, ["capabilities", "--json", "--method", "evpi"])
     assert result.exit_code == 0
