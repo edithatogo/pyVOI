@@ -6,7 +6,13 @@ import yaml
 
 ROOT = Path(__file__).parent.parent
 WORKFLOWS = ROOT / ".github" / "workflows"
-MEASUREMENTS = ROOT / "conductor" / "tracks" / "agent_safe_engineering_20260907" / "ci-measurements.json"
+MEASUREMENTS = (
+    ROOT
+    / "conductor"
+    / "tracks"
+    / "agent_safe_engineering_20260907"
+    / "ci-measurements.json"
+)
 SOURCE_HEAD_EXPRESSION = "${{ github.event.pull_request.head.sha || github.sha }}"
 
 
