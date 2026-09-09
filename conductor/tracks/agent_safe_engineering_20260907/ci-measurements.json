@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "scope": "Voiage CI cost and failure reproducibility observations",
+  "required_identity": [
+    "source_head",
+    "lock_digest",
+    "interpreter",
+    "coverage_config_digest"
+  ],
+  "failure_policy": {
+    "failed_subprocess": "failed",
+    "cancelled_shard": "failed",
+    "missing_coverage_artifact": "failed",
+    "retry": "retain_first_failure_and_mark_flaky"
+  },
+  "observations": [
+    {
+      "lane": "full-tox",
+      "source_head": "beb4cc547849d069adae045c3f5a6574afe0f896",
+      "lock_digest": "sha256:pending-exact-run",
+      "interpreter": "CPython 3.14.6",
+      "coverage_config_digest": "sha256:pending-exact-run",
+      "cold_seconds": null,
+      "warm_seconds": null,
+      "tests_passed": null,
+      "status": "pending",
+      "note": "No cost saving is claimed until cold and warm runs share all required identities."
+    }
+  ]
+}

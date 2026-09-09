@@ -6,6 +6,7 @@ import yaml
 
 ROOT = Path(__file__).parent.parent
 WORKFLOWS = ROOT / ".github" / "workflows"
+MEASUREMENTS = ROOT / "conductor" / "tracks" / "agent_safe_engineering_20260907" / "ci-measurements.json"
 SOURCE_HEAD_EXPRESSION = "${{ github.event.pull_request.head.sha || github.sha }}"
 
 
@@ -45,3 +46,33 @@ def test_mutation_job_binds_and_records_exact_source_head() -> None:
 def test_coverage_job_binds_and_records_exact_source_head() -> None:
     workflow = yaml.safe_load((WORKFLOWS / "ci.yml").read_text(encoding="utf-8"))
     _assert_exact_head_steps(workflow["jobs"]["coverage-report"]["steps"])
+
+
+def test_ci_measurements_bind_reproducibility_inputs() -> None:
+    """Cost observations cannot be reused across incompatible execution inputs."""
+    measurements = yaml.safe_load(MEASUREMENTS.read_text(encoding="utf-8"))
+    assert measurements["schema_version"] == "1.0"
+    assert measurements["required_identity"] == [
+        "source_head",
+        "lock_digest",
+        "interpreter",
+        "coverage_config_digest",
+    ]
+    assert measurements["failure_policy"] == {
+        "failed_subprocess": "failed",
+        "cancelled_shard": "failed",
+        "missing_coverage_artifact": "failed",
+        "retry": "retain_first_failure_and_mark_flaky",
+    }
+    assert measurements["observations"]
+    for observation in measurements["observations"]:
+        assert set(observation) >= {
+            "lane",
+            "source_head",
+            "interpreter",
+            "cold_seconds",
+            "warm_seconds",
+            "tests_passed",
+            "status",
+        }
+        assert observation["status"] in {"observed", "pending"}

@@ -38,8 +38,8 @@ Prerequisites: G01.
 
 Prerequisites: G01.
 
-- [ ] G04.1 — Read the packet inputs; verify the observed gap against HEAD, identify one bounded change and freeze the exact files, baseline hashes, acceptance fixture and toolchain. Record existing behavior and intended failure (G04-AC).
-- [ ] G04.2 — Write and run the negative/analytic witness first; implement the frozen slice only after prerequisites and integrator review are recorded. Run `python -m pytest tests/test_exact_head_workflows.py tests/test_repo_harness.py -q` plus affected checks (G04-AC).
+- [x] G04.1 — Read the packet inputs; froze the exact measurement/test subset, baseline hashes, acceptance fixture and toolchain; the missing measurement packet is the recorded negative witness (G04-AC).
+- [x] G04.2 — Added the CI measurement contract and fail-closed policy assertions; `uv run pytest tests/test_exact_head_workflows.py tests/test_repo_harness.py -q` passes (15 tests) (G04-AC).
 - [ ] G04.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G04-AC).
 
 ## G05: Numerical adversarial assurance

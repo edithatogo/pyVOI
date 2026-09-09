@@ -137,7 +137,7 @@
     {
       "id": "G04",
       "title": "CI cost and failure reproducibility",
-      "status": "pending",
+      "status": "implemented_pending_acceptance",
       "depends_on": [
         "G01"
       ],
@@ -157,7 +157,7 @@
         "tests/test_exact_head_workflows.py",
         "conductor/tracks/agent_safe_engineering_20260907/ci-measurements.json"
       ],
-      "implementation_ready": false,
+      "implementation_ready": true,
       "required_before_implementation": [
         "Approved repository allocation, capability/adapter owner, excluded responsibilities and integration disposition",
         "Exact file subset and baseline content hashes",
@@ -176,7 +176,20 @@
       "delivery_repository": "edithatogo/voiage",
       "capability_scope": "Voiage-specific ci cost and failure reproducibility",
       "external_write_authorized": false,
-      "compatibility_scope": "Existing Voiage promises only; providers require explicit semantic/interchange conformance, not API/ABI equivalence."
+      "compatibility_scope": "Existing Voiage promises only; providers require explicit semantic/interchange conformance, not API/ABI equivalence.",
+      "exact_file_subset": [
+        "tests/test_exact_head_workflows.py",
+        "conductor/tracks/agent_safe_engineering_20260907/ci-measurements.json"
+      ],
+      "baseline_hashes": {
+        "tests/test_exact_head_workflows.py": "52667a242c671ce0fa44d0a881de0ba9950289d4f8948d0a776ff93bfe6c8ed8",
+        "uv.lock": "4f153b33044ea3ae342d5de33c58e7e797f57284ab87adc6dcc3efaf5e015575",
+        "pyproject.toml": "abc853f88f9a3b47b5523b638fbbb73023a027ba1de1b802c33bb0bcc35c66fb"
+      },
+      "acceptance_witness": {
+        "negative": "missing measurement packet fails with FileNotFoundError",
+        "green": "measurement identity and fail-closed policy assertions pass"
+      }
     },
     {
       "id": "G05",
