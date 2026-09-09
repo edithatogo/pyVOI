@@ -63,6 +63,7 @@ def test_ci_measurements_bind_reproducibility_inputs() -> None:
         "lock_digest",
         "interpreter",
         "coverage_config_digest",
+        "feature_configuration",
     ]
     assert measurements["failure_policy"] == {
         "failed_subprocess": "failed",
@@ -75,7 +76,10 @@ def test_ci_measurements_bind_reproducibility_inputs() -> None:
         assert set(observation) >= {
             "lane",
             "source_head",
+            "lock_digest",
             "interpreter",
+            "coverage_config_digest",
+            "feature_configuration",
             "cold_seconds",
             "warm_seconds",
             "tests_passed",

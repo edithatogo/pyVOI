@@ -5,7 +5,8 @@
     "source_head",
     "lock_digest",
     "interpreter",
-    "coverage_config_digest"
+    "coverage_config_digest",
+    "feature_configuration"
   ],
   "failure_policy": {
     "failed_subprocess": "failed",
@@ -24,7 +25,16 @@
       "warm_seconds": null,
       "tests_passed": null,
       "status": "pending",
-      "note": "No cost saving is claimed until cold and warm runs share all required identities."
+      "note": "No cost saving is claimed until cold and warm runs share all required identities.",
+      "feature_configuration": {
+        "python_extras": [
+          "ci",
+          "dev"
+        ],
+        "rust_features": [
+          "all-features"
+        ]
+      }
     }
   ]
 }

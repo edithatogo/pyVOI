@@ -182,14 +182,26 @@
         "conductor/tracks/agent_safe_engineering_20260907/ci-measurements.json"
       ],
       "baseline_hashes": {
-        "tests/test_exact_head_workflows.py": "52667a242c671ce0fa44d0a881de0ba9950289d4f8948d0a776ff93bfe6c8ed8",
+        "tests/test_exact_head_workflows.py": "7feb33f393ef329e10941a863b0bc2b83c39d6a7fcfac0a54200515431d7e15b",
         "uv.lock": "4f153b33044ea3ae342d5de33c58e7e797f57284ab87adc6dcc3efaf5e015575",
         "pyproject.toml": "abc853f88f9a3b47b5523b638fbbb73023a027ba1de1b802c33bb0bcc35c66fb"
       },
       "acceptance_witness": {
         "negative": "missing measurement packet fails with FileNotFoundError",
         "green": "measurement identity and fail-closed policy assertions pass"
-      }
+      },
+      "owner": "voiage maintainer / conductor integrator",
+      "toolchain": {
+        "python": "3.14.6",
+        "rust": "1.98.0",
+        "uv": "0.12.5",
+        "tox": "4.61.2"
+      },
+      "upstream_evidence_revisions": [
+        "beb4cc547849d069adae045c3f5a6574afe0f896",
+        "ca3f227076e1c9887fc5947965c2ce3c8265060b"
+      ],
+      "integrator_review": "Bounded slice reviewed against repository-boundaries.md and G04-AC; no hosted ruleset or required threshold changes."
     },
     {
       "id": "G05",
