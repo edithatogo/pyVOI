@@ -34,6 +34,10 @@
 
 ## Unreleased
 
+- Add an independent C consumer compatibility witness for the versioned v1
+  ABI, including exact public function-pointer signatures, fixed-width layout
+  assertions and checked handle lifecycle usage.
+
 - Add an integrated 20-package VOI and software roadmap with Rust-first
   dependencies, statistical/economic/public-health extensions, dated dependency
   evidence, and parallel delivery lanes that resolve shared-contract, scientific,

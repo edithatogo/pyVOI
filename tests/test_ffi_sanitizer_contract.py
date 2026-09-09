@@ -2,6 +2,8 @@
 
 from pathlib import Path
 import re
+import shutil
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -43,3 +45,27 @@ def test_consumer_pairs_every_successful_handle_and_allocation() -> None:
     assert "voiage_v1_error_message" in consumer
     assert "malloc" in consumer
     assert "free(message)" in consumer
+
+
+def test_public_c_consumer_compiles_against_the_versioned_header() -> None:
+    """A deliberately independent C consumer freezes the additive ABI surface."""
+    compiler = shutil.which("cc") or shutil.which("clang") or shutil.which("gcc")
+    assert compiler is not None, "a C compiler is required for the ABI witness"
+    fixture = ROOT / "tests/fixtures/compatibility_witnesses/voiage_v1_consumer.c"
+    header_dir = ROOT / "rust/crates/voiage-ffi/include"
+    result = subprocess.run(
+        [
+            compiler,
+            "-std=c11",
+            "-Werror",
+            "-fsyntax-only",
+            "-I",
+            str(header_dir),
+            str(fixture),
+        ],
+        check=False,
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+    assert result.returncode == 0, result.stderr
