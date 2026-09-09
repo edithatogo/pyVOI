@@ -54,7 +54,15 @@ def test_public_c_consumer_compiles_against_the_versioned_header() -> None:
     fixture = ROOT / "tests/fixtures/compatibility_witnesses/voiage_v1_consumer.c"
     header_dir = ROOT / "rust/crates/voiage-ffi/include"
     result = subprocess.run(
-        [compiler, "-std=c11", "-Werror", "-fsyntax-only", "-I", str(header_dir), str(fixture)],
+        [
+            compiler,
+            "-std=c11",
+            "-Werror",
+            "-fsyntax-only",
+            "-I",
+            str(header_dir),
+            str(fixture),
+        ],
         check=False,
         capture_output=True,
         text=True,
