@@ -24,7 +24,7 @@
   "input_sha256": {
     "specs/integration/vop-voiage/bundles/UPSTREAM.json": "0f65af398e1ba2bbac704f6bb5dedc10548c6120ba6e377cb4254bc7813086d0",
     "tests/test_logging_contract.py": "e815c8d7091c2bf7d1b50201a77be48f20a718354f4cbe29086e5c8a6fb22c6b",
-    "tests/test_consumer_matrix.py": "694abce953a5ea040bf034aba9fcef6649570d5549aeab015103742b41eccb07",
+    "tests/test_consumer_matrix.py": "142e12d9d833d6159623e28646d07bcfc5340798a6f6fe962353f8f717e87fb5",
     "voiage/logging.py": "06ea144518de66ac1af70c0be1699304aa7e07e14285e950ae4fda9feff246c8"
   },
   "reserved_implementation_files": [
@@ -37,7 +37,7 @@
   "initial_file_state": {
     "tests/test_vop_logging_version_pilot.py": "new-file-must-be-absent",
     "specs/integration/vop-voiage/pilot-logging-version.json": "new-file-must-be-absent",
-    "tests/test_consumer_matrix.py": "694abce953a5ea040bf034aba9fcef6649570d5549aeab015103742b41eccb07",
+    "tests/test_consumer_matrix.py": "142e12d9d833d6159623e28646d07bcfc5340798a6f6fe962353f8f717e87fb5",
     "tests/test_vop_research_handoff.py": "e4097c9971847e7c829f85f9a1bd60147707c2a905b949a1c6331537e1384f0a",
     "voiage/logging.py": "06ea144518de66ac1af70c0be1699304aa7e07e14285e950ae4fda9feff246c8"
   },
