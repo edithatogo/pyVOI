@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "owner": "voiage release automation",
+  "scope": "dependency, build, provenance, and release evidence lifecycle",
+  "states": [
+    "pending",
+    "verified",
+    "staged",
+    "published",
+    "partial",
+    "failed"
+  ],
+  "allowed_transitions": [
+    ["pending", "verified"],
+    ["verified", "staged"],
+    ["staged", "published"],
+    ["staged", "partial"],
+    ["pending", "failed"],
+    ["verified", "failed"],
+    ["staged", "failed"]
+  ],
+  "required_evidence": [
+    "source_commit",
+    "release_tag",
+    "artifact_sha256",
+    "signer_verification",
+    "platform_receipts",
+    "provenance",
+    "sbom"
+  ],
+  "failure_reasons": [
+    "artifact_digest_mismatch",
+    "signer_unverified",
+    "exception_expired",
+    "platform_receipt_missing",
+    "publication_partial",
+    "replay_artifact_mismatch"
+  ],
+  "invariants": [
+    "a digest mismatch cannot transition to staged or published",
+    "an unverified signer cannot transition to staged or published",
+    "an expired exception cannot satisfy a required gate",
+    "missing platform receipts keep the release pending or partial",
+    "partial publication is never reported as published",
+    "a release version is bound to one immutable source commit and artifact digest",
+    "replay cannot publish different artifact bytes under an existing version",
+    "policy evidence never authorizes credentials, registry submission, or publication"
+  ]
+}

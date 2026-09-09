@@ -123,3 +123,50 @@ def test_governed_python_upgrades_require_separate_qualification() -> None:
     assert rule["groupSlug"] is None
     assert rule["dependencyDashboardApproval"] is True
     assert rule["automerge"] is False
+
+
+def test_release_automation_policy_has_distinct_fail_closed_states() -> None:
+    policy = json.loads(
+        (
+            ROOT
+            / "conductor/tracks/agent_safe_engineering_20260907/automation-policy.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert policy["schema_version"] == "1.0"
+    states = set(policy["states"])
+    assert {"pending", "verified", "staged", "published", "partial", "failed"} <= states
+    transitions = {tuple(edge) for edge in policy["allowed_transitions"]}
+    assert ("staged", "published") in transitions
+    assert ("staged", "partial") in transitions
+    assert ("pending", "published") not in transitions
+    assert ("partial", "published") not in transitions
+    assert len(policy["required_evidence"]) == len(set(policy["required_evidence"]))
+    assert {
+        "artifact_digest_mismatch",
+        "signer_unverified",
+        "exception_expired",
+        "platform_receipt_missing",
+        "publication_partial",
+        "replay_artifact_mismatch",
+    } <= set(policy["failure_reasons"])
+
+
+def test_release_automation_policy_binds_immutable_artifacts_and_no_publish_authority() -> (
+    None
+):
+    policy = json.loads(
+        (
+            ROOT
+            / "conductor/tracks/agent_safe_engineering_20260907/automation-policy.json"
+        ).read_text(encoding="utf-8")
+    )
+    invariants = set(policy["invariants"])
+    assert (
+        "a release version is bound to one immutable source commit and artifact digest"
+        in invariants
+    )
+    assert (
+        "replay cannot publish different artifact bytes under an existing version"
+        in invariants
+    )
+    assert any("never authorizes" in invariant for invariant in invariants)
