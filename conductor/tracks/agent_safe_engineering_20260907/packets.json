@@ -361,7 +361,7 @@
         "tests/test_python_release_workflow.py",
         "conductor/tracks/agent_safe_engineering_20260907/automation-policy.json"
       ],
-      "implementation_ready": true,
+      "implementation_ready": false,
       "required_before_implementation": [
         "Approved repository allocation, capability/adapter owner, excluded responsibilities and integration disposition",
         "Exact file subset and baseline content hashes",
@@ -380,33 +380,7 @@
       "delivery_repository": "edithatogo/voiage",
       "capability_scope": "Voiage-specific automation and release evidence lifecycle",
       "external_write_authorized": false,
-      "compatibility_scope": "Existing Voiage promises only; providers require explicit semantic/interchange conformance, not API/ABI equivalence.",
-      "readiness": {
-        "recorded_at": "2026-09-09",
-        "owner": "voiage release automation",
-        "upstream_evidence_revisions": [
-          "3d2f9ce6"
-        ],
-        "baseline_commit": "3d2f9ce6",
-        "baseline_hashes": {
-          "renovate.json": "489f7ce606bb5f0edbaeeb02e079594b64197c1eb6ac128ccb41b75c7eb0b467",
-          ".github/workflows/sbom.yml": "1ab2182c7f38dae020d46997b783d066978ab0092634b722160a69ae56ae2337",
-          ".github/workflows/release.yml": "da0231eafc0485388dee1549b040e6be902bae658531d29a882bc41ded6c4843",
-          "scripts/dependency_frontier.py": "4429404c6c35d7d31dc6aa192c1a24bd9d6483628a7a18f2b13354f017c93283",
-          "tests/test_dependency_delivery_controls.py": "98c2614b783926e60483acb01e561b7d127890597aa1d8ad26c202bd7c3ee541",
-          "tests/test_python_release_workflow.py": "9be6336010494245d6d2177d30eb9625f461eac73bdf23a973f10f57392c7376",
-          "tests/test_rust_release_workflow.py": "c34e9c82c52d08e4efa658fda059cddea5256e85e27240b442e29df87fb28e34"
-        },
-        "new_contract": "conductor/tracks/agent_safe_engineering_20260907/automation-policy.json",
-        "negative_witness": "Absent policy did not distinguish partial publication, signer, digest, receipt, exception, and replay failures; expected contract failure.",
-        "toolchain": [
-          "Python 3.14",
-          "uv locked environment",
-          "pytest",
-          "Ruff"
-        ],
-        "integrator_review": "repository-boundaries.md confirms release automation remains Voiage-owned and publication credentials/registry submission remain excluded."
-      }
+      "compatibility_scope": "Existing Voiage promises only; providers require explicit semantic/interchange conformance, not API/ABI equivalence."
     }
   ]
 }

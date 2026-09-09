@@ -70,6 +70,6 @@ Prerequisites: G01, G03.
 
 Prerequisites: G01, G02, G04.
 
-- [x] G08.1 — Read the packet inputs; froze the exact candidate scope and baseline hashes at `3d2f9ce6`, recorded the absent-policy negative witness, selected the locked Python 3.14/uv/Ruff toolchain, and recorded repository-boundary ownership in the G08 packet readiness block (G08-AC).
-- [x] G08.2 — Added the fail-closed automation policy and negative transition guards; the required release/dependency tests pass with `28 passed` under the locked development environment (G08-AC).
+- [ ] G08.1 — Freeze the exact candidate scope and baseline hashes at `3d2f9ce6`, record the absent-policy negative witness, selected locked Python 3.14/uv/Ruff toolchain, and repository-boundary ownership in `g08-readiness.json`; accept the readiness gate before implementation (G08-AC).
+- [ ] G08.2 — After readiness acceptance, add the fail-closed automation policy and negative transition guards; the focused release/dependency tests are prepared and currently pass with `29 passed` under the locked development environment (G08-AC).
 - [ ] G08.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G08-AC).
