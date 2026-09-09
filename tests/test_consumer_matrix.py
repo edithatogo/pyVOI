@@ -31,7 +31,11 @@ def test_provider_semantics_accepts_equivalent_shapes_and_rejects_mutations() ->
         "accepted",
         "rejected",
         "rejected",
+        "rejected",
     ]
+    accepted = evidence["cases"][0]
+    assert accepted["reference_voi"] == 3.0
+    assert accepted["reference_passed"] is True
 
 
 @pytest.mark.parametrize("field", ["pin_sha256", "descriptor_sha256"])

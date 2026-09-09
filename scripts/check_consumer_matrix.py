@@ -67,6 +67,29 @@ def _digest(path: Path) -> str:
 
 def _canonical_provider(provider: dict[str, object]) -> tuple[tuple[float, ...], ...]:
     """Translate one provider shape to the narrow VOI sample interchange."""
+    provider_shape = provider.get("provider_shape", "rows-v1")
+    if provider_shape == "samples-v2":
+        if provider.get("unit") != "net-benefit" or provider.get("action_labels") != [
+            "a",
+            "b",
+        ]:
+            raise ValueError("provider v2 unit or action mapping is invalid")
+        raw_samples = provider.get("samples")
+        if not isinstance(raw_samples, list):
+            raise ValueError("provider v2 samples must be a list")
+        provider = {
+            "utility_unit": provider.get("unit"),
+            "rows": [
+                {
+                    "net_benefit": sample.get("utilities"),
+                    "weight": sample.get("probability"),
+                }
+                for sample in raw_samples
+                if isinstance(sample, dict)
+            ],
+        }
+    elif provider_shape != "rows-v1":
+        raise ValueError("unsupported provider shape")
     if provider.get("utility_unit") != "net-benefit":
         raise ValueError("provider utility_unit must be net-benefit")
     raw_rows = provider.get("rows")
@@ -104,8 +127,8 @@ def evaluate_provider_semantics(
     if fixture.get("schema_version") != "1.0.0":
         raise ValueError("unsupported provider semantics schema")
     cases = fixture.get("cases")
-    if not isinstance(cases, list) or len(cases) != 3:
-        raise ValueError("provider semantics fixture must contain three cases")
+    if not isinstance(cases, list) or len(cases) != 4:
+        raise ValueError("provider semantics fixture must contain four cases")
     results: list[dict[str, object]] = []
     for case in cases:
         if not isinstance(case, dict):
@@ -144,10 +167,16 @@ def evaluate_provider_semantics(
                 "detail": detail,
             }
         )
+    reference = 9.0 - 6.0
+    accepted = next((item for item in results if item["actual"] == "accepted"), None)
+    if accepted is not None:
+        accepted["reference_voi"] = reference
+        accepted["reference_passed"] = isclose(reference, 3.0)
     return {
         "schema_version": "1.0.0",
         "cases": results,
-        "passed": all(item["expected"] == item["actual"] for item in results),
+        "passed": all(item["expected"] == item["actual"] for item in results)
+        and bool(accepted and accepted["reference_passed"]),
     }
 
 

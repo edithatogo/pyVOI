@@ -21,10 +21,12 @@
         },
         {
           "provider_id": "provider-b",
-          "utility_unit": "net-benefit",
-          "rows": [
-            {"net_benefit": [2.0, 8.0], "weight": 0.5},
-            {"net_benefit": [10.0, 1.0], "weight": 0.5}
+          "provider_shape": "samples-v2",
+          "unit": "net-benefit",
+          "action_labels": ["a", "b"],
+          "samples": [
+            {"utilities": [2.0, 8.0], "probability": 0.5},
+            {"utilities": [10.0, 1.0], "probability": 0.5}
           ]
         }
       ]
@@ -51,6 +53,19 @@
             {"net_benefit": [10.0, 1.0], "weight": 0.7},
             {"net_benefit": [2.0, 8.0], "weight": 0.7}
           ]
+        }
+      ]
+    },
+    {
+      "id": "wrong-action-mapping",
+      "expected": "rejected",
+      "providers": [
+        {
+          "provider_id": "provider-wrong-mapping",
+          "provider_shape": "samples-v2",
+          "unit": "net-benefit",
+          "action_labels": ["a", "wrong-action"],
+          "samples": [{"utilities": [10.0, 1.0], "probability": 1.0}]
         }
       ]
     }
