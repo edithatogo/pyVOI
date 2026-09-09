@@ -91,7 +91,10 @@ mod tests {
 
     fn accumulate(value: u64, sample: usize) -> u64 {
         value
-            .wrapping_add(black_box(reference_kernel()).rotate_left((sample % 64) as u32))
+            .wrapping_add(
+                black_box(reference_kernel())
+                    .rotate_left(u32::try_from(sample % 64).expect("bounded rotation")),
+            )
             .wrapping_add(sample as u64 ^ 0xd6e8_feb8_6659_fd93)
     }
 
@@ -142,12 +145,11 @@ mod tests {
         let (_, enabled) =
             tracing::subscriber::with_default(subscriber, || measure_enabled(&correlation));
         assert_eq!(events.load(Ordering::Relaxed), SAMPLES);
-        let disabled_ns = disabled.as_nanos().max(1) as f64;
-        let enabled_ns = enabled.as_nanos() as f64;
+        let disabled_ns = disabled.as_secs_f64().max(f64::MIN_POSITIVE);
+        let enabled_ns = enabled.as_secs_f64();
         assert!(
             enabled_ns / disabled_ns <= MAX_OVERHEAD_RATIO,
-            "enabled logging overhead exceeded {:.1}x budget: disabled={disabled:?}, enabled={enabled:?}",
-            MAX_OVERHEAD_RATIO
+            "enabled logging overhead exceeded {MAX_OVERHEAD_RATIO:.1}x budget: disabled={disabled:?}, enabled={enabled:?}"
         );
     }
 }
