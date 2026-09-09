@@ -46,7 +46,7 @@
     },
     {
       "path": "voiage/cli.py",
-      "sha256": "e13c7dabcac8e3ef6c4affb8be297cbdacbd264bf11358d9c48d8f5af115056e"
+      "sha256": "41a274ea4883bbe4105397af39472b4f7491cc1d0bb14a3227aa2f5d57a6d015"
     },
     {
       "path": "tests/test_value_of_flexibility.py",
