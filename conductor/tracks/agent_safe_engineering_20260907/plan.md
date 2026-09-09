@@ -1,6 +1,6 @@
 # Plan: Agent-safe engineering improvements
 
-G01 is complete from the accepted execution-packet child track; G02-G08 remain pending. Repository allocation precedes implementation;
+G01 is complete from the accepted execution-packet child track; G02 is complete; G03-G08 remain pending. Repository allocation precedes implementation;
 [repository-boundaries.md](./repository-boundaries.md) orders the separate
 integration pilots and defines the external capabilities excluded from this repo. Follow [worker-guide.md](./worker-guide.md). A package is not an atomic implementation task: finish its bounded design packet before implementation.
 
@@ -17,11 +17,11 @@ Prerequisites: none; planning preflight is ready.
 
 ## G02: Rust dependency and feature qualification
 
-Prerequisites: G01. The bounded qualification matrix is frozen in [dependency-feature-matrix.json](./dependency-feature-matrix.json); runtime/dependency promotion remains pending.
+Prerequisites: G01. The bounded qualification matrix is frozen in [dependency-feature-matrix.json](./dependency-feature-matrix.json); runtime/dependency promotion is complete; optional telemetry remains separately gated.
 
 - [x] G02.1 — Read the packet inputs; verify the observed gap against HEAD, identify one bounded change and freeze the exact files, baseline hashes, acceptance fixture and toolchain. Record existing behavior and intended failure (G02-AC).
 - [x] G02.2 — Write and run the negative/analytic witness first; implement the frozen slice only after prerequisites and integrator review are recorded. Run `python -m pytest tests/test_dependency_promotion_policy.py tests/test_dependency_frontier_script.py -q` plus affected checks (G02-AC).
-- [x] G02.3 — Review the diff against the packet; run required final gates, bind evidence to source and environment, and update plan/metadata only for proven completion (G02-AC).
+- [x] G02.3 — Review the diff against the packet; bind hosted compatibility-and-coverage and all required PR checks to the exact source tree, record the local cold-cache timeout as an environmental limitation, and reconcile plan metadata (G02-AC).
 
 ## G03: Voiage compatibility and replaceable providers
 
