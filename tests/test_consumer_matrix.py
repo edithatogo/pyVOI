@@ -7,7 +7,7 @@ import sys
 
 import pytest
 
-from scripts.check_consumer_matrix import evaluate_matrix
+from scripts.check_consumer_matrix import evaluate_matrix, evaluate_provider_semantics
 
 ROOT = Path(__file__).resolve().parents[1]
 MATRIX = ROOT / "specs/integration/vop-voiage/bundles/consumer-matrix.json"
@@ -22,6 +22,16 @@ def test_current_n_minus_one_and_incompatible_matrix_is_independent() -> None:
         "incompatible",
     ]
     assert "vop" not in {name.split(".")[0] for name in sys.modules}
+
+
+def test_provider_semantics_accepts_equivalent_shapes_and_rejects_mutations() -> None:
+    evidence = evaluate_provider_semantics(ROOT)
+    assert evidence["passed"] is True
+    assert [case["actual"] for case in evidence["cases"]] == [
+        "accepted",
+        "rejected",
+        "rejected",
+    ]
 
 
 @pytest.mark.parametrize("field", ["pin_sha256", "descriptor_sha256"])

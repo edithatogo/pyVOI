@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "fixture_id": "g03-provider-semantic-interchange-v1",
+  "contract": {
+    "utility_unit": "net-benefit",
+    "weight_rule": "finite non-negative sample weights sum to one",
+    "shape_rule": "all samples contain the same positive number of actions"
+  },
+  "cases": [
+    {
+      "id": "equivalent-provider-shapes",
+      "expected": "accepted",
+      "providers": [
+        {
+          "provider_id": "provider-a",
+          "utility_unit": "net-benefit",
+          "rows": [
+            {"net_benefit": [10.0, 1.0], "weight": 0.5},
+            {"net_benefit": [2.0, 8.0], "weight": 0.5}
+          ]
+        },
+        {
+          "provider_id": "provider-b",
+          "utility_unit": "net-benefit",
+          "rows": [
+            {"net_benefit": [2.0, 8.0], "weight": 0.5},
+            {"net_benefit": [10.0, 1.0], "weight": 0.5}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wrong-utility-unit",
+      "expected": "rejected",
+      "providers": [
+        {
+          "provider_id": "provider-wrong-unit",
+          "utility_unit": "qaly",
+          "rows": [{"net_benefit": [10.0, 1.0], "weight": 1.0}]
+        }
+      ]
+    },
+    {
+      "id": "wrong-population-weights",
+      "expected": "rejected",
+      "providers": [
+        {
+          "provider_id": "provider-wrong-weight",
+          "utility_unit": "net-benefit",
+          "rows": [
+            {"net_benefit": [10.0, 1.0], "weight": 0.7},
+            {"net_benefit": [2.0, 8.0], "weight": 0.7}
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import argparse
 from copy import deepcopy
 from hashlib import sha256
 import json
+from math import isclose, isfinite
 from pathlib import Path
 from typing import cast
 
@@ -48,6 +49,9 @@ _PROVENANCE_KEYS = {
     "source_arrow_schema_fingerprint",
     "source_bundle_sha256",
 }
+_SEMANTIC_FIXTURE = Path(
+    "tests/fixtures/compatibility_witnesses/provider-semantics.json"
+)
 
 
 def _object(path: Path) -> dict[str, object]:
@@ -59,6 +63,92 @@ def _object(path: Path) -> dict[str, object]:
 
 def _digest(path: Path) -> str:
     return sha256(path.read_bytes()).hexdigest()
+
+
+def _canonical_provider(provider: dict[str, object]) -> tuple[tuple[float, ...], ...]:
+    """Translate one provider shape to the narrow VOI sample interchange."""
+    if provider.get("utility_unit") != "net-benefit":
+        raise ValueError("provider utility_unit must be net-benefit")
+    raw_rows = provider.get("rows")
+    if not isinstance(raw_rows, list) or not raw_rows:
+        raise ValueError("provider rows must be a non-empty list")
+    rows: list[tuple[float, ...]] = []
+    weights: list[float] = []
+    for raw_row in raw_rows:
+        if not isinstance(raw_row, dict):
+            raise TypeError("provider row must be an object")
+        raw_values = raw_row.get("net_benefit")
+        raw_weight = raw_row.get("weight")
+        if not isinstance(raw_values, list) or not isinstance(raw_weight, (int, float)):
+            raise TypeError("provider row requires net_benefit and weight")
+        values = tuple(float(value) for value in raw_values)
+        if not values or any(not isfinite(value) for value in values):
+            raise ValueError("provider net_benefit values must be finite")
+        weight = float(raw_weight)
+        if not isfinite(weight) or weight < 0:
+            raise ValueError("provider weights must be finite and non-negative")
+        rows.append(values)
+        weights.append(weight)
+    if len({len(row) for row in rows}) != 1 or not isclose(sum(weights), 1.0):
+        raise ValueError("provider rows must share shape and weights must sum to one")
+    return tuple(
+        sorted((*row, weight) for row, weight in zip(rows, weights, strict=True))
+    )
+
+
+def evaluate_provider_semantics(
+    repo: Path, fixture_path: Path = _SEMANTIC_FIXTURE
+) -> dict[str, object]:
+    """Check equivalent provider representations and fail-closed mutations."""
+    fixture = _object(repo / fixture_path)
+    if fixture.get("schema_version") != "1.0.0":
+        raise ValueError("unsupported provider semantics schema")
+    cases = fixture.get("cases")
+    if not isinstance(cases, list) or len(cases) != 3:
+        raise ValueError("provider semantics fixture must contain three cases")
+    results: list[dict[str, object]] = []
+    for case in cases:
+        if not isinstance(case, dict):
+            raise TypeError("provider semantics case must be an object")
+        providers = case.get("providers")
+        if not isinstance(providers, list) or not providers:
+            raise ValueError("provider semantics case requires providers")
+        invalid_provider = next(
+            (provider for provider in providers if not isinstance(provider, dict)), None
+        )
+        if invalid_provider is not None:
+            actual = "rejected"
+            detail = "provider must be an object"
+        else:
+            try:
+                canonical = [_canonical_provider(provider) for provider in providers]
+            except (TypeError, ValueError) as error:
+                actual = "rejected"
+                detail = str(error)
+            else:
+                actual = (
+                    "accepted"
+                    if len({repr(item) for item in canonical}) == 1
+                    else "rejected"
+                )
+                detail = (
+                    "equivalent canonical interchange"
+                    if actual == "accepted"
+                    else "semantic mismatch"
+                )
+        results.append(
+            {
+                "id": case.get("id"),
+                "expected": case.get("expected"),
+                "actual": actual,
+                "detail": detail,
+            }
+        )
+    return {
+        "schema_version": "1.0.0",
+        "cases": results,
+        "passed": all(item["expected"] == item["actual"] for item in results),
+    }
 
 
 def evaluate_matrix(repo: Path, matrix_path: Path) -> dict[str, object]:
