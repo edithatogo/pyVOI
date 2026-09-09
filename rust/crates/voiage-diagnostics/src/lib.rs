@@ -12,8 +12,7 @@ pub mod otel_export;
 pub mod telemetry;
 
 pub use checkpoint::{
-    CancellationToken, CheckpointError, CheckpointIdentity, ExecutionBudget, ExecutionCheckpoint,
-    ExecutionState,
+    CheckpointError, CheckpointIdentity, ExecutionBudget, ExecutionCheckpoint,
 };
 pub use contracts::{
     ApproximationStatus, DiagnosticStatus, Diagnostics, MethodMaturity, MethodMetadata,
