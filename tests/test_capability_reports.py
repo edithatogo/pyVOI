@@ -7,7 +7,7 @@ import pytest
 from typer.testing import CliRunner
 
 from voiage.cli import app
-from voiage.contracts.capabilities import CliCapabilityReport
+from voiage.contracts.capability_report import CliCapabilityReport
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = (

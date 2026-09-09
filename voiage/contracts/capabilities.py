@@ -10,7 +10,7 @@ from typing import Literal, Protocol
 
 import numpy as np  # noqa: TC002 - public protocol signature
 from numpy.typing import NDArray  # noqa: TC002 - public protocol signature
-from pydantic import Field, field_serializer, model_validator
+from pydantic import Field, field_serializer
 
 from voiage.contracts.analysis import ContractModel, Identifier
 from voiage.contracts.critical_invariants import capability_gaps
@@ -74,34 +74,6 @@ class CapabilityReport(ContractModel):
     missing: tuple[Identifier, ...] = ()
 
 
-class CliCapabilityReport(ContractModel):
-    """Safe, deterministic capability report emitted by the CLI."""
-
-    schema_version: Literal["1.0.0"] = "1.0.0"
-    package_version: str
-    backend: Identifier
-    optional_modules: dict[Identifier, bool]
-    methods: tuple[Identifier, ...]
-    dispatch_methods: tuple[Identifier, ...]
-    dry_run: Literal[True] = True
-
-    @model_validator(mode="before")
-    @classmethod
-    def normalize_sequences(cls, value: object) -> object:
-        """Accept JSON arrays while retaining immutable internal sequences."""
-        if isinstance(value, dict):
-            value = dict(value)
-            for key in ("methods", "dispatch_methods"):
-                if isinstance(value.get(key), list):
-                    value[key] = tuple(value[key])
-        return value
-
-    @model_validator(mode="after")
-    def dispatch_matches_methods(self) -> CliCapabilityReport:
-        """Reject reports that advertise an unregistered or hidden method."""
-        if self.methods != self.dispatch_methods:
-            raise ValueError("capability methods must match dispatch methods")
-        return self
 
 
 class CapabilityBackend(Protocol):

@@ -26,7 +26,7 @@ from jsonschema.exceptions import ValidationError as JsonSchemaValidationError
 import numpy as np
 import typer
 
-from voiage.contracts.capabilities import CliCapabilityReport
+from voiage.contracts.capability_report import CliCapabilityReport
 from voiage.contracts.distributional_information import (
     VALUE_OF_DISTRIBUTIONAL_INFORMATION_INPUT_SCHEMA_V1,
 )
