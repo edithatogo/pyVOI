@@ -35,9 +35,9 @@
   "initial_file_state": {
     "rust/crates/voiage-diagnostics/src/otel_export.rs": "new-file-must-be-absent",
     "tests/test_optional_telemetry_contract.py": "new-file-must-be-absent",
-    "rust/crates/voiage-diagnostics/src/lib.rs": "e7b9d22349ec1870e21216de990094d4b2f8af5156fae0fecb2aed9516a98c76",
+    "rust/crates/voiage-diagnostics/src/lib.rs": "d8067e0b78f20f6f1f4f8e7b619fc12129b340bceb3fb117c698685514632060",
     "tests/test_dependency_promotion_policy.py": "120debad7b5f2d5fed9f5ca89113d390d41ee12219d51fde3b31423f226360d4",
-    "rust/crates/voiage-diagnostics/Cargo.toml": "7e606d8030efcd379af2271db3064c4f5ab12916c2e6d9fe4df668885c079c8b"
+    "rust/crates/voiage-diagnostics/Cargo.toml": "9234a8feff5362262664a7c92b37323829cc4f0da502ba068de057b1dc68ba85"
   },
   "integrator_only": [
     "rust/Cargo.toml",
