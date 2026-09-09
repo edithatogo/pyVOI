@@ -1,16 +1,13 @@
 # Implementation handoff: Version identities and compatibility policy
 
-Implementation exists in PR #1117; current eligibility: **waiting_for_prerequisites**.
+Implementation is accepted; current eligibility: **completed**. Exact current-main focused/native evidence is recorded below.
 
 1. Read spec.md, plan.md, implementation-packet.json and the shared orchestration.
 2. Use a clean, isolated worktree from the accepted planning commit. Compare the
    packet input hashes with its current files; changed inputs require review.
-3. Confirm the execution-packet guard has source-bound final acceptance evidence.
-   PR #1141 records implementation reconciliation, but CLOSE.1/CLOSE.2 remain
-   open; a packet or green schema check alone does not satisfy this prerequisite.
+3. Confirm the execution-packet guard prerequisite is accepted by merged PR #1162; its hosted checks and G02 evidence are the authoritative upstream gate.
 4. Run existing baseline checks: `python -m pytest tests/test_version_sync.py -q`.
-5. Start T1.1. Reserved paths include proposed new files; do not claim they exist.
-   Author the specified acceptance tests before implementing behavior.
+5. The bounded implementation and acceptance phases are complete; do not reopen T1.1 or create duplicate implementation work.
 6. Use `python -m pytest tests/test_version_identity_contracts.py tests/test_version_sync.py -q` for focused verification. Run native checks for Rust changes and
    the final local gate required by AGENTS.md. Record actual commands/results.
 

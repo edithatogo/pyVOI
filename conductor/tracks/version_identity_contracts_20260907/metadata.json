@@ -13,7 +13,7 @@
     "execution_packet_guard_20260907"
   ],
   "authorization": {
-    "scope": "Implementation and acceptance reconciliation after merged PR #1117",
+    "scope": "Implementation and exact-current-main acceptance reconciliation after merged PR #1117",
     "source": "Owner-authorized ordered track implementation"
   },
   "gates": [
@@ -21,13 +21,13 @@
       "id": "prerequisites",
       "kind": "repository",
       "status": "satisfied",
-      "evidence": "Version identity contract accepted in merged PR #1117 (95147116) and execution packet guard accepted in merged PR #1150 (82fca61a). The merged privacy closeout PR #1151 hosted checks passed on the reconciled main line; no release or publication claim."
+      "evidence": "Version identity contract accepted in merged PR #1117 (95147116); execution packet and G02 qualification accepted in merged PR #1162 (ca3f2270) with hosted checks passed; no release or publication claim."
     },
     {
       "id": "implementation",
       "kind": "repository",
       "status": "satisfied",
-      "evidence": "Version identity contract accepted in merged PR #1117 (95147116) and execution packet guard accepted in merged PR #1150 (82fca61a). The merged privacy closeout PR #1151 hosted checks passed on the reconciled main line; no release or publication claim."
+      "evidence": "Version identity contract accepted in merged PR #1117 (95147116); execution packet and G02 qualification accepted in merged PR #1162 (ca3f2270) with hosted checks passed; no release or publication claim."
     }
   ],
   "implementation_preparation": {

@@ -2,14 +2,14 @@
   "schema_version": "1.0",
   "prepared_at": "2026-09-07T02:55:24Z",
   "track_id": "version_identity_contracts_20260907",
-  "source_baseline": "1207cef979311d1f39b3e41c32e165907303dec2",
+  "source_baseline": "ca3f227076e1c9887fc5947965c2ce3c8265060b",
   "preparation_state": "prepared",
   "execution_state": "completed",
   "prerequisite_tracks": [
     {
       "track_id": "execution_packet_guard_20260907",
       "result_status": "passed",
-      "evidence": "Execution packet guard final acceptance is recorded in PR #1150 at source revision cd434b669b2d7010de07fb83f25fa038019ea0703."
+      "evidence": "Execution packet guard and G02 qualification are accepted in merged PR #1162 at source revision ca3f227076e1c9887fc5947965c2ce3c8265060b."
     }
   ],
   "delivery_repository": "edithatogo/voiage",
@@ -141,5 +141,5 @@
   ],
   "rollback": "Revert only owned commit through reviewed PR; preserve artifacts and old versions.",
   "completion": "All phase ACs, final local/native checks, reviewed diff and required hosted source-bound evidence; external release not included.",
-  "hash_review": "Final acceptance reconciled against merged main at 0de02a3 and hosted closeout PR #1151; 2026-09-08T18:40:00Z."
+  "hash_review": "Final acceptance reconciled against merged main ca3f227076e1c9887fc5947965c2ce3c8265060b; hosted PR #1162 checks passed; 2026-09-09T00:30:00Z."
 }
