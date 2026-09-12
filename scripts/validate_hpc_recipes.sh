@@ -32,6 +32,7 @@ printf 'repo:\n  namespace: voiage_hpc\n' > "$spack_repo/repo.yaml"
 cp "$repo_root/packaging/spack/package.py" "$spack_repo/packages/py-voiage/package.py"
 export SPACK_USER_CONFIG_PATH="$work_dir/spack-config"
 export SPACK_USER_CACHE_PATH="$work_dir/spack-cache"
+spack repo add --scope user "$repo_root/packaging/spack-overlay"
 spack repo add --scope user "$spack_repo"
 if [[ -n "${HPC_SPACK_CATALOG_COMMIT:-}" ]]; then
   spack config --scope user add "repos:builtin:commit:$HPC_SPACK_CATALOG_COMMIT"

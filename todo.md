@@ -37,6 +37,7 @@ This document lists the actionable tasks for `voiage` development. Agents should
     *   [x] Integrate the Arrow and PyArrow 25.0.1 EasyBuild 2024a provider overlay into the parent provider contract; native module qualification remains pending.
     *   [x] Add checksum-bound xarray 2024.11.0 and scikit-learn 1.7.2 provider recipes for both EasyBuild generations; native module qualification remains pending.
     *   [x] Add the checksum-bound Arrow and PyArrow 25.0.1 provider layer for EasyBuild 2023a; native module qualification remains pending.
+    *   [x] Make the Spack validation harness load the full overlay before the root recipe; Linux solver conflicts remain explicitly pending for dependency-contract repair.
     *   [x] Reconcile both EasyBuild root graphs with all provider overlays and
         retain generation-bound robot receipts; native builds and installed
         module qualification remain pending.

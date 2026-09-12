@@ -38,6 +38,8 @@
 
 ## Unreleased
 
+- Load the full Spack overlay during HPC recipe validation so versioned provider recipes are exercised instead of falling back to incompatible catalogue defaults.
+
 - Add an independent C consumer compatibility witness for the versioned v1
   ABI, including exact public function-pointer signatures, fixed-width layout
   assertions and checked handle lifecycle usage.
