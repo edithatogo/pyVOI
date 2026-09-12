@@ -44,7 +44,7 @@ jobs:
     - name: Install pinned uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: false
 
     - name: Set up Python
@@ -78,7 +78,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: true
         cache-suffix: ${{ github.job }}
         cache-dependency-glob: "uv.lock"
@@ -117,7 +117,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: true
         cache-suffix: ${{ github.job }}
         cache-dependency-glob: "uv.lock"
@@ -176,7 +176,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: true
         cache-suffix: ${{ github.job }}
         cache-dependency-glob: "uv.lock"
@@ -207,7 +207,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: true
         cache-suffix: ${{ github.job }}
         cache-dependency-glob: "uv.lock"
@@ -235,7 +235,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: true
         cache-suffix: ${{ github.job }}
         cache-dependency-glob: "uv.lock"
@@ -292,7 +292,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: true
         cache-suffix: ${{ github.job }}-${{ matrix.python }}
         cache-dependency-glob: "uv.lock"
@@ -335,7 +335,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: true
         cache-suffix: ${{ github.job }}
         cache-dependency-glob: "uv.lock"
@@ -362,7 +362,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: true
         cache-suffix: ${{ github.job }}
         cache-dependency-glob: "uv.lock"
@@ -395,7 +395,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: true
         cache-suffix: ${{ github.job }}
         cache-dependency-glob: "uv.lock"
@@ -439,7 +439,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: true
         cache-suffix: ${{ github.job }}
         cache-dependency-glob: "uv.lock"
@@ -478,7 +478,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: true
         cache-suffix: ${{ github.job }}
         cache-dependency-glob: "uv.lock"
@@ -514,7 +514,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: true
         cache-suffix: ${{ github.job }}
         cache-dependency-glob: "uv.lock"
@@ -581,7 +581,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: true
         cache-suffix: ${{ github.job }}
 
@@ -615,7 +615,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: true
         cache-suffix: ${{ github.job }}
 
@@ -661,7 +661,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: true
         cache-suffix: ${{ github.job }}
 
@@ -756,7 +756,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: true
         cache-suffix: ${{ github.job }}
 
@@ -813,7 +813,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
       with:
-        version: "0.12.5"
+        version: "0.12.7"
         enable-cache: false
 
     - name: Set up Python
