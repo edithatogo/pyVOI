@@ -142,7 +142,8 @@ needs a separate pyyaml-ft recipe. None of these graph results proves a build.
 
 Use the isolated configuration, cache and bootstrap commands in the
 [overlay guide](../../packaging/spack-overlay/README.md) to reproduce that
-audit. The standalone `validate_hpc_recipes.sh --spec` command does not load
-the overlay and therefore retains its earlier catalogue limitations. Actual
+audit. The `validate_hpc_recipes.sh --spec` command now loads the overlay before the
+root recipe; its output should therefore be interpreted with the versioned
+provider recipes and pinned catalogue together. Actual
 Linux builds, Arrow round trips from the installed Spack package, and module
 loading remain required before submission or completion of issue #1025.

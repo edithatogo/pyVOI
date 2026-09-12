@@ -50,9 +50,10 @@ configuration keeps only Rust and its three build tools separate, preserving
 all runtime dependency types. The current `packaging/spack-overlay/solver-receipt.json` binds the
 complete graph in `solver-logs/voiage.json`. The individual Typer, Pydantic and PyArrow
 graphs and their receipt remain under
-`packaging/spack-overlay/history/pre-security-floor-b3f53c2b/`. The standalone
-`bash scripts/validate_hpc_recipes.sh --spec` command uses the original recipe
-without this overlay, so its missing-version errors describe that older path.
+`packaging/spack-overlay/history/pre-security-floor-b3f53c2b/`. The
+`bash scripts/validate_hpc_recipes.sh --spec` command loads the full Spack
+overlay before the root recipe, so its solver output exercises the versioned
+provider recipes together with the pinned catalogue.
 
 The source smoke builds the checksum-pinned release and tests the installed
 Rust extension, CLI, a numerical CPU example, and Arrow interchange outside
