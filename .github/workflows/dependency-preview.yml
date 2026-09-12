@@ -47,7 +47,7 @@ jobs:
       - name: Install pinned uv
         uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
         with:
-          version: "0.12.5"
+          version: "0.12.7"
           enable-cache: false
       - name: Set up stable Python
         uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
@@ -89,7 +89,7 @@ jobs:
           fetch-depth: 0
       - uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
         with:
-          version: "0.12.5"
+          version: "0.12.7"
           enable-cache: false
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
@@ -115,7 +115,7 @@ jobs:
           fetch-depth: 0
       - uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
         with:
-          version: "0.12.5"
+          version: "0.12.7"
           enable-cache: true
           cache-suffix: preview-shard-${{ matrix.shard }}
           cache-dependency-glob: "uv.lock"

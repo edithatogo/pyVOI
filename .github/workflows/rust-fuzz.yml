@@ -39,7 +39,7 @@ jobs:
       - name: Install pinned fuzzing toolchain
         uses: dtolnay/rust-toolchain@2c7215f132e9ebf062739d9130488b56d53c060c
         with:
-          toolchain: nightly-2026-08-23
+          toolchain: nightly-2026-08-29
       - name: Install pinned cargo-fuzz
         run: cargo install cargo-fuzz --version 0.13.2 --locked
       - name: Fuzz stable EVPI input handling

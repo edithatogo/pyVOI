@@ -67,7 +67,7 @@ jobs:
           persist-credentials: false
       - uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990
         with:
-          version: "0.12.5"
+          version: "0.12.7"
       - name: Install LaTeX and arXiv source tools
         run: sudo apt-get update && sudo apt-get install --yes chktex lacheck latexmk texlive-latex-base texlive-latex-extra qpdf poppler-utils exiftool
       - name: Validate manuscript metadata and source
