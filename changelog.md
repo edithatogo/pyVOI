@@ -38,6 +38,8 @@
 
 ## Unreleased
 
+- Pass the checked-in EasyBuild generation overlays and an optional host catalogue path to recipe validation, so dry-runs resolve the repository's provider graph instead of testing only the root easyconfig.
+
 - Apply the overlay concretizer policy during isolated Spack recipe validation so stable and dated-nightly Rust toolchains can be resolved as separate build nodes.
 
 - Load the full Spack overlay during HPC recipe validation so versioned provider recipes are exercised instead of falling back to incompatible catalogue defaults.

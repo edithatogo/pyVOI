@@ -75,7 +75,10 @@ solver audit. Its explicit host scope excludes HPC builds and module loading.
 `bash scripts/validate_hpc_recipes.sh --syntax` parses the three current recipe
 files. The `--spec` mode additionally runs Spack concretization, EasyBuild style
 checks and robot dry runs; it fails if required tools or dependency recipes
-are unavailable. The `--build` mode additionally performs the package builds.
+are unavailable. The validator supplies all checked-in generation overlays to
+EasyBuild. Set `HPC_EASYBUILD_CATALOGUE_PATH` when the host catalogue is not at
+EasyBuild's standard location. The `--build` mode additionally performs the
+package builds.
 None of these steps is silently treated as another step.
 
 `python scripts/hpc_package_smoke.py --output /absolute/path/smoke.json` downloads

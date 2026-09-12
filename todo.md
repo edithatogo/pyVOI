@@ -39,6 +39,7 @@ This document lists the actionable tasks for `voiage` development. Agents should
     *   [x] Add the checksum-bound Arrow and PyArrow 25.0.1 provider layer for EasyBuild 2023a; native module qualification remains pending.
     *   [x] Make the Spack validation harness load the full overlay before the root recipe; Linux solver conflicts remain explicitly pending for dependency-contract repair.
     *   [x] Apply the overlay concretizer policy in the validation harness; native Linux build and install evidence remain pending.
+    *   [x] Pass all checked-in EasyBuild generation overlays through the validator's robot search path; native builds and installed module qualification remain pending.
     *   [x] Reconcile both EasyBuild root graphs with all provider overlays and
         retain generation-bound robot receipts; native builds and installed
         module qualification remain pending.

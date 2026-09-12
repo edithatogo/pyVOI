@@ -52,8 +52,26 @@ PYTHON
 spack spec py-voiage@2.2.0
 for toolchain in 2023a 2024a; do
   recipe="$repo_root/packaging/easybuild/voiage-2.2.0-foss-$toolchain.eb"
+  if [[ "$toolchain" == 2023a ]]; then
+    generic_overlay="$repo_root/packaging/easybuild-2023a-overlay/2023a"
+  else
+    generic_overlay="$repo_root/packaging/easybuild-overlay/2024a"
+  fi
+  robot_paths=(
+    "$repo_root/packaging/easybuild"
+    "$repo_root/packaging/easybuild-${toolchain}-polars-overlay/${toolchain}"
+    "$repo_root/packaging/easybuild-${toolchain}-arrow-overlay/${toolchain}"
+    "$repo_root/packaging/easybuild-${toolchain}-rust-overlay/${toolchain}"
+    "$generic_overlay"
+  )
+  if [[ -n "${HPC_EASYBUILD_CATALOGUE_PATH:-}" ]]; then
+    robot_paths+=("$HPC_EASYBUILD_CATALOGUE_PATH")
+  elif [[ -d /usr/local/easybuild/easyconfigs ]]; then
+    robot_paths+=(/usr/local/easybuild/easyconfigs)
+  fi
+  robot_path_value=$(IFS=:; echo "${robot_paths[*]}")
   eb --check-style "$recipe"
-  eb --dry-run --robot "$recipe"
+  eb --dry-run --robot "$recipe" --robot-paths="$robot_path_value"
 done
 [[ "$mode" == --spec ]] && exit 0
 
@@ -65,5 +83,24 @@ source "$work_dir/spack-load.sh"
 voiage --help
 python -c "import voiage._core as c; assert c.runtime_info()['engine'] == 'rust'"
 for toolchain in 2023a 2024a; do
-  eb --robot "$repo_root/packaging/easybuild/voiage-2.2.0-foss-$toolchain.eb"
+  recipe="$repo_root/packaging/easybuild/voiage-2.2.0-foss-$toolchain.eb"
+  if [[ "$toolchain" == 2023a ]]; then
+    generic_overlay="$repo_root/packaging/easybuild-2023a-overlay/2023a"
+  else
+    generic_overlay="$repo_root/packaging/easybuild-overlay/2024a"
+  fi
+  robot_paths=(
+    "$repo_root/packaging/easybuild"
+    "$repo_root/packaging/easybuild-${toolchain}-polars-overlay/${toolchain}"
+    "$repo_root/packaging/easybuild-${toolchain}-arrow-overlay/${toolchain}"
+    "$repo_root/packaging/easybuild-${toolchain}-rust-overlay/${toolchain}"
+    "$generic_overlay"
+  )
+  if [[ -n "${HPC_EASYBUILD_CATALOGUE_PATH:-}" ]]; then
+    robot_paths+=("$HPC_EASYBUILD_CATALOGUE_PATH")
+  elif [[ -d /usr/local/easybuild/easyconfigs ]]; then
+    robot_paths+=(/usr/local/easybuild/easyconfigs)
+  fi
+  robot_path_value=$(IFS=:; echo "${robot_paths[*]}")
+  eb --robot "$recipe" --robot-paths="$robot_path_value"
 done
