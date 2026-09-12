@@ -11,7 +11,7 @@ textstat==0.7.13
 nltk==3.10.3
 pyphen==0.18.1
 # uv pip sync treats this file as an exact environment, so pin NLTK's runtime set.
-click==8.4.2
+click==8.5.0
 defusedxml==0.7.1
 joblib==1.5.3
 tqdm==4.70.0
