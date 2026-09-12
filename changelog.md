@@ -38,6 +38,8 @@
 
 ## Unreleased
 
+- Apply the overlay concretizer policy during isolated Spack recipe validation so stable and dated-nightly Rust toolchains can be resolved as separate build nodes.
+
 - Load the full Spack overlay during HPC recipe validation so versioned provider recipes are exercised instead of falling back to incompatible catalogue defaults.
 
 - Add an independent C consumer compatibility witness for the versioned v1

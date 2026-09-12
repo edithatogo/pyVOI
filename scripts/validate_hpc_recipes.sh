@@ -32,6 +32,8 @@ printf 'repo:\n  namespace: voiage_hpc\n' > "$spack_repo/repo.yaml"
 cp "$repo_root/packaging/spack/package.py" "$spack_repo/packages/py-voiage/package.py"
 export SPACK_USER_CONFIG_PATH="$work_dir/spack-config"
 export SPACK_USER_CACHE_PATH="$work_dir/spack-cache"
+mkdir -p "$SPACK_USER_CONFIG_PATH" "$SPACK_USER_CACHE_PATH"
+cp "$repo_root/packaging/spack-overlay/concretizer.yaml" "$SPACK_USER_CONFIG_PATH/concretizer.yaml"
 spack repo add --scope user "$repo_root/packaging/spack-overlay"
 spack repo add --scope user "$spack_repo"
 if [[ -n "${HPC_SPACK_CATALOG_COMMIT:-}" ]]; then
